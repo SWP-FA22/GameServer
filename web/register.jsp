@@ -25,7 +25,7 @@
     </div>
     <div class="input-box">
       <span class="details">Password</span>
-      <input type="password" placeholder="Enter your password" name="pass" required>
+      <input type="password" placeholder="Enter your password" name="password" required>
     </div>
   </div>
   <div class="g-recaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>"></div>

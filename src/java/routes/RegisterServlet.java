@@ -11,6 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.UserProcedure;
+import utilities.GlobalConstants;
+import utilities.GoogleReCaptcha;
 
 /**
  *
@@ -53,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("register.jsp").forward(request,response);
     } 
 
     /** 
@@ -66,7 +69,27 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        try{
+            
+            String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
+        String email = request.getParameter("email").trim();
+        String captcha= request.getParameter("g-recaptcha-response");
+        GoogleReCaptcha gcaptcha= new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
+        if (!gcaptcha.checkCaptcha(captcha))
+        {
+            out.println("sai captcha");
+            //doGet(request, response);
+        }
+        out.println(password+" 1 "+ email +" 2 "+ username);
+        UserProcedure.createAccount(username, password, email);
+        }catch(Exception e)
+        {
+            out.println("sai khi ket noi db");
+            //doGet(request, response);
+        }
+        response.sendRedirect("index.jsp");
     }
 
     /** 
