@@ -11,15 +11,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.UserProcedure;
-import utilities.GlobalConstants;
-import utilities.GoogleReCaptcha;
+import java.util.Date;
+import models.UserModel;
+import org.json.JSONObject;
+import utilities.TokenGenerator;
 
 /**
  *
  * @author Huu
  */
-public class RegisterServlet extends HttpServlet {
+public class ResetPasswordServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,6 +29,22 @@ public class RegisterServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static boolean isValidToken(String token) {
+        try {
+            JSONObject json = TokenGenerator.decrypt(token);
+
+            Long uid = json.getLong("uid");
+
+            if (new Date().after(new Date(json.getLong("expiry")))) {
+                return false;
+            }
+            UserModel user=new UserModel();
+            String password=user.getPasswordById(uid);
+            return TokenGenerator.validCheck(token, password);
+        } catch (Exception e) {
+            return false;
+        }
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,10 +53,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");  
+            out.println("<title>Servlet ResetPasswordServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ResetPasswordServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +73,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request,response);
+        PrintWriter out = response.getWriter();
+        String token = request.getParameter("token");
+        if (!isValidToken(token)) {
+            out.print("Error token");
+            return;
+        }
+        request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
     } 
 
     /** 
@@ -69,31 +92,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        try{
-            
-            String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
-        String email = request.getParameter("email").trim();
-        String captcha= request.getParameter("g-recaptcha-response");
-        GoogleReCaptcha gcaptcha= new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
-        if (!gcaptcha.checkCaptcha(captcha))
-        {
-            out.println("sai captcha");
-            //doGet(request, response);
-        }
-        out.println(password+" 1 "+ email +" 2 "+ username);
-        if (UserProcedure.checkDuplicateEmail(email))
-        UserProcedure.createAccount(username, password, email);
-        else {
-            out.println("dup email");
-        }
-        }catch(Exception e)
-        {
-            out.println("sai khi ket noi db");
-            //doGet(request, response);
-        }
-        //response.sendRedirect("index.jsp");
+        processRequest(request, response);
     }
 
     /** 

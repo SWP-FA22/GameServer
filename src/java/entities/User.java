@@ -4,18 +4,29 @@
  */
 package entities;
 
+import com.yuyu.annotations.SQLColumn;
+import com.yuyu.annotations.SQLTable;
+
 
 /**
  *
  * @author Huu
  */
+@SQLTable(table = "User")
 public class User {
+    @SQLColumn(column = "userid")
     private int userid;
+    @SQLColumn(column = "password")
     private String password;
+    @SQLColumn(column = "playername")
     private String playername;
+    @SQLColumn(column = "gmail")
     private String gmail;
+    @SQLColumn(column = "weaponitemid")
     private int  weaponitemid;
+    @SQLColumn(column = "engineitemid")
     private int engineitemid;
+    @SQLColumn(column = "saillitemid")
     private int saillitemid;
 
     public User() {

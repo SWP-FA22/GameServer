@@ -5,6 +5,7 @@
 package models;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import utilities.Crypto;
 
@@ -13,7 +14,15 @@ import utilities.Crypto;
  * @author Huu
  */
 public class UserProcedure {
-
+    public static boolean checkDuplicateEmail(String email) throws SQLException {
+        try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
+                "select * from [User] where gmail=?",
+                 email)) {
+            ResultSet rs= stmt.executeQuery();
+            if (rs.next()) return false;
+            return true;
+        }
+    }
     public static void createAccount(String username, String password, String email) throws SQLException {
         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
                 "insert into [User] (playername,[password],gmail) values (?,?,?)",
@@ -22,6 +31,6 @@ public class UserProcedure {
         }
     }
     public static void main(String[] args) throws SQLException {
-        UserProcedure.createAccount("123", "123", "123");
+        System.out.println(UserProcedure.checkDuplicateEmail("huu@gmail.com"));
     }
 }

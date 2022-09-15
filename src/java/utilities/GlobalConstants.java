@@ -10,11 +10,11 @@ public class GlobalConstants {
     public static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
 
     // SMTP Account
-    public static final String SMTP_ACCOUNT_EMAIL = "prj301-hanime@outlook.com";
-    public static final String SMTP_ACCOUNT_PASSWORD = "/>B89,S5AUZnZh4V";
+    public static final String SMTP_ACCOUNT_EMAIL = "swp391-battleship@outlook.com";
+    public static final String SMTP_ACCOUNT_PASSWORD = "Huuchien1234";
 
     // Deployment
     public static final String HOST = "localhost:9999";
-    public static final String CONTEXT_PATH = "/Hanime";
+    public static final String CONTEXT_PATH = "";
     public static final String COMMENT_WSPATH = "/comment";
 }

@@ -13,5 +13,6 @@
   <body>
 <h1>hello</h1>
 <a href="register">rewr</a>
+<a href="forgotpassword">forgot password</a>
   </body>
 </html>
