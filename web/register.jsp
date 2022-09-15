@@ -13,7 +13,9 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-<form action="register" method="POST">
+    <form action="register" method="POST" id="registerform"
+          oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')" 
+          >
   <div class="user-details">
     <div class="input-box">
       <span class="details">Username</span>
@@ -25,13 +27,32 @@
     </div>
     <div class="input-box">
       <span class="details">Password</span>
-      <input type="password" placeholder="Enter your password" name="password" required>
+      <input type="password" placeholder="Enter your password" name="password" id="password" required>
+    </div>
+      <div class="input-box">
+      <span class="details">Confirm Password</span>
+      <input type="password" placeholder="Confirm your password" id="repassword" required>
     </div>
   </div>
-  <div class="g-recaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>"></div>
+        <div class="g-recaptcha" id="grecaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>" hidden data-callback="onSubmit"></div>
   <div class="button">
-    <input type="submit" value="Register">
+    <button type="button"   onclick="formSubmit()">Register</button>
   </div>
 </form>
 </body>
+<script>
+        function onSubmit() {
+            document.getElementById('registerform').submit();
+        }
+
+        function formSubmit() {
+            const form = document.getElementById('registerform');
+            if (form.checkValidity()) {
+                document.getElementById('grecaptcha').hidden=false;
+                //grecaptcha.execute();
+            } else {
+                form.reportValidity();
+            }
+        }
+    </script>
 </html>

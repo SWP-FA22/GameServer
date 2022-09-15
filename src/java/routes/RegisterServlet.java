@@ -90,7 +90,7 @@ public class RegisterServlet extends HttpServlet {
         }
         }catch(Exception e)
         {
-            out.println("sai khi ket noi db");
+           e.printStackTrace(out);
             //doGet(request, response);
         }
         //response.sendRedirect("index.jsp");
