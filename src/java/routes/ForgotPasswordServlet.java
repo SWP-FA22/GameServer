@@ -93,6 +93,7 @@ public class ForgotPasswordServlet extends HttpServlet {
           if (u== null)
               doGet(request, response);
           String oldPassword=u.getPassword();
+          out.println("23");
           HashMap<String, Object> data = new HashMap<>();
             data.put("uid", u.getUserid());
             data.put("expiry", new Date().getTime() + 1000 * 60 * 30);//30 minutes
@@ -103,7 +104,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             smtp.sendMimeMessage("BattleShip Online (No-Reply)", u.getGmail(), "RESET YOUR PASSWORD", text);
         }catch( Exception e)
         {
-            out.println(e);
+            out.println("22"+e);
             //doGet(request, response);
         }
         

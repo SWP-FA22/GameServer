@@ -26,7 +26,31 @@ public class UserModel extends ModelBase<User>{
             if (rs.next()) {
                 //User u=new User
                 User u=new User(rs.getInt("userid"), rs.getString("password"), rs.getString("playername"),
-                email, rs.getInt("userid"), rs.getInt("userid"), rs.getInt("userid"));
+                email, rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid"));
+                return u;
+            }
+            return null;
+        }
+     }
+     public void updatePassword(User u) throws SQLException
+     {
+         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
+                "update  [User] set [password]=? where userid=?",u.getPassword(),u.getUserid()
+                 )) {
+           stmt.executeUpdate();
+            
+        }
+     }
+      public User getUserById(Long id) throws SQLException
+     {
+         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
+                "select * from [User] where userid=?",
+                 id)) {
+            ResultSet rs= stmt.executeQuery();
+            if (rs.next()) {
+                //User u=new User
+                User u=new User(rs.getInt("userid"), rs.getString("password"), rs.getString("playername"),rs.getString("gmail")
+                , rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid"));
                 return u;
             }
             return null;

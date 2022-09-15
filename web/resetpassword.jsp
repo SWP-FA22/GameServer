@@ -13,6 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="reset" method="POST">
+            <input type="text" name="password"/>
+            <input type="hidden" name="token" value="<%= request.getParameter("token")%>"/>
+            <input type="submit" value="Change password"/>
+        </form>
     </body>
 </html>

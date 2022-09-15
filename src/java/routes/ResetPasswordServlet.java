@@ -5,6 +5,7 @@
 
 package routes;
 
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import models.UserModel;
 import org.json.JSONObject;
+import utilities.Crypto;
 import utilities.TokenGenerator;
 
 /**
@@ -76,7 +78,7 @@ public class ResetPasswordServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String token = request.getParameter("token");
         if (!isValidToken(token)) {
-            out.print("Error token");
+            out.print("Error token1");
             return;
         }
         request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
@@ -92,7 +94,31 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        try{
+            String password=request.getParameter("password");
+        String token=request.getParameter("token");
+        out.println(token);
+        if (!isValidToken(token)) {
+            out.print("Error token2");
+            return;
+        }
+        out.println("done11");
+        Long uid = TokenGenerator.decrypt(token).getLong("uid");
+        out.println("done1111");
+        UserModel user=new UserModel();
+        User u=user.getUserById(uid);
+        out.println("done1");
+        u.setPassword(Crypto.SHA256(password));
+        out.println("done2");
+        user.updatePassword(u);
+        out.println("done3");
+        }catch(Exception e)
+        {
+            out.print(e);
+        }
+        out.print("done");
+        //response.sendRedirect("index.jsp");
     }
 
     /** 
