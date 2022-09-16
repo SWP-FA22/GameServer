@@ -5,7 +5,7 @@
 
 package routes;
 
-import entities.User;
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -107,7 +107,7 @@ public class ResetPasswordServlet extends HttpServlet {
         Long uid = TokenGenerator.decrypt(token).getLong("uid");
         out.println("done1111");
         UserModel user=new UserModel();
-        User u=user.getUserById(uid);
+        Player u=user.getUserById(uid);
         out.println("done1");
         u.setPassword(Crypto.SHA256(password));
         out.println("done2");
@@ -115,7 +115,7 @@ public class ResetPasswordServlet extends HttpServlet {
         out.println("done3");
         }catch(Exception e)
         {
-            out.print(e);
+            e.printStackTrace(out);
         }
         out.print("done");
         //response.sendRedirect("index.jsp");

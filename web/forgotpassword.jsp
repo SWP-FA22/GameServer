@@ -12,9 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="forgotpassword" method="POST">
+        <form action="forgot" method="post">
             <input type="text" name="email"/>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Sub"/>
         </form>
     </body>
 </html>

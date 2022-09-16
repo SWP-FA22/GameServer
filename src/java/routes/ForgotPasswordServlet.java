@@ -5,7 +5,7 @@
 
 package routes;
 
-import entities.User;
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -73,6 +73,7 @@ public class ForgotPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+      
     } 
 
     /** 
@@ -86,25 +87,27 @@ public class ForgotPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        out.print("oke");
         try{
+            
             String email=request.getParameter("email");
           user=new UserModel();
-          User u=user.getUserByGmail(email);
+          Player u=user.getUserByEmail(email);
           if (u== null)
               doGet(request, response);
           String oldPassword=u.getPassword();
           out.println("23");
           HashMap<String, Object> data = new HashMap<>();
-            data.put("uid", u.getUserid());
+            data.put("uid", u.getId());
             data.put("expiry", new Date().getTime() + 1000 * 60 * 30);//30 minutes
-            String text="Hi " + u.getPlayername()+",\n\n"
+            String text="Hi " + u.getName()+",\n\n"
                     + "We receive a request to reset password for your account.\n"
                     + "To reset password, click the link below (valid for 30 minutes):\n"
                     + "http://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
-            smtp.sendMimeMessage("BattleShip Online (No-Reply)", u.getGmail(), "RESET YOUR PASSWORD", text);
+            smtp.sendMimeMessage("BattleShip Online (No-Reply)", u.getEmail(), "RESET YOUR PASSWORD", text);
         }catch( Exception e)
         {
-            out.println("22"+e);
+            e.printStackTrace(out);
             //doGet(request, response);
         }
         

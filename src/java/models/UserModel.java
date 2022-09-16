@@ -4,53 +4,54 @@
  */
 package models;
 
-import entities.User;
+import entities.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import utilities.Crypto;
 
 /**
  *
  * @author Huu
  */
-public class UserModel extends ModelBase<User>{
+public class UserModel extends ModelBase<Player>{
      public UserModel() throws Exception {
-        super(User.class);
+        super(Player.class);
     }
-     public User getUserByGmail(String email) throws SQLException
+     public Player getUserByEmail(String email) throws SQLException
      {
          try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from [User] where gmail=?",
+                "select * from Player where email=?",
                  email)) {
             ResultSet rs= stmt.executeQuery();
             if (rs.next()) {
-                //User u=new User
-                User u=new User(rs.getInt("userid"), rs.getString("password"), rs.getString("playername"),
-                email, rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid"));
+               // User u=new Player
+                Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
+                email, rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("saillid"),rs.getInt("rank"));
                 return u;
             }
             return null;
         }
      }
-     public void updatePassword(User u) throws SQLException
+     public void updatePassword(Player u) throws SQLException
      {
          try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "update  [User] set [password]=? where userid=?",u.getPassword(),u.getUserid()
+                "update  Player set [password]=? where ID=?",u.getPassword(),u.getId()
                  )) {
            stmt.executeUpdate();
             
         }
      }
-      public User getUserById(Long id) throws SQLException
+      public Player getUserById(Long id) throws SQLException
      {
          try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from [User] where userid=?",
+                "select * from Player where ID=?",
                  id)) {
             ResultSet rs= stmt.executeQuery();
             if (rs.next()) {
-                //User u=new User
-                User u=new User(rs.getInt("userid"), rs.getString("password"), rs.getString("playername"),rs.getString("gmail")
-                , rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid"));
+                //User u=new Player
+                Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
+                rs.getString("Email"), rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("saillid"),rs.getInt("rank"));
                 return u;
             }
             return null;
@@ -59,7 +60,7 @@ public class UserModel extends ModelBase<User>{
      public String getPasswordById(Long id) throws SQLException
      {
          try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from [User] where userid=?",
+                "select * from Player where ID=?",
                  id)) {
             ResultSet rs= stmt.executeQuery();
             if (rs.next()) {
@@ -69,4 +70,21 @@ public class UserModel extends ModelBase<User>{
             return null;
         }
      }
+     public static boolean checkDuplicateEmail(String email) throws SQLException {
+        try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
+                "select * from Player where email=?",
+                 email)) {
+            ResultSet rs= stmt.executeQuery();
+            if (rs.next()) return false;
+            return true;
+        }
+    }
+    public static void createAccount(String username, String password, String email,String name) throws SQLException {
+        try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
+                "insert into Player (username,[password],email,name) values (?,?,?,?)",
+                username, Crypto.SHA256(password), email,name)) {
+            stmt.execute();
+        }
+    }
+   
 }

@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.UserProcedure;
+import models.UserModel;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
 
@@ -75,6 +75,7 @@ public class RegisterServlet extends HttpServlet {
             String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         String email = request.getParameter("email").trim();
+        String name= request.getParameter("name").trim();
         String captcha= request.getParameter("g-recaptcha-response");
         GoogleReCaptcha gcaptcha= new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
         if (!gcaptcha.checkCaptcha(captcha))
@@ -83,8 +84,8 @@ public class RegisterServlet extends HttpServlet {
             //doGet(request, response);
         }
         out.println(password+" 1 "+ email +" 2 "+ username);
-        if (UserProcedure.checkDuplicateEmail(email))
-        UserProcedure.createAccount(username, password, email);
+        if (UserModel.checkDuplicateEmail(email))
+        UserModel.createAccount(username, password, email,name);
         else {
             out.println("dup email");
         }

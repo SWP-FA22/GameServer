@@ -18,7 +18,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordServlet</servlet-name>
-        <url-pattern>/forgotpassword</url-pattern>
+        <url-pattern>/forgot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ResetPasswordServlet</servlet-name>
