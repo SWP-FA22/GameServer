@@ -4,10 +4,7 @@
  */
 package utilities;
 
-import java.util.Base64;
 import java.util.HashMap;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import org.json.JSONException;
 import org.json.JSONObject;
 

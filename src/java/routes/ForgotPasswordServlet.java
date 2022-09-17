@@ -5,21 +5,25 @@
 
 package routes;
 
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.HashMap;
 import models.UserModel;
 import utilities.GlobalConstants;
-import utilities.GoogleReCaptcha;
+import utilities.SMTP;
+import utilities.TokenGenerator;
 
 /**
  *
  * @author Huu
  */
-public class RegisterServlet extends HttpServlet {
+public class ForgotPasswordServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,6 +32,18 @@ public class RegisterServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private UserModel user;
+    private SMTP smtp;
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+            smtp.connect();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,10 +52,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");  
+            out.println("<title>Servlet ForgotPasswordServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ForgotPasswordServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +72,8 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request,response);
+        request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+      
     } 
 
     /** 
@@ -70,31 +87,31 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        out.print("oke");
         try{
             
-            String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
-        String email = request.getParameter("email").trim();
-        String name= request.getParameter("name").trim();
-        String captcha= request.getParameter("g-recaptcha-response");
-        GoogleReCaptcha gcaptcha= new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
-        if (!gcaptcha.checkCaptcha(captcha))
+            String email=request.getParameter("email");
+          user=new UserModel();
+          Player u=user.getUserByEmail(email);
+          if (u== null)
+              doGet(request, response);
+          String oldPassword=u.getPassword();
+          out.println("23");
+          HashMap<String, Object> data = new HashMap<>();
+            data.put("uid", u.getId());
+            data.put("expiry", new Date().getTime() + 1000 * 60 * 30);//30 minutes
+            String text="Hi " + u.getName()+",\n\n"
+                    + "We receive a request to reset password for your account.\n"
+                    + "To reset password, click the link below (valid for 30 minutes):\n"
+                    + "http://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+            smtp.sendMimeMessage("BattleShip Online (No-Reply)", u.getEmail(), "RESET YOUR PASSWORD", text);
+        }catch( Exception e)
         {
-            out.println("sai captcha");
+            e.printStackTrace(out);
             //doGet(request, response);
         }
-        out.println(password+" 1 "+ email +" 2 "+ username);
-        if (UserModel.checkDuplicateEmail(email))
-        UserModel.createAccount(username, password, email,name);
-        else {
-            out.println("dup email");
-        }
-        }catch(Exception e)
-        {
-           e.printStackTrace(out);
-            //doGet(request, response);
-        }
-        //response.sendRedirect("index.jsp");
+        
+          //response.sendRedirect("index.jsp");
     }
 
     /** 

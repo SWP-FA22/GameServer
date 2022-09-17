@@ -5,21 +5,24 @@
 
 package routes;
 
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Date;
 import models.UserModel;
-import utilities.GlobalConstants;
-import utilities.GoogleReCaptcha;
+import org.json.JSONObject;
+import utilities.Crypto;
+import utilities.TokenGenerator;
 
 /**
  *
  * @author Huu
  */
-public class RegisterServlet extends HttpServlet {
+public class ResetPasswordServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,6 +31,22 @@ public class RegisterServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static boolean isValidToken(String token) {
+        try {
+            JSONObject json = TokenGenerator.decrypt(token);
+
+            Long uid = json.getLong("uid");
+
+            if (new Date().after(new Date(json.getLong("expiry")))) {
+                return false;
+            }
+            UserModel user=new UserModel();
+            String password=user.getPasswordById(uid);
+            return TokenGenerator.validCheck(token, password);
+        } catch (Exception e) {
+            return false;
+        }
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,10 +55,10 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");  
+            out.println("<title>Servlet ResetPasswordServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ResetPasswordServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +75,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request,response);
+        PrintWriter out = response.getWriter();
+        String token = request.getParameter("token");
+        if (!isValidToken(token)) {
+            out.print("Error token1");
+            return;
+        }
+        request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
     } 
 
     /** 
@@ -71,29 +96,28 @@ public class RegisterServlet extends HttpServlet {
     throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try{
-            
-            String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
-        String email = request.getParameter("email").trim();
-        String name= request.getParameter("name").trim();
-        String captcha= request.getParameter("g-recaptcha-response");
-        GoogleReCaptcha gcaptcha= new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
-        if (!gcaptcha.checkCaptcha(captcha))
-        {
-            out.println("sai captcha");
-            //doGet(request, response);
+            String password=request.getParameter("password");
+        String token=request.getParameter("token");
+        out.println(token);
+        if (!isValidToken(token)) {
+            out.print("Error token2");
+            return;
         }
-        out.println(password+" 1 "+ email +" 2 "+ username);
-        if (UserModel.checkDuplicateEmail(email))
-        UserModel.createAccount(username, password, email,name);
-        else {
-            out.println("dup email");
-        }
+        out.println("done11");
+        Long uid = TokenGenerator.decrypt(token).getLong("uid");
+        out.println("done1111");
+        UserModel user=new UserModel();
+        Player u=user.getUserById(uid);
+        out.println("done1");
+        u.setPassword(Crypto.SHA256(password));
+        out.println("done2");
+        user.updatePassword(u);
+        out.println("done3");
         }catch(Exception e)
         {
-           e.printStackTrace(out);
-            //doGet(request, response);
+            e.printStackTrace(out);
         }
+        out.print("done");
         //response.sendRedirect("index.jsp");
     }
 
