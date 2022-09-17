@@ -26,6 +26,7 @@
             href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
             />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             tailwind.config = {
                 theme: {
@@ -76,11 +77,11 @@
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                         >
-                    <path
-                        fill-rule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clip-rule="evenodd"
-                        ></path>
+                        <path
+                            fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                            ></path>
                     </svg>
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -174,7 +175,7 @@
                 <form class="mt-8 space-y-6" action="register" method="POST" id="registerform"
                       oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')" 
                       >
-                    <input type="hidden" name="username" value="true" />
+
                     <div class="relative">
                         <div class="absolute right-0 mt-4">
                             <svg
@@ -184,12 +185,12 @@
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
                             </svg>
                         </div>
                         <label class="text-sm font-bold text-gray-700 tracking-wide"
@@ -220,12 +221,12 @@
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
                             </svg>
                         </div>
                         <label class="text-sm font-bold text-gray-700 tracking-wide"
@@ -257,21 +258,18 @@
                             class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="password" id="repassword"
                             placeholder="Confirm your password"
-                            value=""
                             />
                     </div>
-                    <div class="g-recaptcha" id="grecaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>" hidden data-callback="onSubmit"></div>
+                    
                     <div>
                         <button
                             type="button" onclick="formSubmit()"
-                            class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300"
-                            >
+                            class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300">
                             Sign Up
                         </button>
                     </div>
-                    <p
-                        class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"
-                        >
+                    <div class="g-recaptcha" id="grecaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>" hidden data-callback="onSubmit"></div>
+                    <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"  >
                         <span>Already have an account?</span>
                         <a
                             href="/pages/login.html"
@@ -284,74 +282,20 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-        <script src="./script/home.js"></script>
     </body>
     <script>
-        function onSubmit() {
-            document.getElementById('registerform').submit();
-        }
+                                function onSubmit() {
+                                    document.getElementById('registerform').submit();
+                                }
 
-        function formSubmit() {
-            const form = document.getElementById('registerform');
-            if (form.checkValidity()) {
-                document.getElementById('grecaptcha').hidden=false;
-                //grecaptcha.execute();
-            } else {
-                form.reportValidity();
-            }
-        }
+                                function formSubmit() {
+                                    const form = document.getElementById('registerform');
+                                    if (form.checkValidity()) {
+                                        document.getElementById('grecaptcha').hidden = false;
+                                        //grecaptcha.execute();
+                                    } else {
+                                        form.reportValidity();
+                                    }
+                                }
     </script>
 </html>
-<!--<html>
-<head>
-    <title>register</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
-<body>
-    <form action="register" method="POST" id="registerform"
-          oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')" 
-          >
-  <div class="user-details">
-    <div class="input-box">
-      <span class="details">Username</span>
-      <input type="text" placeholder="Enter your username" name="username" required>
-    </div>
-    <div class="input-box">
-      <span class="details">Email</span>
-      <input type="text" placeholder="Enter your email" name="email" required>
-    </div>
-    <div class="input-box">
-      <span class="details">Password</span>
-      <input type="password" placeholder="Enter your password" name="password" id="password" required>
-    </div>
-      <div class="input-box">
-      <span class="details">Confirm Password</span>
-      <input type="password" placeholder="Confirm your password" id="repassword" required>
-    </div>
-      <div class="input-box">
-      <span class="details">Name</span>
-      <input type="text" placeholder="Ten nhan vat" name="name" required>
-    </div>
-  </div>
-        <div class="g-recaptcha" id="grecaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>" hidden data-callback="onSubmit"></div>
-  <div class="button">
-    <button type="button"   onclick="formSubmit()">Register</button>
-  </div>
-</form>
-</body>
-<script>
-        function onSubmit() {
-            document.getElementById('registerform').submit();
-        }
-
-        function formSubmit() {
-            const form = document.getElementById('registerform');
-            if (form.checkValidity()) {
-                document.getElementById('grecaptcha').hidden=false;
-                //grecaptcha.execute();
-            } else {
-                form.reportValidity();
-            }
-        }
-    </script>
-</html>-->

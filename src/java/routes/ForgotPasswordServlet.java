@@ -94,7 +94,8 @@ public class ForgotPasswordServlet extends HttpServlet {
           user=new UserModel();
           Player u=user.getUserByEmail(email);
           if (u== null)
-              doGet(request, response);
+              out.println("null");
+             // doGet(request, response);
           String oldPassword=u.getPassword();
           out.println("23");
           HashMap<String, Object> data = new HashMap<>();
