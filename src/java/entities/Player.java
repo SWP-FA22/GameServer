@@ -35,6 +35,11 @@ public class Player {
     public Player() {
     }
 
+    @Override
+    public String toString() {
+        return "Player{" + "id=" + id + ", password=" + password + ", username=" + username + ", name=" + name + ", email=" + email + ", weaponID=" + weaponID + ", engineID=" + engineID + ", sailID=" + sailID + ", rank=" + rank + '}';
+    }
+
     public Player(int id, String password, String username, String name, String email, int weaponID, int engineID, int sailID, int rank) {
         this.id = id;
         this.password = password;

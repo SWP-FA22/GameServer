@@ -27,7 +27,7 @@ public class UserModel extends ModelBase<Player>{
             if (rs.next()) {
                // User u=new Player
                 Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
-                email, rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("saillid"),rs.getInt("rank"));
+                email, rs.getInt("weaponid"), rs.getInt("engineID"), rs.getInt("sailid"),rs.getInt("rank"));
                 return u;
             }
             return null;
@@ -86,5 +86,9 @@ public class UserModel extends ModelBase<Player>{
             stmt.execute();
         }
     }
-   
+    public static void main(String[] args) throws Exception {
+        UserModel u=new UserModel();
+        Player a=u.getUserByEmail("banghuund99@gmail.com");
+        System.out.println(a);
+    }
 }
