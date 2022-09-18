@@ -7,13 +7,10 @@
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/entities/Player.java</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/WEB-INF/web.xml</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/models/UserModel.java</file>
-            <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/models/UserProcedure.java</file>
-            <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/models/ModelBase.java</file>
+            <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/script/home.js</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/utilities/SMTP.java</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/index.jsp</file>
-            <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/pages/login.html</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/resetpassword.jsp</file>
-            <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/pages/signup.html</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/routes/ForgotPasswordServlet.java</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/utilities/TokenGenerator.java</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/utilities/GlobalConstants.java</file>

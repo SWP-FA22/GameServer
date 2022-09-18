@@ -10,11 +10,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="./assets/css/stylelogin.css"/>
     </head>
     <body>
-        <form action="forgot" method="post">
-            <input type="text" name="email"/>
-            <input type="submit" value="Sub"/>
-        </form>
+        <div class="center">
+            <h1>Forgot password</h1>
+            <form action="forgot" method="POST">
+                <div class="txt_field">
+                    <input type="text" name="email" required>
+                    <span></span>
+                    <label>Email</label>
+                </div>
+                
+                <input type="submit" value="Get password"/>
+            </form>
+           
+        </div>
+        
     </body>
 </html>
