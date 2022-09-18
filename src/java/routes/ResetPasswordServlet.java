@@ -118,7 +118,7 @@ public class ResetPasswordServlet extends HttpServlet {
             e.printStackTrace(out);
         }
         out.print("done");
-        //response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     /** 

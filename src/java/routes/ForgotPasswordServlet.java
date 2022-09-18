@@ -116,7 +116,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             //doGet(request, response);
         }
 
-        //response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     /**
