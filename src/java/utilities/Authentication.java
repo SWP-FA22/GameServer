@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Authentication {
 
     public static String getTokenFromCookies(Object cookies) {
-        for (Cookie cookie : (Cookie[])cookies) {
+        for (Cookie cookie : (Cookie[]) cookies) {
             if (cookie.getName().equals("token")) {
                 return cookie.getValue();
             }
@@ -26,7 +26,7 @@ public class Authentication {
         return null;
     }
 
-    public static Cookie createTokenCookie(Long uid, Integer expiryTime) {
+    public static Cookie createTokenCookie(Integer uid, Integer expiryTime) {
         HashMap<String, Object> data = new HashMap<>();
 
         data.put("uid", uid);

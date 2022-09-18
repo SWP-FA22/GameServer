@@ -5,7 +5,6 @@
 package models;
 
 import entities.Player;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import utilities.Crypto;
@@ -14,93 +13,62 @@ import utilities.Crypto;
  *
  * @author Huu
  */
-public class UserModel extends ModelBase<Player>{
-     public UserModel() throws Exception {
+public class UserModel extends ModelBase<Player> {
+
+    public UserModel() throws Exception {
         super(Player.class);
     }
-     public Player getUserByEmail(String email) throws SQLException
-     {
-         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from Player where email=?",
-                 email)) {
-            ResultSet rs= stmt.executeQuery();
+
+    public Player getUserByEmail(String email) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE Email = ?", email)) {
             if (rs.next()) {
-               // User u=new Player
-                Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
-                email, rs.getInt("weaponid"), rs.getInt("engineID"), rs.getInt("sailid"),rs.getInt("rank"));
-                return u;
+                return new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"), rs.getString("name"),
+                        email, rs.getInt("weaponid"), rs.getInt("engineID"), rs.getInt("sailid"), rs.getInt("rank"));
             }
             return null;
         }
-     }
-     public void updatePassword(Player u) throws SQLException
-     {
-         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "update  Player set [password]=? where ID=?",u.getPassword(),u.getId()
-                 )) {
-           stmt.executeUpdate();
-            
-        }
-     }
-      public Player getUserById(Long id) throws SQLException
-     {
-         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from Player where ID=?",
-                 id)) {
-            ResultSet rs= stmt.executeQuery();
+    }
+
+    public void updatePassword(Player u) throws SQLException {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
+    }
+
+    public Player getUserById(Long id) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
             if (rs.next()) {
-                //User u=new Player
-                Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
-                rs.getString("Email"), rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("sailid"),rs.getInt("rank"));
-                return u;
+                return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
+                        rs.getString("Email"), rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"));
             }
             return null;
         }
-     }
-     public String getPasswordById(Long id) throws SQLException
-     {
-         try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from Player where ID=?",
-                 id)) {
-            ResultSet rs= stmt.executeQuery();
+    }
+
+    public String getHashedPasswordById(Integer id) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
             if (rs.next()) {
-               
                 return rs.getString("password");
             }
             return null;
         }
-     }
-     public static boolean checkDuplicateEmail(String email) throws SQLException {
-        try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "select * from Player where email=?",
-                 email)) {
-            ResultSet rs= stmt.executeQuery();
-            if (rs.next()) return false;
-            return true;
-        }
     }
-    public static void createAccount(String username, String password, String email,String name) throws SQLException {
-        try ( PreparedStatement stmt = ModelBase.connection().prepareStatement(
-                "insert into Player (username,[password],email,name) values (?,?,?,?)",
-                username, Crypto.SHA256(password), email,name)) {
-            stmt.execute();
-        }
-    }
-    public static void main(String[] args) throws Exception {
-        UserModel u=new UserModel();
-        Player a=u.getUserByEmail("banghuund99@gmail.com");
-        System.out.println(a);
-    }
-    
-     public static Long checkAuth(String username, String password) throws SQLException {
-        password = Crypto.SHA256(password);
 
+    public static boolean checkDuplicateEmail(String email) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
+            return rs.next();
+        }
+    }
+
+    public static boolean createAccount(String username, String password, String email, String name) throws SQLException {
+        return ModelBase.connection().executeUpdate("INSERT INTO [Player]([Username], [Password], [Email], [Name]) VALUES (?, ?, ?, ?)",
+                username, Crypto.SHA256(password), email, name) > 0;
+    }
+
+    public static Integer checkAuth(String username, String password) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery(
                 "Select [ID] FROM [Player] WHERE [Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS",
-                username, password)) 
-        {
+                username, Crypto.SHA256(password))) {
             if (rs.next()) {
-                return rs.getLong("ID");
+                return rs.getInt("ID");
             }
             return null;
         }

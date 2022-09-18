@@ -7,31 +7,40 @@ package entities;
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 
-
 /**
  *
  * @author Huu
  */
 @SQLTable(table = "Player")
 public class Player {
-    @SQLColumn(column = "ID",isAutoIncrement = true)
-    private int id;
+
+    @SQLColumn(column = "ID", isAutoIncrement = true)
+    public int id;
+
     @SQLColumn(column = "Password")
-    private String password;
+    public String password;
+
     @SQLColumn(column = "Username")
-    private String username;
+    public String username;
+
     @SQLColumn(column = "Name")
-    private String name;
+    public String name;
+
     @SQLColumn(column = "Email")
-    private String email;
+    public String email;
+
     @SQLColumn(column = "WeaponID")
-    private int  weaponID;
+    public int weaponID;
+
     @SQLColumn(column = "EngineID")
-    private int engineID;
+    public int engineID;
+
     @SQLColumn(column = "SailID")
-    private int sailID;
-@SQLColumn(column = "Rank")
-    private int rank;
+    public int sailID;
+
+    @SQLColumn(column = "Rank")
+    public int rank;
+
     public Player() {
     }
 
@@ -124,5 +133,4 @@ public class Player {
         this.rank = rank;
     }
 
-    
 }

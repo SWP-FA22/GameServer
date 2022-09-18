@@ -7,7 +7,6 @@ package routes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import utilities.Authentication;
  *
  * @author LinhThuy
  */
-@WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -34,16 +32,15 @@ public class LoginServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            Long uid = UserModel.checkAuth(username, password);
-           if (uid != null) {
-             response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
-               
-                response.sendRedirect("index.jsp");
-                return;
 
-          }
-           
-          
+            Integer uid = UserModel.checkAuth(username, password);
+
+            if (uid != null) {
+                response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
+                response.sendRedirect(".");
+                return;
+            }
+
         } catch (Exception e) {
             e.printStackTrace(out);
         }

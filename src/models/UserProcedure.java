@@ -32,8 +32,7 @@ public class UserProcedure {
 
         try ( ResultSet rs = ModelBase.connection().executeQuery(
                 "select [userid] FROM [dbo].[User] WHERE [playername] = ? AND [password] = ? COLLATE Latin1_General_CS_AS",
-                username, password)) 
-        {
+                username, password)) {
             if (rs.next()) {
                 return rs.getLong("userid");
             }

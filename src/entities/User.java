@@ -9,43 +9,41 @@ import com.yuyu.annotations.SQLTable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author Huu
  */
-
 @SQLTable(table = "User")
 
 public class User extends EntityBase {
-    
+
     @SQLColumn(column = "userid")
     public int userid;
-    
+
     @SQLColumn(column = "password")
     public String password;
-    
+
     @SQLColumn(column = "password")
     public String playername;
-    
+
     @SQLColumn(column = "gmail")
     public String gmail;
-    
+
     @SQLColumn(column = "weaponitemid")
-    public int  weaponitemid;
-    
+    public int weaponitemid;
+
     @SQLColumn(column = "engineitemid")
     public int engineitemid;
-    
+
     @SQLColumn(column = "saillitemid")
     public int saillitemid;
 
     public User() {
     }
-    
-    public User(ResultSet rs) throws SQLException{
-        this(rs.getInt("userid"), rs.getString("password"), rs.getString ("playername"), rs.getString ("gmail"), rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid") );
-        
+
+    public User(ResultSet rs) throws SQLException {
+        this(rs.getInt("userid"), rs.getString("password"), rs.getString("playername"), rs.getString("gmail"), rs.getInt("weaponitemid"), rs.getInt("engineitemid"), rs.getInt("saillitemid"));
+
     }
 
     public User(int userid, String password, String playername, String gmail, int weaponitemid, int engineitemid, int saillitemid) {
