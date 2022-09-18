@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="./assets/css/stylelogin.css"/>
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/stylelogin.css"/>
     </head>
     <body>
         <div class="center">
@@ -31,7 +31,7 @@
                 <input type="hidden" name="token" value="<%= request.getParameter("token")%>"/>
                 <input type="submit" value="Change password"/>
             </form>
-           
+
         </div>
 
     </body>

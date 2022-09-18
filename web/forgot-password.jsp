@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="./assets/css/stylelogin.css"/>
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/stylelogin.css"/>
     </head>
     <body>
         <div class="center">
@@ -21,11 +21,11 @@
                     <span></span>
                     <label>Email</label>
                 </div>
-                
+
                 <input type="submit" value="Get password"/>
             </form>
-           
+
         </div>
-        
+
     </body>
 </html>

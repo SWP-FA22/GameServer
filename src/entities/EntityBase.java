@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author LinhThuy
  */
-public class EntityBase implements Serializable{
+public class EntityBase implements Serializable {
+
     @SQLColumn(column = "ID", isAutoIncrement = true, isPrimaryKey = true)
     public Long id;
 
@@ -29,5 +30,5 @@ public class EntityBase implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    
+
 }

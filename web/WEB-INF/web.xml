@@ -16,6 +16,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>routes.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>APIServlet</servlet-name>
+        <servlet-class>routes.APIServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -30,7 +34,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>APIServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
