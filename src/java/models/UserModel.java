@@ -91,4 +91,18 @@ public class UserModel extends ModelBase<Player>{
         Player a=u.getUserByEmail("banghuund99@gmail.com");
         System.out.println(a);
     }
+    
+     public static Long checkAuth(String username, String password) throws SQLException {
+        password = Crypto.SHA256(password);
+
+        try ( ResultSet rs = ModelBase.connection().executeQuery(
+                "Select [ID] FROM [Player] WHERE [Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS",
+                username, password)) 
+        {
+            if (rs.next()) {
+                return rs.getLong("ID");
+            }
+            return null;
+        }
+    }
 }
