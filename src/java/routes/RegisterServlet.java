@@ -94,7 +94,7 @@ public class RegisterServlet extends HttpServlet {
            e.printStackTrace(out);
             //doGet(request, response);
         }
-        //response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp");
     }
 
     /** 

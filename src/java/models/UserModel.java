@@ -51,7 +51,7 @@ public class UserModel extends ModelBase<Player>{
             if (rs.next()) {
                 //User u=new Player
                 Player u=new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"),rs.getString("name"),
-                rs.getString("Email"), rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("saillid"),rs.getInt("rank"));
+                rs.getString("Email"), rs.getInt("weaponid"), rs.getInt("engineid"), rs.getInt("sailid"),rs.getInt("rank"));
                 return u;
             }
             return null;
