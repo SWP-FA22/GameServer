@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="utilities.GlobalConstants" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -63,6 +64,9 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Enter your information to register
                     </p>
+                    <label class="text-sm font-bold text-gray-700 tracking-wide">
+                            ${requestScope.error}
+                        </label>
                 </div>
 
                 <form class="mt-8 space-y-6" action="register" method="POST" id="registerform"
@@ -153,7 +157,7 @@
                             placeholder="Confirm your password"
                             />
                     </div>
-
+                      
                     <div>
                         <button
                             type="button" onclick="formSubmit()"

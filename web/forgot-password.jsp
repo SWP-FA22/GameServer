@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,6 +17,7 @@
         <div class="center">
             <h1>Forgot password</h1>
             <form action="forgot" method="POST">
+                <h3 style="text-align: center">${requestScope.error}</h3>
                 <div class="txt_field">
                     <input type="text" name="email" required>
                     <span></span>
