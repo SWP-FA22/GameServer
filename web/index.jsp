@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -30,7 +31,7 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Inter", "sans-serif"],
+              roboto: ["Roboto", "sans-serif"],
             },
           },
         },
@@ -47,7 +48,7 @@
   <body>
     <!--navbar-->
     <nav
-      class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
+      class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-roboto cursor-pointer"
     >
       <div
         class="container flex flex-wrap items-center justify-between mx-auto"
@@ -63,7 +64,7 @@
           id="btn-menu"
           data-collapse-toggle="navbar-default"
           type="button"
-          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
           aria-controls="navbar-default"
           aria-expanded="false"
         >
@@ -84,13 +85,13 @@
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul
-            class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+            class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white"
           >
             <li>
               <a
                 href="/pages/home.html"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Home</a
               >
@@ -98,8 +99,8 @@
             <li>
               <a
                 href="/pages/home.html"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 :text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Download Game</a
               >
@@ -108,7 +109,7 @@
               <a
                 href="#about-us"
                 v-smooth-scroll
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 About Us</a
@@ -117,7 +118,7 @@
             <li>
               <a
                 href="/pages/home.html"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Purchase</a
@@ -126,7 +127,7 @@
             <li>
               <a
                 href="/pages/home.html"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Redeem/GiftCode</a
@@ -134,7 +135,7 @@
             </li>
             <li>
               <a
-                href="forgot"
+                href="/pages/home.html"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Game Database</a
@@ -142,8 +143,8 @@
             </li>
             <li>
               <a
-                href="register"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                href="/pages/login.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Login/Register</a
@@ -246,7 +247,7 @@
     </div>
 
     <!--about-us-->
-    <section id="about-us" class="relative w-full h-1/2 bg-[#F8F9FA]">
+    <section id="about-us" class="relative w-full bg-[#F8F9FA]">
       <div class="container mx-auto p-4 pb-24 h-auto">
         <div class="flex content-center items-center justify-center h-48">
           <h2 class="text-4xl font-extrabold font-['Open_Sans'] my-10">
@@ -254,7 +255,7 @@
           </h2>
         </div>
         <div
-          class="flex flex-wrap md:space-x-12 space-y-4 content-center items-center justify-center h-full"
+          class="flex flex-wrap md:space-x-12 space-y-4 content-center items-center justify-center h-3/4"
         >
           <div class="flex justify-center">
             <div
@@ -324,22 +325,12 @@
     </section>
 
     <!--game image-->
-    <div class="relative">
-      <img
-        src="../assets/img/wallpaperflare.com_wallpaper.jpg"
-        class="object-cover w-full h-3/4"
-      />
-      <!-- <button class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            download now</button> -->
+    <img
+      src="../assets/img/wallpaperflare.com_wallpaper.jpg"
+      class="w-full h-auto object-cover"
+    />
 
-      <!-- <div class="flex space-x-2 justify-center absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <button type="button"
-                class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
-        </div> -->
-    </div>
-
-    <!--about-us-->
-    <section id="about-us" class="relative w-full h-1/2 bg-[#F8F9FA]">
+    <section id="about-us" class="relative w-full bg-[#F8F9FA]">
       <div class="container mx-auto p-4 pb-24 h-auto">
         <div class="flex content-center items-center justify-center h-48">
           <h2 class="text-4xl font-extrabold font-['Open_Sans'] my-10">
@@ -647,7 +638,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-    <script src="./script/home.js"></script>
+    <script src="../script/home.js"></script>
   </body>
 </html>
 
