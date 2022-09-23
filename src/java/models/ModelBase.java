@@ -12,7 +12,8 @@ import com.yuyu.jdbc.SQLServerModel;
  * @author Huu
  * @param <T>
  */
-public abstract class ModelBase<T> extends SQLServerModel<T>{
+public abstract class ModelBase<T> extends SQLServerModel<T> {
+
     private static SQLConnection connection = null;
 
     static {
