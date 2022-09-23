@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,6 +127,7 @@
                             Sign in
                         </button>
                     </div>
+                    <h3 style="text-align: center">${requestScope.error}</h3>
                     <p
                         class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"
                         >

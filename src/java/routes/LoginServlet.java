@@ -37,13 +37,15 @@ public class LoginServlet extends HttpServlet {
 
             if (uid != null) {
                 response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
-                response.sendRedirect(".");
+                response.sendRedirect("index.jsp");
                 return;
             }
 
         } catch (Exception e) {
             e.printStackTrace(out);
         }
-        doGet(request, response);
+        //doGet(request, response);
+        request.setAttribute("error", "username or password invalid!");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }

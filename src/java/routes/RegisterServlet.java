@@ -39,16 +39,21 @@ public class RegisterServlet extends HttpServlet {
             GoogleReCaptcha gcaptcha = new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
             if (!gcaptcha.checkCaptcha(captcha)) {
                 //out.println("sai captcha");
+                request.setAttribute("error", "captcha incorrect!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             }
 
-            if (UserModel.checkDuplicateEmail(email)) {
+            if (!UserModel.checkDuplicateEmail(email)) {
                 UserModel.createAccount(username, password, email, name);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 //out.println("dup email");
+                request.setAttribute("error", "your email is duplicate!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         } catch (Exception e) {
 
         }
-        response.sendRedirect(".");
+        
     }
 }

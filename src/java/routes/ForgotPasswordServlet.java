@@ -53,6 +53,8 @@ public class ForgotPasswordServlet extends HttpServlet {
             Player u = user.getUserByEmail(email);
             if (u == null) {
                 // could not find this email
+                request.setAttribute("error", "email not found!");
+                request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
             }
             String oldPassword = u.getPassword();
             HashMap<String, Object> data = new HashMap<>();
