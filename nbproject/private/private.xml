@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Admin/OneDrive/Desktop/SwP391/New%20folder/GameServer/src/java/routes/ForgotPasswordServlet.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Desktop/SwP391/New%20folder/GameServer/web/index.jsp</file>
+=======
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/src/java/filter/HomeFilter.java</file>
             <file>file:/D:/download/SPR22/SWP/Project/HttpServer/GameServer/web/META-INF/context.xml</file>
+>>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
         </group>
     </open-files>
 </project-private>
