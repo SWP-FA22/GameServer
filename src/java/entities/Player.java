@@ -15,7 +15,7 @@ import com.yuyu.annotations.SQLTable;
 public class Player {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
-    public int id;
+    public Integer id;
 
     @SQLColumn(column = "Password")
     public String password;
@@ -30,16 +30,16 @@ public class Player {
     public String email;
 
     @SQLColumn(column = "WeaponID")
-    public int weaponID;
+    public Integer weaponID;
 
     @SQLColumn(column = "EngineID")
-    public int engineID;
+    public Integer engineID;
 
     @SQLColumn(column = "SailID")
-    public int sailID;
+    public Integer sailID;
 
     @SQLColumn(column = "Rank")
-    public int rank;
+    public Integer rank;
 
     public Player() {
     }
