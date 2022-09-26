@@ -41,7 +41,7 @@ public class GoogleReCaptcha {
                 os.flush();
             }
 
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            try ( BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                 return br.lines().anyMatch((line) -> line.contains("\"success\": true"));
             }
         } catch (Exception e) {

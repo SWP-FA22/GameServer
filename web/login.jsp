@@ -1,16 +1,14 @@
 <%-- 
     Document   : login
-<<<<<<< HEAD
-    Created on : Sep 18, 2022, 7:18:10 AM
-=======
     Created on : Sep 16, 2022, 11:41:30 PM
->>>>>>> ac73f8226ad5a704f546f499f65a1ed98b5d7003
     Author     : LinhThuy
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+
 
   <head>
     <meta charset="UTF-8" />
@@ -93,7 +91,7 @@
           >
             <li>
               <a
-                href="/pages/home.html"
+                href="index.jsp"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
@@ -102,7 +100,7 @@
             </li>
             <li>
               <a
-                href="/pages/index.jsp"
+                href="index.jsp"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
@@ -121,7 +119,7 @@
             </li>
             <li>
               <a
-                href="/pages/index.jsp"
+                href="index.jsp"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
@@ -130,7 +128,7 @@
             </li>
             <li>
               <a
-                href="/pages/home.html"
+                href="index.jsp"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
@@ -139,7 +137,7 @@
             </li>
             <li>
               <a
-                href="/pages/home.html"
+                href="index.jsp"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Game Database</a
@@ -147,7 +145,7 @@
             </li>
             <li>
               <a
-                href="/pages/login.html"
+                href="login"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
@@ -159,75 +157,107 @@
       </div>
     </nav>
 
-    <!-- component -->
-    <div
-      class="relative min-h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover items-center"
-      style="
-        background-image: url(https://wallpapercave.com/dwp1x/wp2429392.jpg);
-      "
-    >
-      <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-      <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
-        <div class="text-center">
-          <h2 class="mt-6 text-3xl font-bold text-gray-900">Welcom Back!</h2>
-          <p class="mt-2 text-sm text-gray-600">
-            Please sign in to your account
-          </p>
-        </div>
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
+    </head>
+    <body>
+        <%@include file="components/navbar.jsp" %>
 
-          <form class="mt-8 space-y-6" action="login" method="POST" id="login-form">
-        
-          <div class="relative">
-            <div class="absolute right-0 mt-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <label class="text-sm font-bold text-gray-700 tracking-wide"
-              >Username</label
+        <!-- component -->
+        <div
+            class="relative min-h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover items-center"
+            style="
+            background-image: url(https://wallpapercave.com/dwp1x/wp2429392.jpg);
+            "
             >
-            <input
-              class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-              type=""
-              placeholder="Enter your username" 
-              value="" name="username" id="username" class="form-control"
-            />
-          </div>
-          
-          <div class="mt-8 content-center">
-            <label class="text-sm font-bold text-gray-700 tracking-wide">
-              Password
-            </label>
-            <input
-              class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-              type="password"
-              placeholder="Enter your password"
-              value="" name="password" id="password" class="form-control"
-            />
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input
-                id="remember_me"
-                name="remember_me"
-                type="checkbox"
-                class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded"
-              />
-              <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-                Remember me
-              </label>
+            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+            <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
+                <div class="text-center">
+                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Welcom Back!</h2>
+                    <p class="mt-2 text-sm text-gray-600">
+                        Please sign in to your account
+                    </p>
+                </div>
+
+                <form class="mt-8 space-y-6" action="login" method="POST" id="login-form">
+
+                    <div class="relative">
+                        <div class="absolute right-0 mt-4">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-green-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <label class="text-sm font-bold text-gray-700 tracking-wide"
+                               >Username</label
+                        >
+                        <input
+                            class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            type=""
+                            placeholder="Enter your username" 
+                            value="" name="username" id="username" class="form-control"
+                            />
+                    </div>
+
+                    <div class="mt-8 content-center">
+                        <label class="text-sm font-bold text-gray-700 tracking-wide">
+                            Password
+                        </label>
+                        <input
+                            class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            type="password"
+                            placeholder="Enter your password"
+                            value="" name="password" id="password" class="form-control"
+                            />
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input
+                                id="remember_me"
+                                name="remember_me"
+                                type="checkbox"
+                                class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded"
+                                />
+                            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            type="submit" name="submit"
+                            class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300"
+                            >
+                            Sign in
+                        </button>
+                    </div>
+                    <h3 style="text-align: center">${requestScope.error}</h3>
+                    <p
+                        class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"
+                        >
+                        <span>Don't have an account?</span>
+                        <a
+                            href="register"
+                            class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300"
+                            >Sign up</a
+                        >
+                    </p>
+                </form>
             </div>
+
           </div>
           <div>
             <button
@@ -242,7 +272,7 @@
           >
             <span>Don't have an account?</span>
             <a
-              href="/pages/signup.html"
+              href="register"
               class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300"
               >Sign up</a
             >
@@ -251,8 +281,9 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-    <script src="../script/home.js"></script>
-  </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+        <script src="../script/home.js"></script>
+    </body>
 </html>
 

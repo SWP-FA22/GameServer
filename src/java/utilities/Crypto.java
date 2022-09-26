@@ -15,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @author yuyu2
  */
 public class Crypto {
+
     public static String bytesToHex(byte[] bytes) {
         String result = "";
         for (byte b : bytes) {
@@ -22,7 +23,7 @@ public class Crypto {
             if (data < 0) {
                 data += 256;
             }
-            
+
             String hex = Integer.toHexString(data);
             result += (hex.length() == 1 ? "0" : "") + hex;
         }
@@ -57,7 +58,7 @@ public class Crypto {
             return null;
         }
     }
-    
+
     public static String encode64(String data) {
         return new String(Base64.getEncoder().encode(data.getBytes()));
     }

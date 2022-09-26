@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="utilities.GlobalConstants" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -47,114 +48,7 @@
         </style>
     </head>
     <body>
-        <!--navbar-->
-        <nav
-            class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
-            >
-            <div
-                class="container flex flex-wrap items-center justify-between mx-auto"
-                >
-                <a href="https://flowbite.com/" class="flex items-center">
-                    <img
-                        src="../assets/img/logo.png"
-                        class="ml-20 mr-4 h-9 sm:h-9"
-                        alt="logo"
-                        />
-                </a>
-                <button
-                    id="btn-menu"
-                    data-collapse-toggle="navbar-default"
-                    type="button"
-                    class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    aria-controls="navbar-default"
-                    aria-expanded="false"
-                    >
-                    <span class="sr-only">Open main menu</span>
-                    <svg
-                        class="w-6 h-6"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                            fill-rule="evenodd"
-                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"
-                            ></path>
-                    </svg>
-                </button>
-                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul
-                        class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
-                        >
-                        <li>
-                            <a
-                                href="index.jsp"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Home</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="index.jsp"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Download Game</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="#about-us"
-                                v-smooth-scroll
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                About Us</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="index.jsp"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Purchase</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="index.jsp"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Redeem/GiftCode</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="index.jsp"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Game Database</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="register"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >
-                                Login/Register</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <%@include file="components/navbar.jsp" %>
 
         <!-- component -->
         <div
@@ -170,6 +64,9 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Enter your information to register
                     </p>
+                    <label class="text-sm font-bold text-gray-700 tracking-wide">
+                            ${requestScope.error}
+                        </label>
                 </div>
 
                 <form class="mt-8 space-y-6" action="register" method="POST" id="registerform"
@@ -260,7 +157,7 @@
                             placeholder="Confirm your password"
                             />
                     </div>
-                    
+                      
                     <div>
                         <button
                             type="button" onclick="formSubmit()"
@@ -272,7 +169,7 @@
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"  >
                         <span>Already have an account?</span>
                         <a
-                            href="/pages/login.html"
+                            href="login"
                             class="text-indigo-500 hover:text-indigo-500no-underline hover:underline cursor-pointer transition ease-in duration-300"
                             >Sign In</a
                         >
