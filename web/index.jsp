@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,39 +38,6 @@
       };
     </script>
     <title>Home Page</title>
-=======
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-            />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
-            />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            sans: ["Inter", "sans-serif"],
-                        },
-                    },
-                },
-            };
-        </script>
-        <title>Home Page</title>
-
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
 
     <style>
       html {
@@ -123,30 +89,18 @@
           >
             <li>
               <a
-<<<<<<< HEAD
                 href="/pages/home.html"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-=======
-                href="index.jsp"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
               >
                 Home</a
               >
             </li>
             <li>
               <a
-<<<<<<< HEAD
                 href="/pages/home.html"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 :text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-=======
-                href="index.jsp"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
               >
                 Download Game</a
               >
@@ -163,13 +117,8 @@
             </li>
             <li>
               <a
-<<<<<<< HEAD
                 href="/pages/home.html"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
-=======
-                href="index.jsp"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Purchase</a
@@ -177,13 +126,8 @@
             </li>
             <li>
               <a
-<<<<<<< HEAD
                 href="/pages/home.html"
                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
-=======
-                href="index.jsp"
-                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Redeem/GiftCode</a
@@ -302,7 +246,6 @@
       </button>
     </div>
 
-<<<<<<< HEAD
     <!--about-us-->
     <section id="about-us" class="relative w-full bg-[#F8F9FA]">
       <div class="container mx-auto p-4 pb-24 h-auto">
@@ -315,15 +258,6 @@
           class="flex flex-wrap md:space-x-12 space-y-4 content-center items-center justify-center h-3/4"
         >
           <div class="flex justify-center">
-=======
-
-        <!--carousel-->
-        <div
-            id="carouselExampleCaptions"
-            class="carousel slide relative"
-            data-bs-ride="carousel"
-            >
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
             <div
                 class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4"
                 >
@@ -810,7 +744,6 @@
               </div> -->
         </footer>
 
-<<<<<<< HEAD
     <!--game image-->
     <img
       src="../assets/img/wallpaperflare.com_wallpaper.jpg"
@@ -1127,10 +1060,5 @@
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script src="../script/home.js"></script>
   </body>
-=======
-        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-        <script src="./script/home.js"></script>
-    </body>
->>>>>>> 4dc01b43aa760590de1a3439b3b6ab3bd3c50e60
 </html>
 

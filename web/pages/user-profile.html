@@ -54,60 +54,80 @@
   </head>
   <body class="bg-grey-200">
     <!-- component -->
-    <h1 class="text-center text-3xl my-20 font-bold"t>User Profile</h1>
 
-    <div
-      class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-36"
-    >
-      <div class="px-6">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full flex justify-center">
-            <div class="relative">
-              <img
-                src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true"
-                class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"
-              />
-            </div>
-          </div>
-          <div class="w-full text-center mt-20">
-            <div class="flex justify-center lg:pt-4 pt-8 pb-0">
-              <div class="p-3 text-center">
-                <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >8</span
-                >
-                <span class="text-sm text-slate-400">Number Of Ship</span>
-              </div>
-              <div class="p-3 text-center">
-                <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >20</span
-                >
-                <span class="text-sm text-slate-400">Number Of Item</span>
-              </div>
+    <div class="pt-20 h-screen bg-gray-300">
+      <!-- <h1 class="text-center text-3xl my-20 font-semibold" t>User Profile</h1> -->
 
-              <div class="p-3 text-center">
+      <div
+        class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-md"
+      >
+        <div class="md:flex">
+          <div class="w-full p-2 py-10">
+            <div class="flex justify-center">
+              <div class="relative">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+                  class="rounded-full"
+                  width="80"
+                />
                 <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >Silver</span
-                >
-                <span class="text-sm text-slate-400">Current Ranking</span>
+                  class="absolute border-white border-4 h-5 w-5 top-12 left-16 bg-green-700 rounded-full"
+                ></span>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="text-center mt-2 py-8">
-          <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">
-            Mike Thompson
-          </h3>
-          <div class="text-xs mt-0 mb-2 text-slate-400 text-base">
-            <i class="fa fa-user mr-2 text-slate-400 opacity-75"></i
-            ><span>Username: </span>mike123
+
+            <div class="flex flex-col text-center mt-3 mb-4">
+              <span class="text-2xl font-medium">Lindsey James</span>
+              <span class="text-md text-gray-400">@lindsey_jam3s</span>
+            </div>
+
+            <div class="mt-5 md:mt-0 md:col-span-2 px-4">
+              <form action="#" method="POST">
+                <div class="shadow overflow-hidden sm:rounded-md">
+                  <div class="px-4 py-5 bg-white sm:p-6">
+                    <div class="grid grid-cols-6 gap-6">
+                      <div class="col-span-6 sm:col-span-3">
+                        <label
+                          for=""
+                          class="block text-sm font-medium text-gray-700"
+                          >Number of Ships</label
+                        >
+                        <input value="8" class="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="numOfShip" type="number" placeholder="number of ships">
+                      </div>
+
+                      <div class="col-span-6 sm:col-span-3">
+                        <label
+                          for="last_name"
+                          class="block text-sm font-medium text-gray-700"
+                          >Number Of Items</label
+                        >
+                        <input value="8" class="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="numOfItem" type="number" placeholder="number of items">
+                      </div>
+
+                      <div class="col-span-6 sm:col-span-4">
+                        <label
+                          for="email_address"
+                          class="block text-sm font-medium text-gray-700"
+                          >Current Rank</label
+                        >
+                        <input disabled value="Silver" class="bg-gray-100 mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currentRank" type="text" placeholder="current rank">
+                    </div>
+                  </div>
+                  <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <button
+                      type="submit"
+                      class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script src="../script/home.js"></script>
   </body>
