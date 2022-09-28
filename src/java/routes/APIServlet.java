@@ -48,32 +48,32 @@ public class APIServlet extends HttpServlet {
         JSONObject result = new JSONObject();
 
         try {
-            result.put("success", true);
-            result.put("items", new JSONObject[] {
-                new Item(1, "dkm rac", "hehe", "sex", "con cac", 1, .2, 3.8, .4, 4.5, 5.3).toJSON(),
-                new Item(2, "dkm rac", "hehe", "sex", "con cac", 1, .2, .3, .4, 4.5, 5.3).toJSON(),
-                new Item(3, "dkm rac", "hehe", "sex", "con cac", 1, 2.0, .3, .4, 4.5, 5.3).toJSON()
-            }); 
-            
-            response.write(result.toString());
-            return;
-//            
-//            String username = request.getParameter("username");
-//            List<Item> list = new ArrayList<>();
-//            if (username.isEmpty() || username.equals("")) {
-//                list = new ItemModel().getall();
-//
-//            } else {
-//                int id = new UserModel().getIdByUsername(username);
-//                if (id == -1) {
-//                    result.put("success", false);
-//                    result.put("error", "don't exist username");
-//                } else {
-//                    list = new ItemModel().getItemByUserID(id);
-//                }
-//            }
 //            result.put("success", true);
-//            result.put("items", list);            
+//            result.put("items", new JSONObject[] {
+//                new Item(1, "dkm rac", "hehe", "sex", "con cac", 1, .2, 3.8, .4, 4.5, 5.3).toJSON(),
+//                new Item(2, "dkm rac", "hehe", "sex", "con cac", 1, .2, .3, .4, 4.5, 5.3).toJSON(),
+//                new Item(3, "dkm rac", "hehe", "sex", "con cac", 1, 2.0, .3, .4, 4.5, 5.3).toJSON()
+//            }); 
+//            
+//            response.write(result.toString());
+//            return;
+            
+            String username = request.getParameter("username");
+            List<Item> list = new ArrayList<>();
+            if (username.isEmpty() || username.equals("")) {
+                list = new ItemModel().getall();
+
+            } else {
+                int id = new UserModel().getIdByUsername(username);
+                if (id == -1) {
+                    result.put("success", false);
+                    result.put("error", "don't exist username");
+                } else {
+                    list = new ItemModel().getItemByUserID(id);
+                }
+            }
+            result.put("success", true);
+            result.put("items", list);            
 
         } catch (Exception e) {
             result.put("success", false);
