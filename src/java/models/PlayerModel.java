@@ -13,17 +13,17 @@ import utilities.Crypto;
  *
  * @author Huu
  */
-public class UserModel extends ModelBase<Player> {
+public class PlayerModel extends ModelBase<Player> {
 
-    public UserModel() throws Exception {
+    public PlayerModel() throws Exception {
         super(Player.class);
     }
 
     public Player getUserByEmail(String email) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE Email = ?", email)) {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
             if (rs.next()) {
-                return new Player(rs.getInt("ID"), rs.getString("password"), rs.getString("username"), rs.getString("name"),
-                        email, rs.getInt("weaponid"), rs.getInt("engineID"), rs.getInt("sailid"), rs.getInt("rank"));
+                return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
+                        email, rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"));
             }
             return null;
         }

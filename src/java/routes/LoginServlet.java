@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.UserModel;
+import models.PlayerModel;
 import utilities.Authentication;
 
 /**
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            Integer uid = UserModel.checkAuth(username, password);
+            Integer uid = PlayerModel.checkAuth(username, password);
 
             if (uid != null) {
                 response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
