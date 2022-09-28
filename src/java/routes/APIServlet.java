@@ -4,6 +4,7 @@
  */
 package routes;
 
+import entities.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -14,6 +15,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import models.ItemModel;
 import models.UserModel;
 import org.json.JSONObject;
 import utilities.Authentication;
@@ -37,6 +41,46 @@ public class APIServlet extends HttpServlet {
 
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
+        routes.put("post:listItem", APIServlet::listItem);
+    }
+
+    public static void listItem(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            result.put("success", true);
+            result.put("items", new JSONObject[] {
+                new Item(1, "dkm rac", "hehe", "sex", "con cac", 1, .2, 3.8, .4, 4.5, 5.3).toJSON(),
+                new Item(2, "dkm rac", "hehe", "sex", "con cac", 1, .2, .3, .4, 4.5, 5.3).toJSON(),
+                new Item(3, "dkm rac", "hehe", "sex", "con cac", 1, 2.0, .3, .4, 4.5, 5.3).toJSON()
+            }); 
+            
+            response.write(result.toString());
+            return;
+//            
+//            String username = request.getParameter("username");
+//            List<Item> list = new ArrayList<>();
+//            if (username.isEmpty() || username.equals("")) {
+//                list = new ItemModel().getall();
+//
+//            } else {
+//                int id = new UserModel().getIdByUsername(username);
+//                if (id == -1) {
+//                    result.put("success", false);
+//                    result.put("error", "don't exist username");
+//                } else {
+//                    list = new ItemModel().getItemByUserID(id);
+//                }
+//            }
+//            result.put("success", true);
+//            result.put("items", list);            
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+
+        response.write(result.toString());
     }
 
     public static void login(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -101,7 +145,7 @@ public class APIServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain; charset=utf-8");
+        response.setContentType("application/json; charset=utf-8");
 
         try ( PrintWriter out = response.getWriter()) {
             try {
