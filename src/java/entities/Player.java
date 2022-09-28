@@ -12,7 +12,7 @@ import com.yuyu.annotations.SQLTable;
  * @author Huu
  */
 @SQLTable(table = "Player")
-public class Player {
+public class Player extends EntityBase {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
     public Integer id;
@@ -44,12 +44,7 @@ public class Player {
     public Player() {
     }
 
-    @Override
-    public String toString() {
-        return "Player{" + "id=" + id + ", password=" + password + ", username=" + username + ", name=" + name + ", email=" + email + ", weaponID=" + weaponID + ", engineID=" + engineID + ", sailID=" + sailID + ", rank=" + rank + '}';
-    }
-
-    public Player(int id, String password, String username, String name, String email, int weaponID, int engineID, int sailID, int rank) {
+    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank) {
         this.id = id;
         this.password = password;
         this.username = username;
@@ -59,13 +54,16 @@ public class Player {
         this.engineID = engineID;
         this.sailID = sailID;
         this.rank = rank;
+
+        updateProps();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
+        updateProp("id", id);
         this.id = id;
     }
 
@@ -74,6 +72,7 @@ public class Player {
     }
 
     public void setPassword(String password) {
+        updateProp("password", password);
         this.password = password;
     }
 
@@ -82,6 +81,7 @@ public class Player {
     }
 
     public void setUsername(String username) {
+        updateProp("username", username);
         this.username = username;
     }
 
@@ -90,6 +90,7 @@ public class Player {
     }
 
     public void setName(String name) {
+        updateProp("name", name);
         this.name = name;
     }
 
@@ -98,38 +99,43 @@ public class Player {
     }
 
     public void setEmail(String email) {
+        updateProp("email", email);
         this.email = email;
     }
 
-    public int getWeaponID() {
+    public Integer getWeaponID() {
         return weaponID;
     }
 
-    public void setWeaponID(int weaponID) {
+    public void setWeaponID(Integer weaponID) {
+        updateProp("weaponID", weaponID);
         this.weaponID = weaponID;
     }
 
-    public int getEngineID() {
+    public Integer getEngineID() {
         return engineID;
     }
 
-    public void setEngineID(int engineID) {
+    public void setEngineID(Integer engineID) {
+        updateProp("engineID", engineID);
         this.engineID = engineID;
     }
 
-    public int getSailID() {
+    public Integer getSailID() {
         return sailID;
     }
 
-    public void setSailID(int sailID) {
+    public void setSailID(Integer sailID) {
+        updateProp("sailID", sailID);
         this.sailID = sailID;
     }
 
-    public int getRank() {
+    public Integer getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(Integer rank) {
+        updateProp("rank", rank);
         this.rank = rank;
     }
 

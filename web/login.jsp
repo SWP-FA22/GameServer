@@ -65,33 +65,17 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Please sign in to your account
                     </p>
-                    <h3 style="text-align: center">${requestScope.error}</h3>
+                    <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.error}</h3>
                 </div>
 
                 <form class="mt-8 space-y-6" action="login" method="POST" id="login-form">
 
                     <div class="relative">
-                        <div class="absolute right-0 mt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                            </svg>
-                        </div>
                         <label class="text-sm font-bold text-gray-700 tracking-wide"
                                >Username</label
                         >
                         <input
-                            class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type=""
                             placeholder="Enter your username" 
                             value="" name="username" id="username" class="form-control"
@@ -103,24 +87,11 @@
                             Password
                         </label>
                         <input
-                            class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full content-center text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="password"
                             placeholder="Enter your password"
                             value="" name="password" id="password" class="form-control"
                             />
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input
-                                id="remember_me"
-                                name="remember_me"
-                                type="checkbox"
-                                class="h-4 w-4 bg-indigo-500 focus:ring-indigo-400 border-gray-300 rounded"
-                                />
-                            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
-                                Remember me
-                            </label>
-                        </div>
                     </div>
                     <div>
                         <button
