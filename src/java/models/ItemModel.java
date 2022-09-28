@@ -22,12 +22,12 @@ public class ItemModel extends ModelBase<Item> {
 
     public List<Item> getItemByUserID(int ID) throws SQLException {
         List<Item> list = new ArrayList<>();
-        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Item i join PlayerItem p on i.ID=p.ItemID where p.PlayerID=?", ID)) {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item], [PlayerItem] WHERE [ID] = [ItemID] AND [PlayerID] = ?", ID)) {
             while (rs.next()) {
-                list.add(new Item(rs.getInt("ID"), rs.getString("description"), rs.getString("imageURL"),
-                        rs.getString("name"), rs.getString("addressable"),
-                        rs.getInt("type"), rs.getDouble("price"), rs.getDouble("bonusATK"), rs.getDouble("bonusHP"),
-                        rs.getDouble("bonusSpeed"), rs.getDouble("bonusRota")));
+                list.add(new Item(rs.getInt("ID"), rs.getString("Description"), rs.getString("ImageURL"),
+                        rs.getString("Name"), rs.getString("Addressable"),
+                        rs.getInt("Type"), rs.getDouble("Price"), rs.getDouble("BonusATK"), rs.getDouble("BonusHP"),
+                        rs.getDouble("BonusSpeed"), rs.getDouble("BonusRota")));
 
             }
             return list;
