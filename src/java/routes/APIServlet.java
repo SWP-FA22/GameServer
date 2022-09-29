@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import models.ItemModel;
-import models.UserModel;
+import models.PlayerModel;
 import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.TokenGenerator;
@@ -47,7 +47,7 @@ public class APIServlet extends HttpServlet {
         routes.put("post:list-item", APIServlet::listItem);
     }
 
-    public static void listItem(HttpServletRequest request, PrintWriter response) throws Exception {
+    public static JSONObject listItem(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
         try {           
@@ -57,7 +57,7 @@ public class APIServlet extends HttpServlet {
                   list = new ItemModel().getall();
   
               } else {
-                  int id = new UserModel().getIdByUsername(username);
+                  int id = new PlayerModel().getIdByUsername(username);
                   if (id == -1) {
                       result.put("success", false);
                       result.put("error", "don't exist username");
@@ -72,38 +72,9 @@ public class APIServlet extends HttpServlet {
             result.put("success", false);
             result.put("error", e.getMessage());
         }
-
-        response.write(result.toString());
+           return result;
     }
 
-    public static void listItem(HttpServletRequest request, PrintWriter response) throws Exception {
-        JSONObject result = new JSONObject();
-
-        try {           
-              String username = request.getParameter("username");
-              List<Item> list = new ArrayList<>();
-              if (username.isEmpty() || username.equals("")) {
-                  list = new ItemModel().getall();
-  
-              } else {
-                  int id = new UserModel().getIdByUsername(username);
-                  if (id == -1) {
-                      result.put("success", false);
-                      result.put("error", "don't exist username");
-                  } else {
-                      list = new ItemModel().getItemByUserID(id);
-                  }
-              }
-              result.put("success", true);
-              result.put("items", list);            
-
-        } catch (Exception e) {
-            result.put("success", false);
-            result.put("error", e.getMessage());
-        }
-
-        response.write(result.toString());
-    }
 
     public static JSONObject login(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
