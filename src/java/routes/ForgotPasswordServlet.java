@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
-import models.UserModel;
+import models.PlayerModel;
 import utilities.GlobalConstants;
 import utilities.SMTP;
 import utilities.TokenGenerator;
@@ -22,19 +22,6 @@ import utilities.TokenGenerator;
  * @author Huu
  */
 public class ForgotPasswordServlet extends HttpServlet {
-
-    private UserModel user;
-    private SMTP smtp;
-
-    @Override
-    public void init() throws ServletException {
-        try {
-            smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
-            smtp.connect();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,13 +36,15 @@ public class ForgotPasswordServlet extends HttpServlet {
         try {
 
             String email = request.getParameter("email");
-            user = new UserModel();
+            PlayerModel user = new PlayerModel();
             Player u = user.getUserByEmail(email);
+
             if (u == null) {
-                // could not find this email
                 request.setAttribute("error", "email not found!");
                 request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
+                return;
             }
+
             String oldPassword = u.getPassword();
             HashMap<String, Object> data = new HashMap<>();
             data.put("uid", u.getId());
@@ -64,8 +53,13 @@ public class ForgotPasswordServlet extends HttpServlet {
                     + "We receive a request to reset password for your account.\n"
                     + "To reset password, click the link below (valid for 30 minutes):\n"
                     + "http://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+
+            SMTP smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+            smtp.connect();
             smtp.sendMimeMessage("BattleShip Online (No-Reply)", u.getEmail(), "RESET YOUR PASSWORD", text);
         } catch (Exception e) {
+            response.sendError(500, e.getMessage());
+            return;
         }
 
         response.sendRedirect(".");

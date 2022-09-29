@@ -5,12 +5,11 @@
 package routes;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.UserModel;
+import models.PlayerModel;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
 
@@ -43,8 +42,8 @@ public class RegisterServlet extends HttpServlet {
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             }
 
-            if (!UserModel.checkDuplicateEmail(email)) {
-                UserModel.createAccount(username, password, email, name);
+            if (!PlayerModel.checkDuplicateEmail(email)) {
+                PlayerModel.createAccount(username, password, email, name);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 //out.println("dup email");

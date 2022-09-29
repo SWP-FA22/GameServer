@@ -31,12 +31,15 @@ public class APIServlet extends HttpServlet {
 
     public interface APIProcessCallback {
 
-        public void process(HttpServletRequest request, PrintWriter response) throws Exception;
+        public JSONObject process(HttpServletRequest request, PrintWriter response) throws Exception;
     }
 
     private HashMap<String, APIProcessCallback> routes;
-
-    private void initRoutes() {
+    
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        
         routes = new HashMap<>();
 
         routes.put("post:login", APIServlet::login);
@@ -73,21 +76,26 @@ public class APIServlet extends HttpServlet {
         response.write(result.toString());
     }
 
-    public static void login(HttpServletRequest request, PrintWriter response) throws Exception {
+    public static void listItem(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
-        try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            Integer uid = UserModel.checkAuth(username, password);
-
-            if (uid != null) {
-                String token = Authentication.createTokenCookie(uid, 60 * 60 * 24).getValue();
-
-                result.put("success", true);
-                result.put("token", token);
-            }
+        try {           
+              String username = request.getParameter("username");
+              List<Item> list = new ArrayList<>();
+              if (username.isEmpty() || username.equals("")) {
+                  list = new ItemModel().getall();
+  
+              } else {
+                  int id = new UserModel().getIdByUsername(username);
+                  if (id == -1) {
+                      result.put("success", false);
+                      result.put("error", "don't exist username");
+                  } else {
+                      list = new ItemModel().getItemByUserID(id);
+                  }
+              }
+              result.put("success", true);
+              result.put("items", list);            
 
         } catch (Exception e) {
             result.put("success", false);
@@ -97,7 +105,41 @@ public class APIServlet extends HttpServlet {
         response.write(result.toString());
     }
 
-    public static void verify(HttpServletRequest request, PrintWriter response) throws Exception {
+    public static JSONObject login(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+            if (username == null || username.length() > 64) {
+                throw new Exception("Arg \"username\" is not valid");
+            }
+
+            if (password == null || password.length() > 64) {
+                throw new Exception("Arg \"password\" is not valid");
+            }
+
+            Integer uid = PlayerModel.checkAuth(username, password);
+
+            if (uid != null) {
+                String token = Authentication.createTokenCookie(uid, 60 * 60 * 24).getValue();
+
+                result.put("success", true);
+                result.put("token", token);
+            } else {
+                throw new Exception("Wrong username or password");
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+
+        return result;
+    }
+
+    public static JSONObject verify(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
         try {
@@ -114,7 +156,7 @@ public class APIServlet extends HttpServlet {
 
             Long uid = json.getLong("uid");
 
-            if (new UserModel().getUserById(uid) == null) {
+            if (new PlayerModel().getUserById(uid) == null) {
                 throw new Exception("Invalid token: UID is not valid");
             }
 
@@ -124,13 +166,7 @@ public class APIServlet extends HttpServlet {
             result.put("error", e.getMessage());
         }
 
-        response.write(result.toString());
-    }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        initRoutes();
+        return result;
     }
 
     @Override
@@ -149,7 +185,12 @@ public class APIServlet extends HttpServlet {
                     throw null;
                 }
 
-                routes.get(request.getMethod().toLowerCase() + ":" + matcher.group(1)).process(request, out);
+                JSONObject result = routes.get(request.getMethod().toLowerCase() + ":" + matcher.group(1)).process(request, out);
+
+                if (result != null) {
+                    out.append(result.toString());
+                }
+                
             } catch (Exception e) {
                 out.print("Invalid request");
             }
