@@ -14,7 +14,7 @@ import org.json.JSONObject;
  * @author Huu
  */
 @SQLTable(table = "Item")
-public class Item {
+public class Item extends EntityBase{
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
     public Integer id;
@@ -64,6 +64,7 @@ public class Item {
         this.bonusHP = bonusHP;
         this.bonusSpeed = bonusSpeed;
         this.bonusRota = bonusRota;
+        updateProps();
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -89,6 +90,7 @@ public class Item {
     }
 
     public void setId(Integer id) {
+        updateProp("id", id);
         this.id = id;
     }
 
@@ -97,6 +99,7 @@ public class Item {
     }
 
     public void setDescription(String description) {
+        updateProp("description", description);
         this.description = description;
     }
 
@@ -105,6 +108,7 @@ public class Item {
     }
 
     public void setImageURL(String imageURL) {
+        updateProp("imageURL", imageURL);
         this.imageURL = imageURL;
     }
 
@@ -113,6 +117,7 @@ public class Item {
     }
 
     public void setName(String name) {
+        updateProp("name", name);
         this.name = name;
     }
 
@@ -121,6 +126,7 @@ public class Item {
     }
 
     public void setAddressable(String addressable) {
+        updateProp("addressable", addressable);
         this.addressable = addressable;
     }
 
@@ -129,6 +135,7 @@ public class Item {
     }
 
     public void setType(Integer type) {
+        updateProp("type", type);
         this.type = type;
     }
 
@@ -137,6 +144,7 @@ public class Item {
     }
 
     public void setPrice(Double price) {
+        updateProp("price", price);
         this.price = price;
     }
 
@@ -145,6 +153,7 @@ public class Item {
     }
 
     public void setBonusATK(Double bonusATK) {
+        updateProp("bonusATK", bonusATK);
         this.bonusATK = bonusATK;
     }
 
@@ -153,6 +162,7 @@ public class Item {
     }
 
     public void setBonusHP(Double bonusHP) {
+        updateProp("bonusHP", bonusHP);
         this.bonusHP = bonusHP;
     }
 
@@ -161,6 +171,7 @@ public class Item {
     }
 
     public void setBonusSpeed(Double bonusSpeed) {
+        updateProp("bonusSpeed", bonusSpeed);
         this.bonusSpeed = bonusSpeed;
     }
 
@@ -169,6 +180,7 @@ public class Item {
     }
 
     public void setBonusRota(Double bonusRota) {
+        updateProp("bonusRota", bonusRota);
         this.bonusRota = bonusRota;
     }
 
