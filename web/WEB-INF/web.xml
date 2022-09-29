@@ -36,6 +36,10 @@
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>routes.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListItemServlet</servlet-name>
+        <servlet-class>routes.ListItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListItemServlet</servlet-name>
+        <url-pattern>/listitem</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

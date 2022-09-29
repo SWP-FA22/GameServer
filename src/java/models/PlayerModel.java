@@ -33,6 +33,15 @@ public class PlayerModel extends ModelBase<Player> {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
 
+    public int getIdByUsername(String username) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Username] = ?", username)) {
+            if (rs.next()) {
+                return rs.getInt("ID");
+            }
+            return -1;
+        }
+    }
+
     public Player getUserById(Long id) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
             if (rs.next()) {

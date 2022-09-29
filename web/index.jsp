@@ -217,6 +217,10 @@
             class="w-full h-auto object-cover"
             />
 
+<<<<<<< HEAD
+    <%@include file="components/footer.jsp" %>
+
+=======
         <!--footer-->
         <footer class="text-center lg:text-left bg-[#F8F9FA] text-gray-600">
             <div
@@ -445,6 +449,7 @@
                 <a class="text-gray-600 font-semibold" href="https://tailwind-elements.com/">BattleShip Gamming</a>
               </div> -->
         </footer>
+>>>>>>> 5bc28ea6a2ea73bda18a6e930b319c2e65d8cd43
 
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
