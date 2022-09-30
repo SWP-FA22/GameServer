@@ -6,15 +6,13 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
  * @author Huu
  */
 @SQLTable(table = "Item")
-public class Item extends EntityBase{
+public class Item extends EntityBase {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
     public Integer id;
@@ -65,24 +63,6 @@ public class Item extends EntityBase{
         this.bonusSpeed = bonusSpeed;
         this.bonusRota = bonusRota;
         updateProps();
-    }
-
-    public JSONObject toJSON() throws JSONException {
-        JSONObject result = new JSONObject();
-
-        result.put("id", id);
-        result.put("description", description);
-        result.put("imageURL", imageURL);
-        result.put("name", name);
-        result.put("addressable", addressable);
-        result.put("type", type);
-        result.put("price", price);
-        result.put("bonusATK", bonusATK);
-        result.put("bonusHP", bonusHP);
-        result.put("bonusSpeed", bonusSpeed);
-        result.put("bonusRota", bonusRota);
-
-        return result;
     }
 
     public Integer getId() {

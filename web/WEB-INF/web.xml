@@ -40,6 +40,10 @@
         <servlet-name>ListItemServlet</servlet-name>
         <servlet-class>routes.ListItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PurchaseServlet</servlet-name>
+        <servlet-class>routes.PurchaseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -69,8 +73,12 @@
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>PurchaseServlet</servlet-name>
+        <url-pattern>/purchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ListItemServlet</servlet-name>
-        <url-pattern>/listitem</url-pattern>
+        <url-pattern>/list-item</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

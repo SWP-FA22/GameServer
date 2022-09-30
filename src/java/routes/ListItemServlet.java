@@ -11,7 +11,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import models.ItemModel;
 
@@ -27,10 +26,8 @@ public class ListItemServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             List<Item> list = new ItemModel().getall();
-            //out.print(list.toString());
-            //for (Item i: list) out.println(i);
             request.setAttribute("list", list);
-            request.getRequestDispatcher("listitem.jsp").forward(request, response);
+            request.getRequestDispatcher("list-item.jsp").forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace(out);
         }

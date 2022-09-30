@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            Integer uid = PlayerModel.checkAuth(username, password);
+            Integer uid = new PlayerModel().checkAuth(username, password);
 
             if (uid != null) {
                 response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));

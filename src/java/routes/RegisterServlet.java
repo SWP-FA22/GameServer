@@ -30,23 +30,20 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             String username = request.getParameter("username").trim();
-            if (username.length()<8 || username.length()>64)
-            {
+            if (username.length() < 8 || username.length() > 64) {
                 request.setAttribute("error", "username invalid!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             String password = request.getParameter("password").trim();
-            if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,16}$"))
-            {
+            if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,16}$")) {
                 request.setAttribute("error", "password invalid!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             String email = request.getParameter("email").trim();
             String name = request.getParameter("name").trim();
-             if (name.length()<1 || name.length()>64)
-            {
+            if (name.length() < 1 || name.length() > 64) {
                 request.setAttribute("error", "name invalid!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
@@ -60,8 +57,8 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
-            if (!PlayerModel.checkDuplicateEmail(email)) {
-                PlayerModel.createAccount(username, password, email, name);
+            if (!new PlayerModel().checkDuplicateEmail(email)) {
+                new PlayerModel().createAccount(username, password, email, name);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 return;
             } else {
@@ -72,6 +69,6 @@ public class RegisterServlet extends HttpServlet {
         } catch (Exception e) {
 
         }
-        
+
     }
 }

@@ -148,7 +148,7 @@
 
                     <div class="animated${p.id} flex flex-col items-center justify">
                         <div class="rounded-lg shadow-lg bg-white w-40 h-40">
-                            <img class="rounded-t-lg w-40 h-40 object-contain" src="https://lienquan.garena.vn/files/items/icon2e47616ebfaf6569b90f705b86600dc55ef41367e4354.png"  alt=""/>
+                            <img class="rounded-t-lg w-40 h-40 object-contain" src="${p.imageURL}"  alt=""/>
                             <div class="p-6">
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">${p.name}</h5> 
                             </div>
@@ -159,7 +159,7 @@
                             <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                                 <div class="modal-header flex flex-col flex-shrink-0 items-center justify-start p-4 border-b border-gray-200 rounded-t-md">
                                     <div class="rounded-lg shadow-lg bg-white">
-                                        <img class="rounded-t-lg w-32 h-32 object-contain" src="https://lienquan.garena.vn/files/items/icon/05beffe85dbc5379e596f4719db29918583eab4bd2b8b.png"  alt=""/>
+                                        <img class="rounded-t-lg w-32 h-32 object-contain" src="${p.imageURL}"  alt=""/>
                                     </div>
                                     <div class="flex flex-col items-center justify-start pl-4">
                                         <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">

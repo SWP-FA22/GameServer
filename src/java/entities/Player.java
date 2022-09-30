@@ -41,6 +41,9 @@ public class Player extends EntityBase {
     @SQLColumn(column = "Rank")
     public Integer rank;
 
+    @SQLColumn(column = "Role")
+    public Integer role;
+
     public Player() {
     }
 
@@ -139,4 +142,12 @@ public class Player extends EntityBase {
         this.rank = rank;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        updateProp("role", role);
+        this.role = role;
+    }
 }

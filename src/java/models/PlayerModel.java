@@ -61,18 +61,18 @@ public class PlayerModel extends ModelBase<Player> {
         }
     }
 
-    public static boolean checkDuplicateEmail(String email) throws SQLException {
+    public boolean checkDuplicateEmail(String email) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
             return rs.next();
         }
     }
 
-    public static boolean createAccount(String username, String password, String email, String name) throws SQLException {
+    public boolean createAccount(String username, String password, String email, String name) throws SQLException {
         return ModelBase.connection().executeUpdate("INSERT INTO [Player]([Username], [Password], [Email], [Name]) VALUES (?, ?, ?, ?)",
                 username, Crypto.SHA256(password), email, name) > 0;
     }
 
-    public static Integer checkAuth(String username, String password) throws SQLException {
+    public Integer checkAuth(String username, String password) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery(
                 "Select [ID] FROM [Player] WHERE [Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS",
                 username, Crypto.SHA256(password))) {
@@ -82,4 +82,5 @@ public class PlayerModel extends ModelBase<Player> {
             return null;
         }
     }
+    
 }

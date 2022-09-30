@@ -35,11 +35,11 @@ public class APIServlet extends HttpServlet {
     }
 
     private HashMap<String, APIProcessCallback> routes;
-    
+
     @Override
     public void init() throws ServletException {
         super.init();
-        
+
         routes = new HashMap<>();
 
         routes.put("post:login", APIServlet::login);
@@ -50,31 +50,30 @@ public class APIServlet extends HttpServlet {
     public static JSONObject listItem(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
-        try {           
-              String username = request.getParameter("username");
-              List<Item> list = new ArrayList<>();
-              if (username.isEmpty() || username.equals("")) {
-                  list = new ItemModel().getall();
-  
-              } else {
-                  int id = new PlayerModel().getIdByUsername(username);
-                  if (id == -1) {
-                      result.put("success", false);
-                      result.put("error", "don't exist username");
-                  } else {
-                      list = new ItemModel().getItemByUserID(id);
-                  }
-              }
-              result.put("success", true);
-              result.put("items", list);            
+        try {
+            String username = request.getParameter("username");
+            List<Item> list = new ArrayList<>();
+            if (username.isEmpty() || username.equals("")) {
+                list = new ItemModel().getall();
+
+            } else {
+                int id = new PlayerModel().getIdByUsername(username);
+                if (id == -1) {
+                    result.put("success", false);
+                    result.put("error", "don't exist username");
+                } else {
+                    list = new ItemModel().getItemByUserID(id);
+                }
+            }
+            result.put("success", true);
+            result.put("items", list);
 
         } catch (Exception e) {
             result.put("success", false);
             result.put("error", e.getMessage());
         }
-           return result;
+        return result;
     }
-
 
     public static JSONObject login(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
@@ -91,7 +90,7 @@ public class APIServlet extends HttpServlet {
                 throw new Exception("Arg \"password\" is not valid");
             }
 
-            Integer uid = PlayerModel.checkAuth(username, password);
+            Integer uid = new PlayerModel().checkAuth(username, password);
 
             if (uid != null) {
                 String token = Authentication.createTokenCookie(uid, 60 * 60 * 24).getValue();
@@ -161,7 +160,7 @@ public class APIServlet extends HttpServlet {
                 if (result != null) {
                     out.append(result.toString());
                 }
-                
+
             } catch (Exception e) {
                 out.print("Invalid request");
             }
