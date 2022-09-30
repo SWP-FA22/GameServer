@@ -75,7 +75,8 @@
                         <label class="text-sm font-bold text-gray-700 tracking-wide">Username</label>
                         <input
                             class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
-                            type="text"
+                            type="text" maxlength="64" required
+                            minlength="8"
                             placeholder="Enter your username"
                             name="username"
                             />
@@ -86,6 +87,7 @@
                         <input
                             class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="text"
+                            required minlength="1" maxlength="64"
                             placeholder="Enter your name"
                             name="name"
                             />
@@ -110,6 +112,8 @@
                         <input
                             class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="password" id="password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$"
+                            title="Your password must be 8 to 16 characters, contain both lowercase and uppercase"
                             placeholder="Enter your password"
                             name="password"
                             />
