@@ -25,6 +25,8 @@ public class AdminServlet extends HttpServlet {
         try {
             List<Player> list = new PlayerModel().getall();
             request.setAttribute("players", list);
+            PrintWriter out = response.getWriter();
+         
             request.getRequestDispatcher("admin.jsp").forward(request, response);
         } catch (Exception ex) {
             response.sendError(500, ex.getMessage());
