@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import models.PlayerModel;
+import utilities.Authentication;
 
 /**
  *
@@ -23,11 +24,21 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Player> list = new PlayerModel().getall();
-            request.setAttribute("players", list);
-            PrintWriter out = response.getWriter();
-         
-            request.getRequestDispatcher("admin.jsp").forward(request, response);
+            String token = Authentication.getTokenFromCookies(request.getCookies());
+            if (Authentication.getUserInformationByToken(token) == null) {
+                response.sendRedirect("home");
+            } else {
+                Player player = Authentication.getUserInformationByToken(token);
+                if (player.getRole() != 1) {
+                    response.sendRedirect("home");
+                } else {
+                    List<Player> list = new PlayerModel().getall();
+                    request.setAttribute("players", list);
+                    request.getRequestDispatcher("admin.jsp").forward(request, response);
+                }
+
+            }
+
         } catch (Exception ex) {
             response.sendError(500, ex.getMessage());
         }

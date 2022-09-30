@@ -27,6 +27,7 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        
       tailwind.config = {
         theme: {
           extend: {
@@ -173,7 +174,9 @@
                                             <p>+ ${p.bonusRota} Rota</p>
                                         </div>
                                     </div>
+                                        <a href="#" class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded" onclick="buyitem('${p.id}')">Mua</a>
                                     <button type="button" class="btn-close${p.id} mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded">Close</button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -186,6 +189,19 @@
         <%@include file="components/footer.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
+        <script type="text/javascript">
+            function buyitem(id)
+            {
+              var a= await fetch('http://localhost:9999/HttpServer/buy', {
+    method: 'post',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'username=quang2002&password=Qu%40ng123456&submit='
+}).then(e=>e.text())
+            }
+            alert(a);
+           </script>
         <script>
             <c:forEach items="${requestScope.list}" var="p">
             let animated${p.id} = document.querySelectorAll('.animated${p.id}');

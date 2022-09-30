@@ -40,11 +40,13 @@ public class Player extends EntityBase {
 
     @SQLColumn(column = "Rank")
     public Integer rank;
-
+    
+    @SQLColumn(column = "Role")
+    public Integer role;
     public Player() {
     }
 
-    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank) {
+    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank,Integer role) {
         this.id = id;
         this.password = password;
         this.username = username;
@@ -54,7 +56,7 @@ public class Player extends EntityBase {
         this.engineID = engineID;
         this.sailID = sailID;
         this.rank = rank;
-
+        this.role = role;
         updateProps();
     }
 
@@ -137,6 +139,14 @@ public class Player extends EntityBase {
     public void setRank(Integer rank) {
         updateProp("rank", rank);
         this.rank = rank;
+    }
+       public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        updateProp("role", role);
+        this.role = role;
     }
 
 }
