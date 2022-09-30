@@ -23,7 +23,7 @@ public class PlayerModel extends ModelBase<Player> {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
             if (rs.next()) {
                 return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
-                        email, rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"));
+                        email, rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"), rs.getInt("Role"));
             }
             return null;
         }
@@ -46,7 +46,7 @@ public class PlayerModel extends ModelBase<Player> {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
             if (rs.next()) {
                 return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
-                        rs.getString("Email"), rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"));
+                        rs.getString("Email"), rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"), rs.getInt("Role"));
             }
             return null;
         }
