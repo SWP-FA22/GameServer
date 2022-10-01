@@ -4,7 +4,21 @@
     Author     : quang
 --%>
 
+<%@page import="utilities.Authentication"%>
+<%@page import="entities.Player"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8"%>
+
+<%
+    try {
+        String token = Authentication.getTokenFromCookies(request.getCookies());
+        Player player = Authentication.getPlayerInformationByToken(token);
+
+        request.setAttribute("player", player);
+    } catch (Exception e) {
+    }
+%>
+
 <!--navbar-->
 <nav
     class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
@@ -94,21 +108,29 @@
                 </li>
                 <li>
                     <a
-                        href="listitem"
+                        href="list-item"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
                         Game Database</a
                     >
                 </li>
-                <li>
-                    <a
-                        href="login"
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                <c:if test="${player == null}">
+                    <li>
+                        <a
+                            href="login"
+                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                            >
+                            Login/Register</a
                         >
-                        Login/Register</a
-                    >
-                </li>
+                    </li>
+                </c:if>
+                
+                <c:if test="${player != null}">
+                    <li>
+                        <c:out value="${player.name}"/>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>

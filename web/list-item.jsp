@@ -9,56 +9,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Roboto", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-    <title>Home Page</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+            />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Roboto", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <title>Home Page</title>
 
-      .animated:hover {
-        animation: hover_item .3s ease-out forwards;
-        cursor: pointer;
-      }
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
 
-      @keyframes hover_item {
-        from {
-          transform : translateY(0);
-        }
+            .animated:hover {
+                animation: hover_item .3s ease-out forwards;
+                cursor: pointer;
+            }
 
-        to {
-          transform : translateY(-20px);
-        }
-      }
-    </style>
+            @keyframes hover_item {
+                from {
+                    transform : translateY(0);
+                }
+
+                to {
+                    transform : translateY(-20px);
+                }
+            }
+        </style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -148,7 +149,7 @@
 
                     <div class="animated${p.id} flex flex-col items-center justify">
                         <div class="rounded-lg shadow-lg bg-white w-40 h-40">
-                            <img class="rounded-t-lg w-40 h-40 object-contain" src="https://lienquan.garena.vn/files/items/icon2e47616ebfaf6569b90f705b86600dc55ef41367e4354.png"  alt=""/>
+                            <img class="rounded-t-lg w-40 h-40 object-contain" src="${p.imageURL}"  alt=""/>
                             <div class="p-6">
                                 <h5 class="text-gray-900 text-xl font-medium mb-2">${p.name}</h5> 
                             </div>
@@ -159,7 +160,7 @@
                             <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                                 <div class="modal-header flex flex-col flex-shrink-0 items-center justify-start p-4 border-b border-gray-200 rounded-t-md">
                                     <div class="rounded-lg shadow-lg bg-white">
-                                        <img class="rounded-t-lg w-32 h-32 object-contain" src="https://lienquan.garena.vn/files/items/icon/05beffe85dbc5379e596f4719db29918583eab4bd2b8b.png"  alt=""/>
+                                        <img class="rounded-t-lg w-32 h-32 object-contain" src="${p.imageURL}"  alt=""/>
                                     </div>
                                     <div class="flex flex-col items-center justify-start pl-4">
                                         <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
@@ -173,7 +174,9 @@
                                             <p>+ ${p.bonusRota} Rota</p>
                                         </div>
                                     </div>
+                                    <a href="#" class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded" onclick="buyitem(${p.id})">Mua</a>
                                     <button type="button" class="btn-close${p.id} mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded">Close</button>
+
                                 </div>
                             </div>
                         </div>
@@ -186,6 +189,20 @@
         <%@include file="components/footer.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
+        <script type="text/javascript">
+                                     async   function buyitem(id)
+                                        {
+                                            var a = await fetch('http://localhost:9999/HttpServer/buy', {
+                                                method: 'post',
+                                                headers: {
+                                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                                },
+                                               body: 'itemid='+id+'&submit='
+                                            }).then(e => e.text())
+                                            alert(a);
+                                        }
+                                        
+        </script>
         <script>
             <c:forEach items="${requestScope.list}" var="p">
             let animated${p.id} = document.querySelectorAll('.animated${p.id}');
@@ -200,7 +217,7 @@
                     modal.classList.toggle('fade');
                 })
             })
-            
+
 
 
 
