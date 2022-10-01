@@ -33,26 +33,19 @@ public class ItemModel extends ModelBase<Item> {
             return list;
         }
     }
-    public boolean check(int uid,int iid) throws SQLException
-    {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?",uid,iid)) {
+    
+    
+    public Integer getResourceAmount(Integer uid, Integer rid) throws SQLException {
+        try ( ResultSet rs = connection().executeQuery(
+                "SELECT [Amount] FROM [PlayerResource] WHERE [PlayerID] = ? AND [ResourceID] = ?",
+                uid, rid)) {
             if (rs.next()) {
-                return false;
-
+                return rs.getInt("Amount");
+            } else {
+                connection().executeUpdate("INSERT INTO [PlayerResource] VALUES (?, ?, ?)", uid, rid, 0);
             }
-            return true;
+            return 0;
         }
     }
-    public void insert(int uid,int iid) throws SQLException
-    {
-        connection().executeUpdate("INSERT INTO [PlayerItem] VALUES (?, ?)", uid, iid);
-    }
-    public double getPriceItemByID(int ID) throws SQLException
-    {
-        try(ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item] WHERE [ID]=?", ID)){
-            if (rs.next())
-                return rs.getDouble("Price");
-        }
-        return -1;
-    }
+
 }

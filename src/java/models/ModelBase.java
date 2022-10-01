@@ -26,6 +26,7 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
+            System.out.println("connect sucessfully");
         } catch (Exception e) {
             System.err.println(e);
         }

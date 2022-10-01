@@ -10,11 +10,11 @@ import java.sql.SQLException;
 
 /**
  *
- * @author quang
+ * @author LinhThuy
  */
 public class ResourceModel extends ModelBase<Resource> {
-
-    public ResourceModel() throws Exception {
+    
+public ResourceModel() throws Exception {
         super(Resource.class);
     }
 
