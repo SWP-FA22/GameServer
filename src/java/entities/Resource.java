@@ -9,10 +9,12 @@ import com.yuyu.annotations.SQLTable;
 
 /**
  *
- * @author quang
+ * @author LinhThuy
  */
-@SQLTable(table = "Resource")
-public class Resource extends EntityBase {
+public class Resource extends EntityBase{
+    
+   
+
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
     public Integer id;
@@ -101,3 +103,5 @@ public class Resource extends EntityBase {
     }
 
 }
+    
+

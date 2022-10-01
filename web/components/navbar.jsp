@@ -3,23 +3,27 @@
     Created on : Sep 18, 2022, 9:08:26 PM
     Author     : quang
 --%>
-
 <%@page import="utilities.Authentication"%>
 <%@page import="entities.Player"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="utilities.Authentication"%>
 <%@page pageEncoding="UTF-8"%>
+<!--navbar-->
+
+
 
 <%
+    String token = Authentication.getTokenFromCookies(request.getCookies());
+    Player user = null;
     try {
-        String token = Authentication.getTokenFromCookies(request.getCookies());
-        Player player = Authentication.getPlayerInformationByToken(token);
+        user = Authentication.getUserInformationByToken(token);
 
-        request.setAttribute("player", player);
     } catch (Exception e) {
+        System.err.print(e);
     }
+
+    request.setAttribute("user", user);
 %>
 
-<!--navbar-->
 <nav
     class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
     >
@@ -61,22 +65,18 @@
                 class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                 >
                 <li>
-                    <a
-                        href="."
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Home</a
-                    >
+                    <a href="."
+                       active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                       class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                       >Home</a>
                 </li>
                 <li>
-                    <a
-                        href="."
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Download Game</a
-                    >
+                    <a href="https://drive.google.com/file/d/17SGbrrTcRrXgdrnrh46f1GA6vJ0xU0lV/view?usp=sharing"
+                       
+                       active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                       class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                       >
+                        Download Game</a>
                 </li>
                 <li>
                     <a
@@ -94,44 +94,56 @@
                         active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                        Purchase</a
-                    >
+                        Purchase</a>
                 </li>
                 <li>
                     <a
-                        href="."
+                        href="resource"
                         active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                        Redeem/GiftCode</a
+                        Resource from game</a
                     >
                 </li>
                 <li>
-                    <a
-                        href="list-item"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
+                    <a href="forgot"
+                       href="listitem"
+                       class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                       >
                         Game Database</a
                     >
                 </li>
-                <c:if test="${player == null}">
-                    <li>
-                        <a
-                            href="login"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >
-                            Login/Register</a
-                        >
-                    </li>
-                </c:if>
-                
-                <c:if test="${player != null}">
-                    <li>
-                        <c:out value="${player.name}"/>
-                    </li>
-                </c:if>
+                <li>
+
+                    <% if (user != null) { %>
+                    <a href="userprofile" class="">
+                        <i class="fa-solid fa-cog"></i>
+                        <span>View Profile</span>
+                    </a>
+
+                    <% } %>
+                    <hr>
+                        <% if (user == null) { %>
+                        <a href="login" class="">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            <span>Login</span>
+                        </a>
+
+                        <a href="register" class="">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+                        <% } else { %>
+                        <a href="logout" class="">
+                            <i class="fa-solid fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                        <% }%>
+
+                </li>
             </ul>
         </div>
     </div>
+
+
 </nav>
