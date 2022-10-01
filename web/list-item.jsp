@@ -9,57 +9,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Roboto", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-    <title>Home Page</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+            />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Roboto", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <title>Home Page</title>
 
-      .animated:hover {
-        animation: hover_item .3s ease-out forwards;
-        cursor: pointer;
-      }
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
 
-      @keyframes hover_item {
-        from {
-          transform : translateY(0);
-        }
+            .animated:hover {
+                animation: hover_item .3s ease-out forwards;
+                cursor: pointer;
+            }
 
-        to {
-          transform : translateY(-20px);
-        }
-      }
-    </style>
+            @keyframes hover_item {
+                from {
+                    transform : translateY(0);
+                }
+
+                to {
+                    transform : translateY(-20px);
+                }
+            }
+        </style>
     </head>
     <body>
         <%@include file="components/navbar.jsp" %>
@@ -174,9 +174,9 @@
                                             <p>+ ${p.bonusRota} Rota</p>
                                         </div>
                                     </div>
-                                        <a href="#" class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded" onclick="buyitem('${p.id}')">Mua</a>
+                                    <a href="#" class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded" onclick="buyitem(${p.id})">Mua</a>
                                     <button type="button" class="btn-close${p.id} mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 duration-300 text-white rounded">Close</button>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -190,18 +190,19 @@
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script type="text/javascript">
-            function buyitem(id)
-            {
-              var a= await fetch('http://localhost:9999/HttpServer/buy', {
-    method: 'post',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: 'username=quang2002&password=Qu%40ng123456&submit='
-}).then(e=>e.text())
-            }
-            alert(a);
-           </script>
+                                     async   function buyitem(id)
+                                        {
+                                            var a = await fetch('http://localhost:9999/HttpServer/buy', {
+                                                method: 'post',
+                                                headers: {
+                                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                                },
+                                               body: 'itemid='+id+'&submit='
+                                            }).then(e => e.text())
+                                            alert(a);
+                                        }
+                                        
+        </script>
         <script>
             <c:forEach items="${requestScope.list}" var="p">
             let animated${p.id} = document.querySelectorAll('.animated${p.id}');
@@ -216,7 +217,7 @@
                     modal.classList.toggle('fade');
                 })
             })
-            
+
 
 
 

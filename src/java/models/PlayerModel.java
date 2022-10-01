@@ -82,5 +82,13 @@ public class PlayerModel extends ModelBase<Player> {
             return null;
         }
     }
-    
+    public int getUserResource(int uid,int rid) throws SQLException
+    {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerResource] WHERE [PlayerID] =? and [ResourceID]=?", uid,rid)) {
+            if (rs.next()) {
+                return rs.getInt("Amount");
+            }
+            return -1;
+        }
+    }
 }

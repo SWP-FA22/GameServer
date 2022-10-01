@@ -33,4 +33,26 @@ public class ItemModel extends ModelBase<Item> {
             return list;
         }
     }
+    public boolean check(int uid,int iid) throws SQLException
+    {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?",uid,iid)) {
+            if (rs.next()) {
+                return false;
+
+            }
+            return true;
+        }
+    }
+    public void insert(int uid,int iid) throws SQLException
+    {
+        connection().executeUpdate("INSERT INTO [PlayerItem] VALUES (?, ?)", uid, iid);
+    }
+    public double getPriceItemByID(int ID) throws SQLException
+    {
+        try(ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item] WHERE [ID]=?", ID)){
+            if (rs.next())
+                return rs.getDouble("Price");
+        }
+        return -1;
+    }
 }
