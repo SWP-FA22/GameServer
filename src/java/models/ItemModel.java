@@ -20,7 +20,7 @@ public class ItemModel extends ModelBase<Item> {
         super(Item.class);
     }
 
-    public List<Item> getItemByUserID(int ID) throws SQLException {
+    public List<Item> getItemsByPlayerID(Integer ID) throws SQLException {
         List<Item> list = new ArrayList<>();
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item], [PlayerItem] WHERE [ID] = [ItemID] AND [PlayerID] = ?", ID)) {
             while (rs.next()) {
@@ -33,25 +33,22 @@ public class ItemModel extends ModelBase<Item> {
             return list;
         }
     }
-    public boolean check(int uid,int iid) throws SQLException
-    {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?",uid,iid)) {
-            if (rs.next()) {
-                return false;
 
-            }
-            return true;
+    public boolean isPlayerOwned(Integer uid, Integer iid) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?", uid, iid)) {
+            return !rs.next();
         }
     }
-    public void insert(int uid,int iid) throws SQLException
-    {
+
+    public void addItemToPlayer(Integer uid, Integer iid) throws SQLException {
         connection().executeUpdate("INSERT INTO [PlayerItem] VALUES (?, ?)", uid, iid);
     }
-    public double getPriceItemByID(int ID) throws SQLException
-    {
-        try(ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item] WHERE [ID]=?", ID)){
-            if (rs.next())
+
+    public double getPriceItemByID(Integer ID) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item] WHERE [ID]=?", ID)) {
+            if (rs.next()) {
                 return rs.getDouble("Price");
+            }
         }
         return -1;
     }

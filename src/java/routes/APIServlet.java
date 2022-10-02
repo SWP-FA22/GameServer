@@ -62,7 +62,7 @@ public class APIServlet extends HttpServlet {
                     result.put("success", false);
                     result.put("error", "don't exist username");
                 } else {
-                    list = new ItemModel().getItemByUserID(id);
+                    list = new ItemModel().getItemsByPlayerID(id);
                 }
             }
             result.put("success", true);
