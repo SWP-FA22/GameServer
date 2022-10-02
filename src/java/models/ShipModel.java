@@ -6,7 +6,6 @@ package models;
 
 import entities.Ship;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +19,13 @@ public class ShipModel extends ModelBase<Ship> {
         super(Ship.class);
     }
 
-    public List<Ship> getShipsByPlayerID(Integer playerID) throws SQLException {
+    public List<Ship> getShipsByPlayerID(Integer playerID) throws Exception {
         List<Ship> result = new ArrayList<>();
         try ( ResultSet rs = connection().executeQuery("SELECT [Ship].* FROM [PlayerShip], [Ship] WHERE [PlayerShip].[ShipID] = [Ship].[ID] AND [PlayerShip].[PlayerID] = ?", playerID)) {
             while (rs.next()) {
-                result.add(new Ship(rs.getInt("ID"), rs.getNString("Name"), rs.getNString("Description"), rs.getDouble("BaseATK"), rs.getDouble("BaseHP"), rs.getDouble("BaseSpeed"), rs.getDouble("BaseRota"), rs.getDouble("Price"), rs.getString("Addressable")));
+                Ship ship = new Ship();
+                ship.loadProps(rs);
+                result.add(ship);
             }
         }
         return result;

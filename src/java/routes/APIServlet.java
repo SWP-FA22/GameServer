@@ -5,6 +5,7 @@
 package routes;
 
 import entities.Item;
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -44,25 +45,26 @@ public class APIServlet extends HttpServlet {
 
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
-        routes.put("post:list-item", APIServlet::listItem);
+        routes.put("post:get-all-items", APIServlet::getAllItems);
     }
 
-    public static JSONObject listItem(HttpServletRequest request, PrintWriter response) throws Exception {
+    public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
         try {
-            String username = request.getParameter("username");
-            List<Item> list = new ArrayList<>();
-            if (username.isEmpty() || username.equals("")) {
-                list = new ItemModel().getall();
+            String token = request.getParameter("token");
 
+            List<Item> list = new ArrayList<>();
+            if (token == null || token.isEmpty()) {
+                list = new ItemModel().getall();
             } else {
-                int id = new PlayerModel().getIdByUsername(username);
-                if (id == -1) {
+                Player player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
                     result.put("success", false);
-                    result.put("error", "don't exist username");
+                    result.put("error", "Username is not exist");
                 } else {
-                    list = new ItemModel().getItemsByPlayerID(id);
+                    list = new ItemModel().getItemsByPlayerID(player.getId());
                 }
             }
             result.put("success", true);
@@ -90,7 +92,7 @@ public class APIServlet extends HttpServlet {
                 throw new Exception("Arg \"password\" is not valid");
             }
 
-            Integer uid = new PlayerModel().checkAuth(username, password);
+            Integer uid = new PlayerModel().getUserIDByUsernameAndPassword(username, password);
 
             if (uid != null) {
                 String token = Authentication.createTokenCookie(uid, 60 * 60 * 24).getValue();
@@ -126,7 +128,7 @@ public class APIServlet extends HttpServlet {
 
             Long uid = json.getLong("uid");
 
-            if (new PlayerModel().getUserById(uid) == null) {
+            if (new PlayerModel().get(uid) == null) {
                 throw new Exception("Invalid token: UID is not valid");
             }
 

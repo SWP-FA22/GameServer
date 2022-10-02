@@ -67,7 +67,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             Long uid = TokenGenerator.decrypt(token).getLong("uid");
             PlayerModel user = new PlayerModel();
-            Player u = user.getUserById(uid);
+            Player u = user.get(uid);
 
             u.setPassword(Crypto.SHA256(password));
             user.updatePassword(u);

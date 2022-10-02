@@ -6,46 +6,47 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import com.yuyu.jdbc.JSONEntity;
 
 /**
  *
  * @author Huu
  */
 @SQLTable(table = "Item")
-public class Item extends EntityBase {
+public class Item extends JSONEntity {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
-    public Integer id;
+    private Integer id;
 
     @SQLColumn(column = "Description")
-    public String description;
+    private String description;
 
     @SQLColumn(column = "ImageURL")
-    public String imageURL;
+    private String imageURL;
 
     @SQLColumn(column = "Name")
-    public String name;
+    private String name;
 
     @SQLColumn(column = "Addressable")
-    public String addressable;
+    private String addressable;
 
     @SQLColumn(column = "Type")
-    public Integer type;
+    private Integer type;
 
     @SQLColumn(column = "Price")
-    public Double price;
+    private Double price;
 
     @SQLColumn(column = "BonusATK")
-    public Double bonusATK;
+    private Double bonusATK;
 
     @SQLColumn(column = "BonusHP")
-    public Double bonusHP;
+    private Double bonusHP;
 
     @SQLColumn(column = "BonusSpeed")
-    public Double bonusSpeed;
+    private Double bonusSpeed;
 
     @SQLColumn(column = "BonusRota")
-    public Double bonusRota;
+    private Double bonusRota;
 
     public Item() {
     }
