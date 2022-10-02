@@ -6,7 +6,6 @@ package models;
 
 import entities.Item;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,39 +19,30 @@ public class ItemModel extends ModelBase<Item> {
         super(Item.class);
     }
 
-    public List<Item> getItemByUserID(int ID) throws SQLException {
+    public List<Item> getItemsByPlayerID(Integer ID) throws Exception {
         List<Item> list = new ArrayList<>();
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item], [PlayerItem] WHERE [ID] = [ItemID] AND [PlayerID] = ?", ID)) {
             while (rs.next()) {
-                list.add(new Item(rs.getInt("ID"), rs.getString("Description"), rs.getString("ImageURL"),
-                        rs.getString("Name"), rs.getString("Addressable"),
-                        rs.getInt("Type"), rs.getDouble("Price"), rs.getDouble("BonusATK"), rs.getDouble("BonusHP"),
-                        rs.getDouble("BonusSpeed"), rs.getDouble("BonusRota")));
-
+                Item item = new Item();
+                item.loadProps(rs);
+                list.add(item);
             }
             return list;
         }
     }
-    public boolean check(int uid,int iid) throws SQLException
-    {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?",uid,iid)) {
-            if (rs.next()) {
-                return false;
 
-            }
-            return true;
+    public boolean isPlayerOwned(Integer uid, Integer iid) throws Exception {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerItem] WHERE [PlayerID]=? AND [ItemID] = ?", uid, iid)) {
+            return !rs.next();
         }
     }
-    public void insert(int uid,int iid) throws SQLException
-    {
+
+    public void addItemToPlayer(Integer uid, Integer iid) throws Exception {
         connection().executeUpdate("INSERT INTO [PlayerItem] VALUES (?, ?)", uid, iid);
     }
-    public double getPriceItemByID(int ID) throws SQLException
-    {
-        try(ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Item] WHERE [ID]=?", ID)){
-            if (rs.next())
-                return rs.getDouble("Price");
-        }
-        return -1;
+
+    public double getPriceItemByID(Integer ID) throws Exception {
+        Item item = get(ID);
+        return item != null ? item.getPrice() : -1;
     }
 }

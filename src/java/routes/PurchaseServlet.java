@@ -64,7 +64,7 @@ public class PurchaseServlet extends HttpServlet {
                 new ResourceModel().addDiamondAmount(playerID, amount);
             }
         } catch (Exception e) {
-            response.sendError(500);
+            response.getWriter().print(e.getMessage());
         }
     }
 

@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.ItemModel;
-import models.PlayerModel;
 import models.ResourceModel;
 import utilities.Authentication;
 
@@ -27,56 +26,42 @@ public class BuyServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-
             int id = Integer.parseInt(request.getParameter("itemid"));
             ItemModel im = new ItemModel();
             int price = (int) im.getPriceItemByID(id);
             if (price == -1) {
                 out.print("ItemID invalid!");
                 return;
-            } else {
-                String token = Authentication.getTokenFromCookies(request.getCookies());
-                if (Authentication.getPlayerInformationByToken(token) == null) {
-                    response.sendRedirect("login");
-                } else {
-                    Player player = Authentication.getPlayerInformationByToken(token);
-                    PlayerModel playerModel = new PlayerModel();
-                    if (!im.check(player.getId(), id)) {
-                        out.print("User already own this item");
-                        return;
-                    } else {
-                        int rs = playerModel.getUserResource(player.getId(), 1);
-                        //tru o bang playerresource
-                        //them vao bang playeritem
-                        if (price > rs) {
-                            out.print("Your balance not enough!");
-                            return;
-                        } else {
-                            rs -= price;
-                            ResourceModel rm = new ResourceModel();
-                            rm.setDiamondAmount(player.getId(), rs);
-                            im.insert(player.getId(), id);
-                            out.print("Purchase sucessfull!");
-                            return;
-                        }
-                    }
+            }
 
-                }
+            String token = Authentication.getTokenFromCookies(request.getCookies());
+            if (Authentication.getPlayerInformationByToken(token) == null) {
+                response.sendRedirect("login");
+                return;
+            }
+
+            Player player = Authentication.getPlayerInformationByToken(token);
+            ResourceModel rm = new ResourceModel();
+
+            if (!im.isPlayerOwned(player.getId(), id)) {
+                out.print("User already own this item");
+                return;
+            }
+
+            int diamond = rm.getDiamondAmount(player.getId());
+            //tru o bang playerresource
+            //them vao bang playeritem
+            if (price > diamond) {
+                out.print("Your balance not enough!");
+            } else {
+                diamond -= price;
+                rm.setDiamondAmount(player.getId(), diamond);
+                im.addItemToPlayer(player.getId(), id);
+                out.print("Purchase sucessfull!");
             }
         } catch (Exception e) {
             e.printStackTrace(out);
         }
 
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

@@ -57,7 +57,7 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
-            if (!new PlayerModel().checkDuplicateEmail(email)) {
+            if (!new PlayerModel().isEmailExist(email)) {
                 new PlayerModel().createAccount(username, password, email, name);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 return;

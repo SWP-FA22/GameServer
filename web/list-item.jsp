@@ -192,7 +192,7 @@
         <script type="text/javascript">
                                      async   function buyitem(id)
                                         {
-                                            var a = await fetch('http://localhost:9999/HttpServer/buy', {
+                                            var a = await fetch('buy', {
                                                 method: 'post',
                                                 headers: {
                                                     'Content-Type': 'application/x-www-form-urlencoded',
