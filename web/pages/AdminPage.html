@@ -7,12 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
         theme: {
@@ -47,6 +48,83 @@
             }
         </style>
     </head>
+ <!--navbar-->
+ <nav
+ class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-roboto cursor-pointer"
+>
+ <div
+   class="container flex flex-wrap items-center justify-between mx-auto"
+ >
+   <a href="https://flowbite.com/" class="flex items-center">
+     <img
+       src="../assets/img/logo.png"
+       class="ml-20 mr-4 h-9 sm:h-9"
+       alt="logo"
+     />
+   </a>
+   <button
+     id="btn-menu"
+     data-collapse-toggle="navbar-default"
+     type="button"
+     class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+     aria-controls="navbar-default"
+     aria-expanded="false"
+   >
+     <span class="sr-only">Open main menu</span>
+   </button>
+   <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+     <ul
+       class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white"
+     >
+       <li>
+         <a
+           href="/pages/home.html"
+           active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+           class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+         >
+           Home</a
+         >
+       </li>
+       <li>
+         <a
+           href="/pages/report.html"
+           active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+           class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 :text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+         >
+           Report</a
+         >
+       </li>
+       <li>
+         <a
+         href="/pages/account.html"
+           active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+           class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+         >
+           Account</a
+         >
+       </li>
+       <li>
+         <a
+         href="/pages/transcation.html"
+           active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+           class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+         >
+         Transcation</a
+         >
+       </li>
+       <li>
+         <a
+           href="/pages/login.html"
+           active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+           class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+         >
+           Login/Register</a
+         >
+       </li>
+     </ul>
+   </div>
+ </div>
+</nav>
 
     <body class="bg-grey-200">
         <!-- data table -->
@@ -108,23 +186,15 @@
                                                 <div class="flex item-center justify-center">
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
+                                                        <i class="eye-icon fa-solid fa-eye"></i>
                                                     </div>
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg class="trash-icon" xmlns="http://www.w3.org/2000/svg"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
+                                                        <i class="lock-icon fa-solid fa-lock"></i>
+                                                    </div>
+                                                    <div
+                                                        class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                        <i class="fa-solid fa-lock-open"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,24 +227,16 @@
                                                 <div class="flex item-center justify-center">
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
+                                                        <i class="eye-icon fa-solid fa-eye"></i>
                                                     </div>
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
+                                                        <i class="lock-icon fa-solid fa-lock"></i>
                                                     </div>
+                                                    <div
+                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                    <i class="fa-solid fa-lock-open"></i>
+                                                </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -204,25 +266,17 @@
                                                 <div class="flex item-center justify-center">
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
+                                                        <i class="eye-icon fa-solid fa-eye"></i>
                                                     </div>
 
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
+                                                        <i class="lock-icon fa-solid fa-lock"></i>
                                                     </div>
+                                                    <div
+                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                    <i class="fa-solid fa-lock-open"></i>
+                                                </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -252,25 +306,17 @@
                                                 <div class="flex item-center justify-center">
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
+                                                        <i class="eye-icon fa-solid fa-eye"></i>
                                                     </div>
 
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
+                                                        <i class="lock-icon fa-solid fa-lock"></i>
                                                     </div>
+                                                    <div
+                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                    <i class="fa-solid fa-lock-open"></i>
+                                                </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -300,24 +346,16 @@
                                                 <div class="flex item-center justify-center">
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
+                                                        <i class="eye-icon fa-solid fa-eye"></i>
                                                     </div>
                                                     <div
                                                         class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
+                                                        <i class="lock-icon fa-solid fa-lock"></i>
                                                     </div>
+                                                    <div
+                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                    <i class="fa-solid fa-lock-open"></i>
+                                                </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -362,12 +400,7 @@
                             <button id="btn-close" type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-toggle="defaultModal">
-                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
+                                <i class="fa-solid fa-xmark"></i>
                                 <span class="sr-only">Close modal</span>
                             </button>
                         </span>
@@ -375,7 +408,7 @@
                             <div class="flex justify-center">
                                 <div class="relative">
                                     <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
-                                        class="rounded-full" width="80" />
+                                        class="rounded-full" width="80" alt=""/>
                                 </div>
                             </div>
 
@@ -464,33 +497,58 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             const btn_close = document.getElementById('btn-close');
-      const eye_icon = document.querySelector('.eye-icon');
-      const trash_icon = document.querySelector('.trash-icon');
+    
 
-      eye_icon.addEventListener('click', () => {
-        const modal = document.querySelector('#modal');
-        modal.classList.toggle('hidden');
+      const lock_icons= document.querySelectorAll('.lock-icon');
+      lock_icons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            swal({
+                title: "Are you sure to lock this user?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+        if (willDelete) {
+            swal("Lock successfully !", {
+            icon: "success",
+            });
+        }
+        });
+                })
       })
 
-      trash_icon.addEventListener('click', () => {
-       swal({
-        title: "Are you sure to delete this user?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-  if (willDelete) {
-    swal("Delete successfully !", {
-      icon: "success",
-    });
-  }
-});
-        })
+      const unlock_icons= document.querySelectorAll('.fa-lock-open');
+      unlock_icons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            swal({
+                title: "Are you sure to unlock this user?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+        if (willDelete) {
+            swal("UnLock successfully !", {
+            icon: "success",
+            });
+        }
+        });
+                })
+      })
 
       btn_close.addEventListener('click', () => {
         const modal = document.querySelector('#modal');
         modal.classList.toggle('hidden');
+      })
+
+      const eye_icons = document.querySelectorAll('.fa-eye');
+      eye_icons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+        const modal = document.querySelector('#modal');
+
+        modal.classList.toggle('hidden');
+      })
       })
 
       
