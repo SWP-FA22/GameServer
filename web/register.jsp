@@ -64,9 +64,7 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Enter your information to register
                     </p>
-                    <label class="text-sm font-bold text-gray-700 tracking-wide">
-                            ${requestScope.error}
-                        </label>
+                    <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.error}</h3>
                 </div>
 
                 <form class="mt-8 space-y-6" action="register" method="POST" id="registerform"
@@ -74,90 +72,64 @@
                       >
 
                     <div class="relative">
-                        <div class="absolute right-0 mt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    ></path>
-                            </svg>
-                        </div>
-                        <label class="text-sm font-bold text-gray-700 tracking-wide"
-                               >Username</label
-                        >
+                        <label class="text-sm font-bold text-gray-700 tracking-wide">Username</label>
                         <input
-                            class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                            type="text"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
+                            type="text" maxlength="64" required
+                            minlength="8"
                             placeholder="Enter your username"
                             name="username"
                             />
-                        <label class="text-sm font-bold text-gray-700 tracking-wide"
-                               >Name</label
-                        >
+                    </div>
+
+                    <div class="relative">
+                        <label class="text-sm font-bold text-gray-700 tracking-wide">Name</label>
                         <input
-                            class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="text"
+                            required minlength="1" maxlength="64"
                             placeholder="Enter your name"
                             name="name"
                             />
                     </div>
+
                     <div class="relative">
-                        <div class="absolute right-0 mt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    ></path>
-                            </svg>
-                        </div>
                         <label class="text-sm font-bold text-gray-700 tracking-wide"
                                >Email</label
                         >
                         <input
-                            class="w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="email"
                             placeholder="mail@gmail.com"
                             name="email"
                             />
                     </div>
-                    <div class="mt-8 content-center">
+
+                    <div class="relative">
                         <label class="text-sm font-bold text-gray-700 tracking-wide">
                             Password
                         </label>
                         <input
-                            class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="password" id="password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$"
+                            title="Your password must be 8 to 16 characters, contain both lowercase and uppercase"
                             placeholder="Enter your password"
                             name="password"
                             />
                     </div>
-                    <div class="mt-8 content-center">
+
+                    <div class="relative">
                         <label class="text-sm font-bold text-gray-700 tracking-wide">
                             Confirm Password
                         </label>
                         <input
-                            class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                            class="w-full text-base p-2 border-b rounded border-gray-300 focus:outline-none focus:border-indigo-500"
                             type="password" id="repassword"
                             placeholder="Confirm your password"
                             />
                     </div>
-                      
+
                     <div>
                         <button
                             type="button" onclick="formSubmit()"
@@ -165,7 +137,9 @@
                             Sign Up
                         </button>
                     </div>
+
                     <div class="g-recaptcha" id="grecaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY%>" hidden data-callback="onSubmit"></div>
+
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"  >
                         <span>Already have an account?</span>
                         <a

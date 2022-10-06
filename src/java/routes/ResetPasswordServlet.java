@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
-import models.UserModel;
+import models.PlayerModel;
 import org.json.JSONObject;
 import utilities.Crypto;
 import utilities.TokenGenerator;
@@ -32,7 +32,7 @@ public class ResetPasswordServlet extends HttpServlet {
             if (new Date().after(new Date(json.getLong("expiry")))) {
                 return false;
             }
-            UserModel user = new UserModel();
+            PlayerModel user = new PlayerModel();
             String password = user.getHashedPasswordById(uid);
             return TokenGenerator.validCheck(token, password);
         } catch (Exception e) {
@@ -43,10 +43,9 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         String token = request.getParameter("token");
         if (!isValidToken(token)) {
-            out.print("Error token1");
+            response.sendError(403, "Invalid Token");
             return;
         }
         request.getRequestDispatcher("reset-password.jsp").forward(request, response);
@@ -62,17 +61,18 @@ public class ResetPasswordServlet extends HttpServlet {
 
             out.println(token);
             if (!isValidToken(token)) {
-                // check token but invalid
+                response.sendError(403, "Invalid Token");
                 return;
             }
 
             Long uid = TokenGenerator.decrypt(token).getLong("uid");
-            UserModel user = new UserModel();
-            Player u = user.getUserById(uid);
+            PlayerModel user = new PlayerModel();
+            Player u = user.get(uid);
 
             u.setPassword(Crypto.SHA256(password));
             user.updatePassword(u);
         } catch (Exception e) {
+            response.sendError(500, e.getMessage());
         }
         response.sendRedirect(".");
     }

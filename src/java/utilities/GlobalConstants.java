@@ -14,6 +14,12 @@ public class GlobalConstants {
     public static final String SMTP_ACCOUNT_PASSWORD = "Huuchien1234";
 
     // Deployment
-    public static final String HOST = "localhost:9999";
+    public static final String HOST = "http://103.185.184.47:8080";
     public static final String CONTEXT_PATH = "/HttpServer";
+    
+    // Casso & VietQR
+    public static final String SECURE_TOKEN = "tH15_15_4_r4nD0m_53cR3t_k3Y";
+    public static final String BANK_ID = "970422";
+    public static final String BANK_NO = "6888866662002";
+    public static final String QR_TEMPLATE = "uR7yU2";
 }
