@@ -6,40 +6,41 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import com.yuyu.jdbc.JSONEntity;
 
 /**
  *
  * @author quang
  */
 @SQLTable(table = "Ship")
-public class Ship extends EntityBase {
+public class Ship extends JSONEntity {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
-    public Integer id;
+    private Integer id;
 
     @SQLColumn(column = "Name")
-    public String name;
+    private String name;
 
     @SQLColumn(column = "Description")
-    public String description;
+    private String description;
 
     @SQLColumn(column = "BaseATK")
-    public Double baseATK;
+    private Double baseATK;
 
     @SQLColumn(column = "BaseHP")
-    public Double baseHP;
+    private Double baseHP;
 
     @SQLColumn(column = "BaseSpeed")
-    public Double baseSpeed;
+    private Double baseSpeed;
 
     @SQLColumn(column = "BaseRota")
-    public Double baseRota;
+    private Double baseRota;
 
     @SQLColumn(column = "Price")
-    public Double price;
+    private Double price;
 
     @SQLColumn(column = "Addressable")
-    public String addressable;
+    private String addressable;
 
     public Ship() {
     }
@@ -54,7 +55,7 @@ public class Ship extends EntityBase {
         this.baseRota = baseRota;
         this.price = price;
         this.addressable = addressable;
-        
+
         updateProps();
     }
 
@@ -138,6 +139,5 @@ public class Ship extends EntityBase {
         updateProp("addressable", addressable);
         this.addressable = addressable;
     }
-    
-    
+
 }

@@ -6,31 +6,32 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import com.yuyu.jdbc.JSONEntity;
 
 /**
  *
  * @author quang
  */
 @SQLTable(table = "Resource")
-public class Resource extends EntityBase {
+public class Resource extends JSONEntity {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
-    public Integer id;
+    private Integer id;
 
     @SQLColumn(column = "Type")
-    public Integer type;
+    private Integer type;
 
     @SQLColumn(column = "Name")
-    public String name;
+    private String name;
 
     @SQLColumn(column = "Description")
-    public String description;
+    private String description;
 
     @SQLColumn(column = "ImageURL")
-    public String imageURL;
+    private String imageURL;
 
     @SQLColumn(column = "Addressable")
-    public String addressable;
+    private String addressable;
 
     public Resource() {
     }

@@ -40,13 +40,10 @@ public class CheckServlet extends HttpServlet {
                 } else {
                     PlayerModel pm=new PlayerModel();
                     Player player1=pm.getUserById(id);
-                    PrintWriter out=response.getWriter();
-                        out.print(player1.id);
                     if (action.equals("ban"))
                     {
                         //update ban account                        
                         player1.setRole(2);
-                        out.print(player1);
                         pm.updateRole(player1);
                         response.sendRedirect("admin");
                     }
@@ -54,7 +51,6 @@ public class CheckServlet extends HttpServlet {
                     {
                         //unban account
                         player1.setRole(0);
-                        out.print(player1);
                         pm.updateRole(player1);
                         response.sendRedirect("admin");
                     }

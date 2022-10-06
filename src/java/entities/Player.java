@@ -6,43 +6,44 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import com.yuyu.jdbc.JSONEntity;
 
 /**
  *
  * @author Huu
  */
 @SQLTable(table = "Player")
-public class Player extends EntityBase {
+public class Player extends JSONEntity {
 
     @SQLColumn(column = "ID", isAutoIncrement = true)
-    public Integer id;
+    private Integer id;
 
     @SQLColumn(column = "Password")
-    public String password;
+    private String password;
 
     @SQLColumn(column = "Username")
-    public String username;
+    private String username;
 
     @SQLColumn(column = "Name")
-    public String name;
+    private String name;
 
     @SQLColumn(column = "Email")
-    public String email;
+    private String email;
 
     @SQLColumn(column = "WeaponID")
-    public Integer weaponID;
+    private Integer weaponID;
 
     @SQLColumn(column = "EngineID")
-    public Integer engineID;
+    private Integer engineID;
 
     @SQLColumn(column = "SailID")
-    public Integer sailID;
+    private Integer sailID;
 
     @SQLColumn(column = "Rank")
-    public Integer rank;
+    private Integer rank;
 
     @SQLColumn(column = "Role")
-    public Integer role;
+    private Integer role;
 
     public Player() {
     }

@@ -69,7 +69,7 @@
                     </div>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="edit-profile">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="user-profile">User Profile</a></li>
                         <hr class="m-0">
                         <li><a class="dropdown-item" href="logout">Logout</a></li>
                     </ul>
@@ -97,7 +97,7 @@
                     </div>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="edit-profile">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="user-profile">User Profile</a></li>
                         <hr class="m-0">
                         <li><a class="dropdown-item" href="logout">Logout</a></li>
                     </ul>

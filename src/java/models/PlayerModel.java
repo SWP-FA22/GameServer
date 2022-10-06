@@ -7,6 +7,7 @@ package models;
 import entities.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import utilities.Crypto;
 
 /**
@@ -19,22 +20,22 @@ public class PlayerModel extends ModelBase<Player> {
         super(Player.class);
     }
 
-    public Player getUserByEmail(String email) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
-            if (rs.next()) {
-                return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
-                        email, rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"), rs.getInt("Role"));
-            }
-            return null;
+    public Player getUserByEmail(String email) throws Exception {
+        List<Player> players = getIf("[EMAIL] = ?", email);
+        if (!players.isEmpty()) {
+            return players.get(0);
         }
+        return null;
     }
 
-    public void updatePassword(Player u) throws SQLException {
+    public void updatePassword(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
-public void updateRole(Player u) throws SQLException {
+
+    public void updateRole(Player u) throws SQLException {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Role] = ? WHERE [ID] = ?", u.getRole(), u.getId());
     }
+
     public int getIdByUsername(String username) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Username] = ?", username)) {
             if (rs.next()) {
@@ -44,53 +45,36 @@ public void updateRole(Player u) throws SQLException {
         }
     }
 
-    public Player getUserById(Long id) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
-            if (rs.next()) {
-                return new Player(rs.getInt("ID"), rs.getString("Password"), rs.getString("Username"), rs.getString("Name"),
-                        rs.getString("Email"), rs.getInt("WeaponID"), rs.getInt("EngineID"), rs.getInt("SailID"), rs.getInt("Rank"), rs.getInt("Role"));
-            }
-            return null;
-        }
+    public String getHashedPasswordById(Integer id) throws Exception {
+        Player player = get(id);
+        return player != null ? player.getPassword() : null;
     }
 
-    public String getHashedPasswordById(Integer id) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [ID] = ?", id)) {
-            if (rs.next()) {
-                return rs.getString("password");
-            }
-            return null;
-        }
+    public boolean isEmailExist(String email) throws Exception {
+        return getUserByEmail(email) != null;
     }
 
-    public boolean checkDuplicateEmail(String email) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Email] = ?", email)) {
-            return rs.next();
-        }
-    }
-
-    public boolean createAccount(String username, String password, String email, String name) throws SQLException {
+    public boolean createAccount(String username, String password, String email, String name) throws Exception {
         return ModelBase.connection().executeUpdate("INSERT INTO [Player]([Username], [Password], [Email], [Name]) VALUES (?, ?, ?, ?)",
                 username, Crypto.SHA256(password), email, name) > 0;
     }
 
-    public Integer checkAuth(String username, String password) throws SQLException {
-        try ( ResultSet rs = ModelBase.connection().executeQuery(
-                "Select [ID] FROM [Player] WHERE [Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS",
-                username, Crypto.SHA256(password))) {
-            if (rs.next()) {
-                return rs.getInt("ID");
-            }
-            return null;
+    public Integer getUserIDByUsernameAndPassword(String username, String password) throws Exception {
+        List<Player> players = getIf("[Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS", username, Crypto.SHA256(password));
+        if (!players.isEmpty()) {
+            return players.get(0).getId();
         }
+        return null;
     }
-    public int getUserResource(int uid,int rid) throws SQLException
-    {
-        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [PlayerResource] WHERE [PlayerID] =? and [ResourceID]=?", uid,rid)) {
-            if (rs.next()) {
-                return rs.getInt("Amount");
-            }
-            return -1;
+
+    public Player getUserById(Long id) throws Exception {
+        List<Player> players = getIf("[ID] = ?", id);
+        if (!players.isEmpty()) {
+            return players.get(0);
         }
+        return null;
     }
+
+   
+
 }
