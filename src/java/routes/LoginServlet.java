@@ -4,6 +4,7 @@
  */
 package routes;
 
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -32,14 +33,24 @@ public class LoginServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-
+            String token = Authentication.getTokenFromCookies(request.getCookies());
+            
             Integer uid = new PlayerModel().getUserIDByUsernameAndPassword(username, password);
-
-            if (uid != null) {
+        
+            
+            Player player = Authentication.getPlayerInformationByToken(token);
+            if(player.getRole() == 2){
+                request.setAttribute("error", "your account is banned and not allowed to log in!");
+                //Admin has banned your account and you not allow to log in
+            }
+            else if (uid != null) {
                 response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
                 response.sendRedirect("index.jsp");
                 return;
             }
+            
+           
+            
 
         } catch (Exception e) {
             e.printStackTrace(out);
