@@ -1,0 +1,83 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+
+package routes;
+
+import entities.Player;
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import models.PlayerModel;
+import utilities.Authentication;
+
+/**
+ *
+ * @author Huu
+ */
+public class CheckServlet extends HttpServlet {
+   
+
+
+  
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        String action = request.getParameter("action");
+        Long id=Long.parseLong(request.getParameter("id"));
+        try {
+            String token = Authentication.getTokenFromCookies(request.getCookies());
+            if (Authentication.getPlayerInformationByToken(token) == null) {
+                response.sendRedirect("home");
+            } else {
+                Player player = Authentication.getPlayerInformationByToken(token);
+                if (player.getRole() != 1) {
+                    response.sendRedirect("home");
+                } else {
+                    PlayerModel pm=new PlayerModel();
+                    Player player1=pm.getUserById(id);
+                    PrintWriter out=response.getWriter();
+                        out.print(player1.id);
+                    if (action.equals("ban"))
+                    {
+                        //update ban account                        
+                        player1.setRole(2);
+                        out.print(player1);
+                        pm.updateRole(player1);
+                        response.sendRedirect("admin");
+                    }
+                    else
+                    {
+                        //unban account
+                        player1.setRole(0);
+                        out.print(player1);
+                        pm.updateRole(player1);
+                        response.sendRedirect("admin");
+                    }
+                }
+
+            }
+
+        } catch (Exception ex) {
+            response.sendError(500, ex.getMessage());
+        }
+    } 
+
+    /** 
+     * Handles the HTTP <code>POST</code> method.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+    }
+
+
+}

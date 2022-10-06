@@ -121,7 +121,7 @@
                                                         </div>
                                                         <div
                                                             class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                            <svg class="trash-icon" xmlns="http://www.w3.org/2000/svg"
+                                                            <svg class="trash-icon${p.id}" xmlns="http://www.w3.org/2000/svg"
                                                                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2"
@@ -277,29 +277,29 @@
         <script>
             const btn_close = document.getElementById('btn-close');
             const eye_icon = document.querySelector('.eye-icon');
-            const trash_icon = document.querySelector('.trash-icon');
-
+            
             eye_icon.addEventListener('click', () => {
                 const modal = document.querySelector('#modal');
                 modal.classList.toggle('hidden');
             })
-
-            trash_icon.addEventListener('click', () => {
+            
+            <c:forEach items="${requestScope.players}" var="p">
+                const trash_icon${p.id} = document.querySelector('.trash-icon${p.id}');       
+            trash_icon${p.id}.addEventListener('click', () => {
                 swal({
-                    title: "Are you sure to delete this user?",
+                    title: "Are you sure to ban this user?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
                 })
                         .then((willDelete) => {
                             if (willDelete) {
-                                swal("Delete successfully !", {
-                                    icon: "success",
-                                });
+                               window.location="check?action=ban&id="+${p.id}
                             }
                         });
             })
-
+            </c:forEach>
+            
             btn_close.addEventListener('click', () => {
                 const modal = document.querySelector('#modal');
                 modal.classList.toggle('hidden');

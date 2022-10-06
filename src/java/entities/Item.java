@@ -6,6 +6,7 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import org.json.*;
 
 /**
  *
@@ -163,5 +164,10 @@ public class Item extends EntityBase {
         updateProp("bonusRota", bonusRota);
         this.bonusRota = bonusRota;
     }
+
+	public JSONObject toJSON() throws JSONException {
+		// TODO - implement Item.toJSON
+		throw new UnsupportedOperationException();
+	}
 
 }

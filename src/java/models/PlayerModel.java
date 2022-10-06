@@ -32,7 +32,9 @@ public class PlayerModel extends ModelBase<Player> {
     public void updatePassword(Player u) throws SQLException {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
-
+public void updateRole(Player u) throws SQLException {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Role] = ? WHERE [ID] = ?", u.getRole(), u.getId());
+    }
     public int getIdByUsername(String username) throws SQLException {
         try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Username] = ?", username)) {
             if (rs.next()) {

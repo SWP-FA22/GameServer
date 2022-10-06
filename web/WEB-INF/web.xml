@@ -48,6 +48,10 @@
         <servlet-name>BuyServlet</servlet-name>
         <servlet-class>routes.BuyServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckServlet</servlet-name>
+        <servlet-class>routes.CheckServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckServlet</servlet-name>
+        <url-pattern>/check</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
