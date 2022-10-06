@@ -17,7 +17,7 @@
         Player player = Authentication.getPlayerInformationByToken(token);
 
         request.setAttribute("player", player);
-        request.setAttribute("diamond", new ResourceModel().getDiamondAmount(player.id));
+        request.setAttribute("diamond", new ResourceModel().getDiamondAmount(player.getId()));
     } catch (Exception e) {
     }
 %>
