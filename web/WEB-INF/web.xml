@@ -49,17 +49,17 @@
         <servlet-class>routes.BuyServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>CheckServlet</servlet-name>
         <servlet-class>routes.CheckServlet</servlet-class>
-=======
+
+</servlet>
+    <servlet>
         <servlet-name>UserProfileServlet</servlet-name>
         <servlet-class>routes.UserProfileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>routes.LogoutServlet</servlet-class>
->>>>>>> 8b3167b3f8eba137fe37abb68b1a0eba79794f0e
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -102,17 +102,16 @@
         <url-pattern>/buy</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>CheckServlet</servlet-name>
         <url-pattern>/check</url-pattern>
-=======
+</servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserProfileServlet</servlet-name>
         <url-pattern>/user-profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
->>>>>>> 8b3167b3f8eba137fe37abb68b1a0eba79794f0e
     </servlet-mapping>
     <session-config>
         <session-timeout>
