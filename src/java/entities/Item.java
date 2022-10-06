@@ -7,6 +7,7 @@ package entities;
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 import com.yuyu.jdbc.JSONEntity;
+import org.json.*;
 
 /**
  *
@@ -164,5 +165,10 @@ public class Item extends JSONEntity {
         updateProp("bonusRota", bonusRota);
         this.bonusRota = bonusRota;
     }
+
+	public JSONObject toJSON() throws JSONException {
+		// TODO - implement Item.toJSON
+		throw new UnsupportedOperationException();
+	}
 
 }

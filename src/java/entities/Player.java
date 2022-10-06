@@ -151,4 +151,27 @@ public class Player extends JSONEntity {
         updateProp("role", role);
         this.role = role;
     }
+
+	/**
+	 * 
+	 * @param id
+	 * @param password
+	 * @param username
+	 * @param name
+	 * @param email
+	 * @param weaponID
+	 * @param engineID
+	 * @param sailID
+	 * @param rank
+	 */
+	public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank) {
+		// TODO - implement Player.Player
+		throw new UnsupportedOperationException();
+	}
+
+    @Override
+    public String toString() {
+        return "Player{" + "id=" + id + ", password=" + password + ", username=" + username + ", name=" + name + ", email=" + email + ", weaponID=" + weaponID + ", engineID=" + engineID + ", sailID=" + sailID + ", rank=" + rank + ", role=" + role + '}';
+    }
+        
 }

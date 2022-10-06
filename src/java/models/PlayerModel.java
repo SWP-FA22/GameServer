@@ -32,12 +32,17 @@ public class PlayerModel extends ModelBase<Player> {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
 
-    public int getIDByUsername(String username) throws Exception {
-        List<Player> players = getIf("[Username] = ?", username);
-        if (!players.isEmpty()) {
-            return players.get(0).getId();
+    public void updateRole(Player u) throws SQLException {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Role] = ? WHERE [ID] = ?", u.getRole(), u.getId());
+    }
+
+    public int getIdByUsername(String username) throws SQLException {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("SELECT * FROM [Player] WHERE [Username] = ?", username)) {
+            if (rs.next()) {
+                return rs.getInt("ID");
+            }
+            return -1;
         }
-        return -1;
     }
 
     public String getHashedPasswordById(Integer id) throws Exception {
@@ -61,4 +66,15 @@ public class PlayerModel extends ModelBase<Player> {
         }
         return null;
     }
+
+    public Player getUserById(Long id) throws Exception {
+        List<Player> players = getIf("[ID] = ?", id);
+        if (!players.isEmpty()) {
+            return players.get(0);
+        }
+        return null;
+    }
+
+   
+
 }

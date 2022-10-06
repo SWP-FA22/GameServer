@@ -49,6 +49,11 @@
         <servlet-class>routes.BuyServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CheckServlet</servlet-name>
+        <servlet-class>routes.CheckServlet</servlet-class>
+
+</servlet>
+    <servlet>
         <servlet-name>UserProfileServlet</servlet-name>
         <servlet-class>routes.UserProfileServlet</servlet-class>
     </servlet>
@@ -96,6 +101,10 @@
         <servlet-name>BuyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckServlet</servlet-name>
+        <url-pattern>/check</url-pattern>
+</servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserProfileServlet</servlet-name>
         <url-pattern>/user-profile</url-pattern>
