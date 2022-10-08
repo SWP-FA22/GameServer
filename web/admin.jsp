@@ -7,19 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
                 theme: {
@@ -54,8 +56,10 @@
             }
         </style>
     </head>
-    <body>
-        <%@include file="components/navbar.jsp" %>
+    <%@include file="components/navbar.jsp" %>
+
+    <body class="bg-grey-200">
+        <!-- data table -->
         <section style="
                  background-image: url(https://store-images.s-microsoft.com/image/apps.48230.14636562343019557.feb6ee7f-98cf-4969-bcee-847a8699802d.1cbf4a08-f598-410a-8767-3d2732f24fb2?mode=scale&q=90&h=1080&w=1920);
 
@@ -93,7 +97,7 @@
                                         <tr>
                                             <td class="p-2 whitespace-nowrap">${p.id}</td>
                                             <td class="p-2 whitespace-nowrap">
-                                                <div class="flex items-center">                                                  
+                                                <div class="flex items-center">
                                                     <div class="font-medium text-gray-800">${p.username}</div>
                                                 </div>
                                             </td>
@@ -110,29 +114,27 @@
                                                     <div class="flex item-center justify-center">
                                                         <div
                                                             class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                            <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg"
-                                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                            </svg>
+                                                            <i class="eye-icon fa-solid fa-eye"></i>
                                                         </div>
-                                                        <div
+                                                        <c:if test="${p.role==0}">
+                                                            <div
                                                             class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                            <svg class="trash-icon${p.id}" xmlns="http://www.w3.org/2000/svg"
-                                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
+                                                            <i class="lock-icon${p.id} fa-solid fa-lock"></i>
                                                         </div>
+                                                        </c:if>
+                                                        <c:if test="${p.role==2}">
+                                                            <div
+                                                            class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                            <i class="fa-solid fa-lock-open fa-lock-open${p.id}"></i>
+                                                        </div>
+                                                        </c:if>
+                                                        
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     </c:forEach>
+
                                 </tbody>
                             </table>
                             <!--pagination-->
@@ -173,12 +175,7 @@
                             <button id="btn-close" type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                     data-modal-toggle="defaultModal">
-                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                      clip-rule="evenodd"></path>
-                                </svg>
+                                <i class="fa-solid fa-xmark"></i>
                                 <span class="sr-only">Close modal</span>
                             </button>
                         </span>
@@ -186,7 +183,7 @@
                             <div class="flex justify-center">
                                 <div class="relative">
                                     <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
-                                         class="rounded-full" width="80" />
+                                         class="rounded-full" width="80" alt=""/>
                                 </div>
                             </div>
 
@@ -270,43 +267,65 @@
             </div>
 
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             const btn_close = document.getElementById('btn-close');
-            const eye_icon = document.querySelector('.eye-icon');
-            
-            eye_icon.addEventListener('click', () => {
-                const modal = document.querySelector('#modal');
-                modal.classList.toggle('hidden');
-            })
-            
+
             <c:forEach items="${requestScope.players}" var="p">
-                const trash_icon${p.id} = document.querySelector('.trash-icon${p.id}');       
-            trash_icon${p.id}.addEventListener('click', () => {
-                swal({
-                    title: "Are you sure to ban this user?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
+            const lock_icons${p.id} = document.querySelectorAll('.lock-icon${p.id}');
+            lock_icons${p.id}.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    swal({
+                        title: "Are you sure to ban this user?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    window.location = "check?action=ban&id=" +${p.id}
+                                }
+                            });
                 })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                               window.location="check?action=ban&id="+${p.id}
-                            }
-                        });
             })
-            </c:forEach>
+
+
+            const unlock_icons${p.id} = document.querySelectorAll('.fa-lock-open${p.id}');
+            unlock_icons${p.id}.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    swal({
+                        title: "Are you sure to unban this user?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    window.location = "check?action=unban&id=" +${p.id}
+                                }
+                            });
+                })
+            })
             
+</c:forEach>
             btn_close.addEventListener('click', () => {
                 const modal = document.querySelector('#modal');
                 modal.classList.toggle('hidden');
             })
 
+            const eye_icons = document.querySelectorAll('.fa-eye');
+            eye_icons.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    const modal = document.querySelector('#modal');
+
+                    modal.classList.toggle('hidden');
+                })
+            })
+
 
         </script>
-
     </body>
+
 </html>
