@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import models.ResourceModel;
+import models.TransactionModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import utilities.GlobalConstants;
@@ -61,6 +62,7 @@ public class PurchaseServlet extends HttpServlet {
                 int playerID = Integer.parseInt(trans.getString("description"));
                 int amount = trans.getInt("amount");
 
+                new TransactionModel().createNewTransaction(playerID, amount);
                 new ResourceModel().addDiamondAmount(playerID, amount);
             }
         } catch (Exception e) {
