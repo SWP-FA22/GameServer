@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.ItemModel;
 import models.PlayerModel;
+import models.ResourceModel;
 import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.TokenGenerator;
@@ -46,6 +47,47 @@ public class APIServlet extends HttpServlet {
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
+        routes.put("post:buy-item", APIServlet::buyItem);
+    }
+
+    public static JSONObject buyItem(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String playername = request.getParameter("playername");
+            int itemid = Integer.parseInt(request.getParameter("itemid"));
+            ItemModel im = new ItemModel();
+            int price = (int) im.getPriceItemByID(itemid);
+            if (price == -1) {
+                result.put("success", false);
+                result.put("error", "ItemID invalid!");
+            } else {
+                PlayerModel pm = new PlayerModel();
+                Player player = pm.getUserByName(playername);
+                ResourceModel rm = new ResourceModel();
+
+                if (!im.isPlayerOwned(player.getId(), itemid)) {
+                    result.put("success", false);
+                    result.put("error", "User already own item!");
+                } else {
+                    int diamond = rm.getDiamondAmount(player.getId());
+                    if (price > diamond) {
+                        result.put("success", false);
+                        result.put("error", "Your balance not enough!");
+                    } else {
+                        diamond -= price;
+                        rm.setDiamondAmount(player.getId(), diamond);
+                        im.addItemToPlayer(player.getId(), itemid);
+                        result.put("success", true);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {

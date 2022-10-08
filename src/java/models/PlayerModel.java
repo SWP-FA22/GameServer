@@ -28,6 +28,14 @@ public class PlayerModel extends ModelBase<Player> {
         return null;
     }
 
+    public Player getUserByName(String name) throws Exception {
+        List<Player> players = getIf("[Name] = ?", name);
+        if (!players.isEmpty()) {
+            return players.get(0);
+        }
+        return null;
+    }
+
     public void updatePassword(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
@@ -74,7 +82,5 @@ public class PlayerModel extends ModelBase<Player> {
         }
         return null;
     }
-
-   
 
 }
