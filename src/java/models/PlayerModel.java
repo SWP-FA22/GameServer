@@ -28,8 +28,8 @@ public class PlayerModel extends ModelBase<Player> {
         return null;
     }
 
-    public Player getUserByName(String name) throws Exception {
-        List<Player> players = getIf("[Name] = ?", name);
+    public Player getUserByUserName(String name) throws Exception {
+        List<Player> players = getIf("[Username] = ?", name);
         if (!players.isEmpty()) {
             return players.get(0);
         }

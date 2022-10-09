@@ -63,7 +63,7 @@ public class APIServlet extends HttpServlet {
                 result.put("error", "ItemID invalid!");
             } else {
                 PlayerModel pm = new PlayerModel();
-                Player player = pm.getUserByName(playername);
+                Player player = pm.getUserByUserName(playername);
                 ResourceModel rm = new ResourceModel();
 
                 if (!im.isPlayerOwned(player.getId(), itemid)) {
