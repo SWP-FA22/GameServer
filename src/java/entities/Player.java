@@ -151,9 +151,4 @@ public class Player extends JSONEntity {
         updateProp("role", role);
         this.role = role;
     }
-
-	
-
-    
-        
 }
