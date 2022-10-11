@@ -74,7 +74,13 @@ public class PlayerModel extends ModelBase<Player> {
         }
         return null;
     }
-
+    public Player getUserByUsername(String username) throws Exception {
+        List<Player> players = getIf("[Username] = ?", username);
+        if (!players.isEmpty()) {
+            return players.get(0);
+        }
+        return null;
+    }
    
 
 }

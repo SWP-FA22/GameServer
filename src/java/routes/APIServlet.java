@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import models.ItemModel;
 import models.PlayerModel;
+import models.ResourceModel;
+import models.ShipModel;
 import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.TokenGenerator;
@@ -46,6 +48,38 @@ public class APIServlet extends HttpServlet {
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
+        routes.put("post:player-data", APIServlet::getPlayerData);
+    }
+
+    public static JSONObject getPlayerData(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String username = request.getParameter("username");
+
+            PlayerModel pm = new PlayerModel();
+            Player player = pm.getUserByUsername(username);
+
+            if (player == null) {
+                result.put("success", false);
+                result.put("error", "Username is not exist");
+            } else {
+                
+                int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
+                int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
+                int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
+                result.put("success", true);
+                result.put("data", player);
+                result.put("numberOfShip", numberOfShip);
+                result.put("numberOfItem", numberOfItem);
+                result.put("diamondAmount", diamondAmount);
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
