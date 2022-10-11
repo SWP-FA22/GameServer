@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import models.ItemModel;
 import models.PlayerModel;
+import models.ResourceModel;
+import models.ShipModel;
 import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.TokenGenerator;
@@ -62,8 +64,15 @@ public class APIServlet extends HttpServlet {
                 result.put("success", false);
                 result.put("error", "Username is not exist");
             } else {
+                
+                int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
+                int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
+                int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
                 result.put("success", true);
                 result.put("data", player);
+                result.put("numberOfShip", numberOfShip);
+                result.put("numberOfItem", numberOfItem);
+                result.put("diamondAmount", diamondAmount);
             }
 
         } catch (Exception e) {
