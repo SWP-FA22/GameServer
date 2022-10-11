@@ -46,6 +46,31 @@ public class APIServlet extends HttpServlet {
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
+        routes.put("post:player-data", APIServlet::getPlayerData);
+    }
+
+    public static JSONObject getPlayerData(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String username = request.getParameter("username");
+
+            PlayerModel pm = new PlayerModel();
+            Player player = pm.getUserByUsername(username);
+
+            if (player == null) {
+                result.put("success", false);
+                result.put("error", "Username is not exist");
+            } else {
+                result.put("success", true);
+                result.put("data", player);
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
