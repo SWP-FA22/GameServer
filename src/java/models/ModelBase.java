@@ -33,8 +33,13 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
         }
     }
 
+    static {
+        connection();
+    }
+    
     public ModelBase(Class<T> entityClass) throws Exception {
         super(connection, entityClass);
+        connection();
     }
 
     public static SQLConnection connection() {

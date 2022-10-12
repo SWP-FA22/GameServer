@@ -37,7 +37,7 @@ public class Ship extends JSONEntity {
     private Double baseRota;
 
     @SQLColumn(column = "Price")
-    private Double price;
+    private Integer price;
 
     @SQLColumn(column = "Addressable")
     private String addressable;
@@ -45,7 +45,7 @@ public class Ship extends JSONEntity {
     public Ship() {
     }
 
-    public Ship(Integer id, String name, String description, Double baseATK, Double baseHP, Double baseSpeed, Double baseRota, Double price, String addressable) {
+    public Ship(Integer id, String name, String description, Double baseATK, Double baseHP, Double baseSpeed, Double baseRota, Integer price, String addressable) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -122,11 +122,11 @@ public class Ship extends JSONEntity {
         this.baseRota = baseRota;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         updateProp("price", price);
         this.price = price;
     }
