@@ -49,6 +49,52 @@ public class APIServlet extends HttpServlet {
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
         routes.put("post:player-data", APIServlet::getPlayerData);
+        routes.put("post:buy-item", APIServlet::buyitem);
+    }
+
+    public static JSONObject buyitem(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+            int id = Integer.parseInt(request.getParameter("itemid"));
+
+            ItemModel im = new ItemModel();
+            int price = (int) im.getPriceItemByID(id);
+            if (price == -1) {
+                result.put("success", false);
+                result.put("error", "Item is not exist");
+            } else {
+                Player player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
+                    result.put("success", false);
+                    result.put("error", "Username is not exist");
+                } else {
+                    ResourceModel rm = new ResourceModel();
+                    if (!im.isPlayerOwned(player.getId(), id)) {
+                        result.put("success", false);
+                        result.put("error", "User already own this item");
+                    } else {
+                        int diamond = rm.getDiamondAmount(player.getId());
+                        if (price > diamond) {
+                            result.put("success", false);
+                        result.put("error", "Your balance not enough!");
+                        } else {
+                            diamond -= price;
+                            rm.setDiamondAmount(player.getId(), diamond);
+                            im.addItemToPlayer(player.getId(), id);
+                            result.put("success", true);
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject getPlayerData(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -64,7 +110,7 @@ public class APIServlet extends HttpServlet {
                 result.put("success", false);
                 result.put("error", "Username is not exist");
             } else {
-                
+
                 int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
                 int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
                 int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
