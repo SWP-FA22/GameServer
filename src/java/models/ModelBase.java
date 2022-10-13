@@ -6,8 +6,6 @@ package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
-import java.io.Closeable;
-import java.io.IOException;
 
 /**
  *
@@ -19,7 +17,7 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
     private static SQLConnection connection = null;
 
     static void createConnection() {
-        final String serverName = "battleship.database.windows.net";
+        final String serverName = "QUANG"; // "battleship.database.windows.net";
         final String databaseName = "Battleship";
         final String username = "su";
         final String password = "Battleship2022";

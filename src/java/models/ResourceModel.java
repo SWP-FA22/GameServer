@@ -58,4 +58,28 @@ public class ResourceModel extends ModelBase<Resource> {
     public void addDiamondAmount(Integer uid, Integer amount) throws SQLException {
         addResourceAmount(uid, 1, amount);
     }
+    
+    public Integer getGoldAmount(Integer uid) throws SQLException {
+        return getResourceAmount(uid, 2);
+    }
+
+    public void setGoldAmount(Integer uid, Integer amount) throws SQLException {
+        setResourceAmount(uid, 2, amount);
+    }
+
+    public void addGoldAmount(Integer uid, Integer amount) throws SQLException {
+        addResourceAmount(uid, 2, amount);
+    }
+    
+    public Integer getRubyAmount(Integer uid) throws SQLException {
+        return getResourceAmount(uid, 3);
+    }
+
+    public void setRubyAmount(Integer uid, Integer amount) throws SQLException {
+        setResourceAmount(uid, 3, amount);
+    }
+
+    public void addRubyAmount(Integer uid, Integer amount) throws SQLException {
+        addResourceAmount(uid, 3, amount);
+    }
 }
