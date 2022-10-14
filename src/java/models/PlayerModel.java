@@ -28,6 +28,16 @@ public class PlayerModel extends ModelBase<Player> {
         return null;
     }
 
+    public void resetCheckin() throws Exception {
+        ModelBase.connection().executeUpdate("UPDATE [dbo].[Player]\n"
+                + "   SET [IsCheckIn] = 0");
+    }
+    public void updateCheckinCount(Player u) throws Exception {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [CheckInCount] = ? WHERE [ID] = ?", u.getCheckincount(), u.getId());
+    }
+    public void updateIscheckin(Player u) throws Exception {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [IsCheckIn] = ? WHERE [ID] = ?", u.isIscheckedin(), u.getId());
+    }
     public void updatePassword(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
@@ -74,6 +84,7 @@ public class PlayerModel extends ModelBase<Player> {
         }
         return null;
     }
+
     public Player getUserByUsername(String username) throws Exception {
         List<Player> players = getIf("[Username] = ?", username);
         if (!players.isEmpty()) {
@@ -81,6 +92,10 @@ public class PlayerModel extends ModelBase<Player> {
         }
         return null;
     }
-   
+
+    public static void main(String[] args) throws Exception {
+        PlayerModel pm = new PlayerModel();
+        System.out.println(pm.getUserByUsername("superadmin"));
+    }
 
 }

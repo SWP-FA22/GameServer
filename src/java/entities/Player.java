@@ -44,8 +44,48 @@ public class Player extends JSONEntity {
 
     @SQLColumn(column = "Role")
     private Integer role;
+    
+    @SQLColumn(column = "IsCheckIn")
+    private boolean ischeckedin;
+    
+    @SQLColumn(column = "CheckInCount")
+    private Integer checkincount;
 
     public Player() {
+    }
+
+    public boolean isIscheckedin() {
+        return ischeckedin;
+    }
+
+    public void setIscheckin(boolean ischeckedin) {
+        updateProp("ischeckedin", ischeckedin);
+        this.ischeckedin = ischeckedin;
+    }
+
+    public Integer getCheckincount() {
+        return checkincount;
+    }
+
+    public void setCheckincount(Integer checkincount) {
+        updateProp("checkincount", checkincount);
+        this.checkincount = checkincount;
+    }
+
+    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank, Integer role, boolean ischeckedin, Integer checkincount) {
+        this.id = id;
+        this.password = password;
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.weaponID = weaponID;
+        this.engineID = engineID;
+        this.sailID = sailID;
+        this.rank = rank;
+        this.role = role;
+        this.ischeckedin = ischeckedin;
+        this.checkincount = checkincount;        
+        updateProps();
     }
 
     public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank, Integer role) {
