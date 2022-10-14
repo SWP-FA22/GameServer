@@ -124,9 +124,9 @@ public class APIServlet extends HttpServlet {
 
             player.setPassword(null);
             player.setRole(null);
-
+            player.put("extra", extra);
+            
             result.put("player", player);
-            result.put("extra", extra);
         } catch (Exception e) {
             result.put("success", false);
             result.put("error", e.getMessage());
@@ -147,7 +147,7 @@ public class APIServlet extends HttpServlet {
                 Player player = Authentication.getPlayerInformationByToken(token);
 
                 if (player == null) {
-                    result.put("success", false);
+                    result.put("success", false);   
                     result.put("error", "Username is not exist");
                 } else {
                     list = new ShipModel().getShipsByPlayerID(player.getId());
