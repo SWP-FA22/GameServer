@@ -14,7 +14,8 @@ public class GlobalConstants {
     public static final String SMTP_ACCOUNT_PASSWORD = "Huuchien1234";
 
     // Deployment
-    public static final String HOST = "http://103.185.184.47:8080";
+//    public static final String HOST = "http://103.185.184.47:8080";
+    public static final String HOST = "http://localhost:9999";
     public static final String CONTEXT_PATH = "/HttpServer";
     
     // Casso & VietQR

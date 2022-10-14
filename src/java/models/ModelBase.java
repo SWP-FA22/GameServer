@@ -6,6 +6,7 @@ package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
+import java.sql.DriverManager;
 
 /**
  *
@@ -24,7 +25,6 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
             connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
         } catch (Exception e) {
             System.err.println(e);
