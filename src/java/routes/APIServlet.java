@@ -6,6 +6,7 @@ package routes;
 
 import entities.Item;
 import entities.Player;
+import entities.Ship;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -48,6 +49,9 @@ public class APIServlet extends HttpServlet {
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
+        routes.put("post:get-all-ships", APIServlet::getAllShips);
+        routes.put("get:player-info", APIServlet::getPlayerInfo);
+        routes.put("post:player-info", APIServlet::getPlayerExtraInfo);
         routes.put("post:player-data", APIServlet::getPlayerData);
         routes.put("post:buy-item", APIServlet::buyitem);
     }
@@ -128,6 +132,115 @@ public class APIServlet extends HttpServlet {
         return result;
     }
 
+    public static JSONObject getPlayerInfo(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String playerId = request.getParameter("id");
+            String playerUsername = request.getParameter("username");
+
+            Player player = null;
+
+            if (playerId != null) {
+                player = new PlayerModel().getUserById(Long.parseLong(playerId));
+                if (player == null) {
+                    throw new Exception("this id is not exist!");
+                }
+            } else if (playerUsername != null) {
+                List<Player> players = new PlayerModel().getIf("[Username] = ?", playerUsername);
+                if (!players.isEmpty()) {
+                    player = players.get(0);
+                } else {
+                    throw new Exception("this username is not exist!");
+                }
+            } else {
+                throw new Exception("id and username is missing!");
+            }
+
+            result.put("success", true);
+
+            player.setPassword(null);
+            player.setRole(null);
+
+            result.put("player", player);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
+    public static JSONObject getPlayerExtraInfo(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+
+            Player player = null;
+
+            if (token != null && !token.isEmpty()) {
+                player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
+                    throw new Exception("Username is not exist!");
+                }
+            } else {
+                throw new Exception("token is missing!");
+            }
+
+            // Get Player Success
+            // Then get player extra information
+            ResourceModel rm = new ResourceModel();
+
+            JSONObject extra = new JSONObject();
+            extra.put("ship", new ShipModel().getPlayerEquippedShip(player.getId()));
+            extra.put("gold", rm.getGoldAmount(player.getId()));
+            extra.put("ruby", rm.getRubyAmount(player.getId()));
+            extra.put("diamond", rm.getDiamondAmount(player.getId()));
+
+            result.put("success", true);
+
+            player.setPassword(null);
+            player.setRole(null);
+            player.put("extra", extra);
+            
+            result.put("player", player);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+    
+    public static JSONObject getAllShips(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+
+            List<Ship> list = new ArrayList<>();
+            if (token == null || token.isEmpty()) {
+                list = new ShipModel().getall();
+            } else {
+                Player player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
+                    result.put("success", false);   
+                    result.put("error", "Username is not exist");
+                } else {
+                    list = new ShipModel().getShipsByPlayerID(player.getId());
+                }
+            }
+            result.put("success", true);
+            result.put("ships", list);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+    
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 

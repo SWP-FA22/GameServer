@@ -30,4 +30,15 @@ public class ShipModel extends ModelBase<Ship> {
         }
         return result;
     }
+
+    public Ship getPlayerEquippedShip(Integer playerID) throws Exception {
+        try ( ResultSet rs = connection().executeQuery("SELECT [Ship].* FROM [PlayerShip], [Ship] WHERE [PlayerShip].[ShipID] = [Ship].[ID] AND [PlayerShip].[PlayerID] = ? AND [PlayerShip].[IsEquipped] = 1", playerID)) {
+            if (rs.next()) {
+                Ship ship = new Ship();
+                ship.loadProps(rs);
+                return ship;
+            }
+        }
+        return null;
+    }
 }

@@ -17,12 +17,11 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
 
     private static SQLConnection connection = null;
 
-    static {
-//        final String serverName = "battleship.database.windows.net";
-        final String serverName = "localhost";
-        final String databaseName = "battleship";
-        final String username = "sa";
-        final String password = "123";
+    static void createConnection() {
+        final String serverName = "QUANG"; // "battleship.database.windows.net";
+        final String databaseName = "Battleship";
+        final String username = "su";
+        final String password = "Battleship2022";
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -32,11 +31,27 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
         }
     }
 
+    static {
+        connection();
+    }
+    
     public ModelBase(Class<T> entityClass) throws Exception {
         super(connection, entityClass);
+        connection();
     }
 
     public static SQLConnection connection() {
+
+        try {
+            if (connection == null || connection.getConnection().isClosed()) {
+                createConnection();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
         return connection;
     }
+
 }
