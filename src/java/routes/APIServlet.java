@@ -6,6 +6,7 @@ package routes;
 
 import entities.Item;
 import entities.Player;
+import entities.Ship;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class APIServlet extends HttpServlet {
         routes.put("post:login", APIServlet::login);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
+        routes.put("post:get-all-ships", APIServlet::getAllShips);
         routes.put("get:player-info", APIServlet::getPlayerInfo);
         routes.put("post:player-info", APIServlet::getPlayerExtraInfo);
     }
@@ -131,7 +133,36 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
+    
+    public static JSONObject getAllShips(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
 
+        try {
+            String token = request.getParameter("token");
+
+            List<Ship> list = new ArrayList<>();
+            if (token == null || token.isEmpty()) {
+                list = new ShipModel().getall();
+            } else {
+                Player player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
+                    result.put("success", false);
+                    result.put("error", "Username is not exist");
+                } else {
+                    list = new ShipModel().getShipsByPlayerID(player.getId());
+                }
+            }
+            result.put("success", true);
+            result.put("ships", list);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+    
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
