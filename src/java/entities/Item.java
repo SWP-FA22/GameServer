@@ -35,7 +35,7 @@ public class Item extends JSONEntity {
     private Integer type;
 
     @SQLColumn(column = "Price")
-    private Double price;
+    private Integer price;
 
     @SQLColumn(column = "BonusATK")
     private Double bonusATK;
@@ -52,7 +52,7 @@ public class Item extends JSONEntity {
     public Item() {
     }
 
-    public Item(Integer id, String description, String imageURL, String name, String addressable, Integer type, Double price, Double bonusATK, Double bonusHP, Double bonusSpeed, Double bonusRota) {
+    public Item(Integer id, String description, String imageURL, String name, String addressable, Integer type, Integer price, Double bonusATK, Double bonusHP, Double bonusSpeed, Double bonusRota) {
         this.id = id;
         this.description = description;
         this.imageURL = imageURL;
@@ -121,11 +121,11 @@ public class Item extends JSONEntity {
         this.type = type;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         updateProp("price", price);
         this.price = price;
     }

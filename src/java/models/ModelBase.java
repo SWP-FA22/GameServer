@@ -6,6 +6,7 @@ package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
+import java.sql.DriverManager;
 
 /**
  *
@@ -17,14 +18,14 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
     private static SQLConnection connection = null;
 
     static {
-        final String serverName = "battleship.database.windows.net";
-        final String databaseName = "Battleship";
-        final String username = "su";
-        final String password = "Battleship2022";
+//        final String serverName = "battleship.database.windows.net";
+        final String serverName = "localhost";
+        final String databaseName = "battleship";
+        final String username = "sa";
+        final String password = "123";
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
             connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
         } catch (Exception e) {
             System.err.println(e);
