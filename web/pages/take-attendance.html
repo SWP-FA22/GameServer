@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <title>Daily Attendance</title>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .animated:hover {
+        animation: hover_item 0.3s ease-out forwards;
+        cursor: pointer;
+      }
+
+      .item {
+        cursor: pointer;
+      }
+
+      @keyframes hover_item {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(-20px);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-grey-200">
+    <!-- data table -->
+    <section
+      style="
+        background-image: url(https://store-images.s-microsoft.com/image/apps.48230.14636562343019557.feb6ee7f-98cf-4969-bcee-847a8699802d.1cbf4a08-f598-410a-8767-3d2732f24fb2?mode=scale&q=90&h=1080&w=1920);
+      "
+      class="antialiased bg-gray-100 text-gray-600 h-screen px-4 py-4"
+    >
+      <div class="flex flex-col justify-center h-full">
+        <div
+          class="w-full max-w-6xl h-[550px] mx-auto bg-white shadow-lg rounded-lg border border-gray-200"
+        >
+          <header class="px-5 py-4 border-b border-gray-100">
+            <h2 class="font-semibold text-gray-800 text-lg">
+              Daily Attendance
+            </h2>
+            <p class="text-sm">This month has registered 7 days</p>
+          </header>
+          <div class="px-4 py-4">
+            <div
+              class="container gap-7 px-2 flex items-center justify-between flex-wrap"
+            >
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-6 h-6 rounded-full bg-white -500 -top-2 -right-1"
+                >
+                  <i
+                    class="fa-solid fa-check w-6 h-6 text-green-600 font-bold text-center"
+                  ></i>
+                </div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 1</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/Gi%C3%A0y%20ph%C3%B9%20th%E1%BB%A7y.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 2</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/Tr%C6%B0%E1%BB%A3ng%20b%C3%B9ng%20n%E1%BB%95.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 3</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/V%C6%B0%C6%A1ng%20mi%E1%BB%87n%20Hecate.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 4</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/Gi%C3%A0y%20thu%E1%BA%ADt%20s%C4%A9.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 5</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 6</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 7</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 8</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 9</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 10</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 11</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 12</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 13</span>
+                </div>
+              </div>
+
+              <!--item-->
+              <div
+                class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
+              >
+                <div
+                  class="absolute w-5 h-5 rounded-full bg-red-500 -top-2 -right-1"
+                ></div>
+                <div class="w-20 h-18 rounded-full mt-8">
+                  <img
+                    src="https://lienquan.garena.vn/files/upload/images/Trang%20B%E1%BB%8B/N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20Ph%C6%B0%E1%BB%A3ng%20Ho%C3%A0ng.png"
+                    class="w-20 h-20 mt-4 rounded-full text-center mx-auto object-cover"
+                  />
+                  <span class="block text-center text-white text-md py-2"
+                    >x3</span
+                  >
+                </div>
+                <div
+                  class="w-full h-8 bg-white text-center rounded-b-md border -mt-2 shadow-md"
+                >
+                  <span class="text-gray-600 inline-block py-1">Day 14</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center mt-10">
+            <nav aria-label="Page navigation example">
+              <ul class="flex list-style-none">
+                <li class="page-item disabled">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                    href="#"
+                    tabindex="-1"
+                    aria-disabled="true"
+                    >Previous</a
+                  >
+                </li>
+
+                <li class="page-item active">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                    href="#"
+                    >1 <span class="visually-hidden">(current)</span></a
+                  >
+                </li>
+                <li class="page-item">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                    href="#"
+                    >2</a
+                  >
+                </li>
+                <li class="page-item">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                    href="#"
+                    >3</a
+                  >
+                </li>
+                <li class="page-item">
+                  <a
+                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                    href="#"
+                    >Next</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      const daily_item = document.querySelectorAll(".item");
+
+      daily_item.forEach((item) => {
+        item.addEventListener("click", () => {
+          swal({
+            title: "Successful Attendance!",
+            text: "You have received the item!",
+            icon: "success",
+            button: "Ok!",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
