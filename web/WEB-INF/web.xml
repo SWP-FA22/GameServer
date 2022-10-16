@@ -153,12 +153,12 @@
         <url-pattern>/user-item</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DownloadServlet</servlet-name>
-        <url-pattern>/download-page</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ReportServlet</servlet-name>
         <url-pattern>/report</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

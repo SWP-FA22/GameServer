@@ -8,6 +8,7 @@ import entities.Ship;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -17,6 +18,18 @@ public class ShipModel extends ModelBase<Ship> {
 
     public ShipModel() throws Exception {
         super(Ship.class);
+    }
+
+    public boolean isPlayerOwned(Integer playerID, Integer shipID) throws Exception {
+        return getShipsByPlayerID(playerID).stream().anyMatch(t -> Objects.equals(t.getId(), shipID));
+    }
+
+    public void addShipToPlayer(Integer playerID, Integer shipID) throws Exception {
+        connection().executeUpdate("INSERT INTO [PlayerShip]([PlayerID], [ShipID], [IsEquipped]) VALUES (?, ?, ?)", playerID, shipID, false);
+    }
+
+    public void equipShip(Integer playerID, Integer shipID) throws Exception {
+        connection().executeUpdate("UPDATE [PlayerShip] SET [IsEquipped] = (SELECT [ShipID] = ?) WHERE [PlayerID] = ?", shipID, playerID);
     }
 
     public List<Ship> getShipsByPlayerID(Integer playerID) throws Exception {
