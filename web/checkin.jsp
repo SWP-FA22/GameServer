@@ -13,22 +13,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-            />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
-            />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-            />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
@@ -79,17 +67,22 @@
             class="antialiased bg-gray-100 text-gray-600 h-screen px-4 py-4"
             >
             <div class="flex flex-col justify-center h-full">
-                <div
-                    class="w-full max-w-6xl h-[550px] mx-auto bg-white shadow-lg rounded-lg border border-gray-200"
-                    >
+                <div   class="w-full max-w-6xl h-[550px] mx-auto bg-white shadow-lg rounded-lg border border-gray-200" >
                     <header class="px-5 py-4 border-b border-gray-100">
-                        <h2 class="font-semibold text-gray-800 text-lg">
-                            Daily Attendance
-                        </h2>
-                        
-                        <button type="button" onclick="checkin()">Check-in</button>
-                        <p class="text-sm">This month has registered ${player.checkincount} days</p>
+                        <div class="flex items-center relative">
+                            <div>
+                                <h2 class="font-semibold text-gray-800 text-lg">
+                                    Daily Attendance
+                                </h2>
+                                <p class="text-sm">This month has registered ${player.checkincount} days</p>
+                            </div>
+                            <button
+                                class="absolute -top-8 right-0 my-8 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="checkin()">
+                                Check-in
+                            </button>
+                        </div>
                     </header>
+
                     <div class="px-4 py-4">
                         <div
                             class="container gap-7 px-2 flex items-center justify-between flex-wrap"
@@ -125,7 +118,7 @@
                                             </div>
                                         </div>
                                     </c:when> 
-                                      
+
                                     <c:otherwise>
                                         <div
                                             class="relative item mb-4 bg-[#CD8058] flex flex-col items-center justify-center w-32 h-32 rounded-t-md shadow-md border"
@@ -160,7 +153,7 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
             </div>
         </section>
@@ -169,17 +162,17 @@
         <script src="../script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
-                            async   function checkin()
-                            {
-                                var a = await fetch('checkin', {
-                                    method: 'post',
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    body: 'submit='
-                                }).then(e => e.text())
-                                alert(a);
-                            }
+                async   function checkin()
+                {
+                    var a = await fetch('checkin', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'submit='
+                    }).then(e => e.text())
+                    alert(a);
+                }
 
         </script>
     </body>
