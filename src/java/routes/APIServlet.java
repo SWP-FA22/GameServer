@@ -54,8 +54,8 @@ public class APIServlet extends HttpServlet {
         routes.put("get:player-info", APIServlet::getPlayerInfo);
         routes.put("post:player-info", APIServlet::getPlayerExtraInfo);
         routes.put("post:player-data", APIServlet::getPlayerData);
-        routes.put("post:buy-ship", APIServlet::buyShip);
         routes.put("post:buy-item", APIServlet::buyItem);
+        routes.put("post:buy-ship", APIServlet::buyShip);
         routes.put("post:equip-ship", APIServlet::equipShip);
     }
 
@@ -157,7 +157,7 @@ public class APIServlet extends HttpServlet {
                         int diamond = rm.getDiamondAmount(player.getId());
                         if (price > diamond) {
                             result.put("success", false);
-                            result.put("error", "Your balance not enough!");
+                        result.put("error", "Your balance not enough!");
                         } else {
                             diamond -= price;
                             rm.setDiamondAmount(player.getId(), diamond);
@@ -277,7 +277,7 @@ public class APIServlet extends HttpServlet {
             player.setPassword(null);
             player.setRole(null);
             player.put("extra", extra);
-
+            
             result.put("player", player);
         } catch (Exception e) {
             result.put("success", false);
@@ -285,7 +285,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-
+    
     public static JSONObject getAllShips(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -325,7 +325,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-
+    
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -340,7 +340,7 @@ public class APIServlet extends HttpServlet {
 
                 if (player == null) {
                     result.put("success", false);
-                    result.put("error", "User is not exist");
+                    result.put("error", "Username is not exist");
                 } else {
                     list = new ItemModel().getall();
 

@@ -4,6 +4,7 @@
  */
 package routes;
 
+import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,7 +20,7 @@ import utilities.Authentication;
  */
 public class LoginServlet extends HttpServlet {
 
-    @Override
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -29,23 +30,32 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+ 
+        
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
             Integer uid = new PlayerModel().getUserIDByUsernameAndPassword(username, password);
-
+           
             if (uid != null) {
                 response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
                 response.sendRedirect("index.jsp");
-                return;
+                return;             
+            }else {
+                 Player player = Authentication.getPlayerInformationByToken(username);
+                 if (player.getRole()== 2){
+                     request.setAttribute("error", "");
+                     response.sendRedirect("login.jsp");
+                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace(out);
         }
-        //doGet(request, response);
+        doGet(request, response);
         request.setAttribute("error", "username or password invalid!");
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }
+    
