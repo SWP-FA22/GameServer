@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import models.ItemModel;
 import models.PlayerModel;
 import models.ResourceModel;
@@ -65,19 +66,18 @@ public class APIServlet extends HttpServlet {
             String token = request.getParameter("token");
             int id = Integer.parseInt(request.getParameter("shipid"));
 
-            
             Player player = Authentication.getPlayerInformationByToken(token);
 
             if (player == null) {
                 throw new Exception("Username is not exist");
             }
-            
+
             ShipModel sm = new ShipModel();
-            
+
             if (!sm.isPlayerOwned(player.getId(), id)) {
                 throw new Exception("You are not owned this ship");
             }
-            
+
             sm.equipShip(player.getId(), id);
             result.put("success", true);
 
@@ -87,7 +87,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-    
+
     public static JSONObject buyShip(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -100,7 +100,7 @@ public class APIServlet extends HttpServlet {
             if (ship == null) {
                 throw new Exception("Ship is not exist");
             }
-            
+
             Player player = Authentication.getPlayerInformationByToken(token);
 
             if (player == null) {
@@ -300,9 +300,20 @@ public class APIServlet extends HttpServlet {
 
                 if (player == null) {
                     result.put("success", false);
-                    result.put("error", "Usern is not exist");
+                    result.put("error", "User is not exist");
                 } else {
-                    list = new ShipModel().getShipsByPlayerID(player.getId());
+                    list = new ShipModel().getall();
+
+                    Ship equipedShip = new ShipModel().getPlayerEquippedShip(player.getId());
+
+                    List<Ship> ownerShips = new ShipModel().getShipsByPlayerID(player.getId());
+
+                    for (Ship ship : list) {
+                        if (ownerShips.stream().anyMatch(t -> Objects.equals(t.getId(), ship.getId()))) {
+                            ship.put("isOwner", true);
+                        }
+                        ship.put("isEquipped", Objects.equals(ship.getId(), equipedShip.getId()));
+                    }
                 }
             }
             result.put("success", true);
@@ -331,7 +342,23 @@ public class APIServlet extends HttpServlet {
                     result.put("success", false);
                     result.put("error", "User is not exist");
                 } else {
-                    list = new ItemModel().getItemsByPlayerID(player.getId());
+                    list = new ItemModel().getall();
+
+                    List<Item> ownerItems = new ItemModel().getItemsByPlayerID(player.getId());
+
+                    int[] ids = {
+                        -1,
+                        player.getWeaponID(),
+                        player.getEngineID(),
+                        player.getSailID()
+                    };
+                    
+                    for (Item item : list) {
+                        if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
+                            item.put("isOwner", true);
+                        }
+                        item.put("isEquipped", item.getId() == ids[item.getType()]);
+                    }
                 }
             }
             result.put("success", true);
