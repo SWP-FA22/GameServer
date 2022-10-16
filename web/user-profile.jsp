@@ -110,14 +110,7 @@
                     </div>
                 </div>
             </div>
-            <!--                <div class="text-center mt-2 py-8">
-                                <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">
-            
-                                </h3>
-                                <div class="text-xs mt-0 mb-2 text-slate-400 text-base"></div>
-                                <i class="fa fa-user mr-2 text-slate-400 opacity-75"></i
-                                ><span>Username: ${p.username}</span><span id="username" ></span>           
-            -->
+
 
 
             <section class="vh-100" style="background-color: #eee;">
@@ -149,6 +142,9 @@
                                         <button type="button" class="btn btn-primary btn-rounded btn-lg">
                                             Email: ${player.email}
                                         </button>
+
+
+
                                         <!--                                <div class="d-flex justify-content-between text-center mt-5 mb-2">
                                                                             <div>
                                                                                 <p class="mb-2 h5"></p>
@@ -164,12 +160,26 @@
                                                                             </div>
                                                                         </div>-->
                                     </div>
+                                        
+                                         <div>   
+                    <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500"  >
+                       
+                        <a
+                            href="details-profile"
+                            class="w-full flex justify-center bg-indigo-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300 "
+                            >See more details</a>
+                    </p>
+                </div>
                                 </div>
 
                             </div>
+                                        
+                                        
                         </div>
                     </div>
                 </div>
+
+                  
             </section>
 
             <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
