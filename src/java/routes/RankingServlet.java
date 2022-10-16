@@ -4,7 +4,6 @@
  */
 package routes;
 
-import entities.Item;
 import entities.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,29 +12,35 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import models.ItemModel;
-import utilities.Authentication;
+import models.PlayerModel;
 
 /**
  *
- * @author Huu
+ * @author LinhThuy
  */
-public class ListItemServlet extends HttpServlet {
+public class RankingServlet extends HttpServlet {
 
+    
+   
+
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-
-            List<Item> list = new ItemModel().getall();
-            request.setAttribute("list", list);
-
-            request.getRequestDispatcher("list-item.jsp").forward(request, response);
-            //out.println(list);
-        } catch (Exception ex) {
-            ex.printStackTrace(out);
+         
+            List <Player> listtop = new PlayerModel().getTopRanking();
+            request.setAttribute("listtop",listtop);
+            
+            //out.println(listtop);
+            request.getRequestDispatcher("top-ranking.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace(out);
         }
     }
+
+    
+   
 
 }

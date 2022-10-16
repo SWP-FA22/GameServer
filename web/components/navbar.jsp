@@ -66,17 +66,24 @@
                         active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                        Home</a
-                    >
+                        Home</a>
                 </li>
                 <li>
                     <a
-                        href="https://drive.google.com/uc?id=1-UC2f8LMbP4b8LCuycngULRf5VLzIOm0&export=download"
+                        href="download"
+                      
                         active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                        Download Game</a
-                    >
+                        Download Game</a>
+                    
+                    
+                    
+<!--                            <a
+                                href="user-profile"
+                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                ><c:out value="${player.name}"/></a>-->
                 </li>
                 <li>
                     <a
@@ -99,11 +106,11 @@
                 </li>
                 <li>
                     <a
-                        href="."
+                        href="top-ranking"
                         active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                         class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                         >
-                        Redeem/GiftCode</a
+                        Top Ranking</a
                     >
                 </li>
                 <li>
@@ -121,8 +128,7 @@
                             active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             >
-                            Login/Register</a
-                        >
+                            Login/Register</a>
                     </li>
                 </c:if>
 
@@ -136,7 +142,7 @@
                                 >Logout</a>
 
                             <span>&nbsp;or&nbsp;</span>
-                            
+
                             <a
                                 href="user-profile"
                                 active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"

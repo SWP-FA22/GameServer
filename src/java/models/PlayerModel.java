@@ -7,6 +7,7 @@ package models;
 import entities.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import utilities.Crypto;
 
@@ -97,5 +98,18 @@ public class PlayerModel extends ModelBase<Player> {
         PlayerModel pm = new PlayerModel();
         System.out.println(pm.getUserByUsername("superadmin"));
     }
-
+    
+    
+    public List<Player> getTopRanking () throws Exception{
+        List<Player> list = new ArrayList<>();
+        try (ResultSet rs = ModelBase.connection().executeQuery("select top 5 * from [Player] order by Rank DESC")){
+            while(rs.next()){
+                Player player = new Player();
+                player.loadProps(rs);
+                list.add(player);             
+            }
+            return list;
+    }  
+   }
+    
 }

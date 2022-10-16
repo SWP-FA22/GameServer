@@ -147,10 +147,8 @@
             </p>
           </div>
           <div class="">
-            <h6
-              class="uppercase font-semibold mb-4 flex justify-center md:justify-start"
-            >
-              Contact
+            <h6 class="uppercase font-semibold mb-4 flex justify-center md:justify-start">
+              <a href="report" class="text-gray-600">Report</a>
             </h6>
             <p class="flex items-center justify-center md:justify-start mb-4">
               <svg

@@ -68,6 +68,22 @@
         <servlet-name>CheckInServlet</servlet-name>
         <servlet-class>routes.CheckInServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RankingServlet</servlet-name>
+        <servlet-class>routes.RankingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ItemUserServlet</servlet-name>
+        <servlet-class>routes.ItemUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>routes.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>routes.ReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>CheckInServlet</servlet-name>
         <url-pattern>/checkin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RankingServlet</servlet-name>
+        <url-pattern>/top-ranking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemUserServlet</servlet-name>
+        <url-pattern>/user-item</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download-page</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
