@@ -41,7 +41,7 @@ public class Ship extends JSONEntity {
 
     @SQLColumn(column = "Addressable")
     private String addressable;
-
+    
     public Ship() {
     }
 
@@ -56,7 +56,7 @@ public class Ship extends JSONEntity {
         this.price = price;
         this.addressable = addressable;
 
-        updateProps();
+        this.updateProps();
     }
 
     public Integer getId() {
