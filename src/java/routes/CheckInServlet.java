@@ -72,7 +72,7 @@ public class CheckInServlet extends HttpServlet {
              CheckIn ci=cim.getCheckInByCount(count);
              ResourceModel rm=new ResourceModel();
              rm.addResourceAmount(player.getId(), ci.getResourceid(), ci.getAmount());
-             out.print("Check-in sucessfull");
+             out.print("Check-in complete");
         } catch (Exception ex) {
             ex.printStackTrace(out);
         }
