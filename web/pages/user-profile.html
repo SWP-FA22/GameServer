@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Roboto", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-    <title>Home Page</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+            />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Roboto", "sans-serif"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <title>Home Page</title>
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
 
-      .animated:hover {
-        animation: hover_item 0.3s ease-out forwards;
-        cursor: pointer;
-      }
+            .animated:hover {
+                animation: hover_item 0.3s ease-out forwards;
+                cursor: pointer;
+            }
 
-      @keyframes hover_item {
-        from {
-          transform: translateY(0);
-        }
+            @keyframes hover_item {
+                from {
+                    transform: translateY(0);
+                }
 
-        to {
-          transform: translateY(-20px);
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-grey-200">
-    <!-- component -->
-    <h1 class="text-center text-3xl my-20 font-bold"t>User Profile</h1>
+                to {
+                    transform: translateY(-20px);
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-grey-200">
+        <!-- component -->
+        <h1 class="text-center text-3xl my-20 font-bold"t>User Profile</h1>
 
-    <div
-      class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-36"
-    >
-      <div class="px-6">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full flex justify-center">
-            <div class="relative">
-              <img
-                src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true"
-                class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"
-              />
+        <div
+            class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-36"
+            >
+            <div class="px-6">
+                <div class="flex flex-wrap justify-center">
+                    <div class="w-full flex justify-center">
+                        <div class="relative">
+                            <img
+                                src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true"
+                                class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"
+                                />
+                        </div>
+                    </div>
+                    <div class="w-full text-center mt-20">
+                        <div class="flex justify-center lg:pt-4 pt-8 pb-0">
+                            <div class="p-3 text-center">
+                                <span
+                                    class="text-xl font-bold block uppercase tracking-wide text-slate-700"
+                                    >8</span
+                                >
+                                <span class="text-sm text-slate-400">Number Of Ship</span>
+                            </div>
+                            <div class="p-3 text-center">
+                                <span
+                                    class="text-xl font-bold block uppercase tracking-wide text-slate-700"
+                                    >20</span
+                                >
+                                <span class="text-sm text-slate-400">Number Of Item</span>
+                            </div>
+
+                            <div class="p-3 text-center">
+                                <span
+                                    class="text-xl font-bold block uppercase tracking-wide text-slate-700"
+                                    >Silver</span
+                                >
+                                <span class="text-sm text-slate-400">Current Ranking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-2 py-8">
+                    <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">
+                        Mike Thompson
+                    </h3>
+                    <div class="text-xs mt-0 mb-2 text-slate-400 text-base">
+                        <i class="fa fa-user mr-2 text-slate-400 opacity-75"></i
+                        ><span>Username: </span>mike123
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="w-full text-center mt-20">
-            <div class="flex justify-center lg:pt-4 pt-8 pb-0">
-              <div class="p-3 text-center">
-                <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >8</span
-                >
-                <span class="text-sm text-slate-400">Number Of Ship</span>
-              </div>
-              <div class="p-3 text-center">
-                <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >20</span
-                >
-                <span class="text-sm text-slate-400">Number Of Item</span>
-              </div>
-
-              <div class="p-3 text-center">
-                <span
-                  class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-                  >Silver</span
-                >
-                <span class="text-sm text-slate-400">Current Ranking</span>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="text-center mt-2 py-8">
-          <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1">
-            Mike Thompson
-          </h3>
-          <div class="text-xs mt-0 mb-2 text-slate-400 text-base">
-            <i class="fa fa-user mr-2 text-slate-400 opacity-75"></i
-            ><span>Username: </span>mike123
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-    <script src="../script/home.js"></script>
-  </body>
+        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+        <script src="../script/home.js"></script>
+    </body>
 </html>

@@ -157,7 +157,7 @@ public class APIServlet extends HttpServlet {
                         int diamond = rm.getDiamondAmount(player.getId());
                         if (price > diamond) {
                             result.put("success", false);
-                        result.put("error", "Your balance not enough!");
+                            result.put("error", "Your balance not enough!");
                         } else {
                             diamond -= price;
                             rm.setDiamondAmount(player.getId(), diamond);
@@ -277,7 +277,7 @@ public class APIServlet extends HttpServlet {
             player.setPassword(null);
             player.setRole(null);
             player.put("extra", extra);
-            
+
             result.put("player", player);
         } catch (Exception e) {
             result.put("success", false);
@@ -285,7 +285,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-    
+
     public static JSONObject getAllShips(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -325,7 +325,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-    
+
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -352,7 +352,7 @@ public class APIServlet extends HttpServlet {
                         player.getEngineID(),
                         player.getSailID()
                     };
-                    
+
                     for (Item item : list) {
                         if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
                             item.put("isOwner", true);

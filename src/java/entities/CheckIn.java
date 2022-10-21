@@ -13,16 +13,17 @@ import com.yuyu.jdbc.JSONEntity;
  * @author Huu
  */
 @SQLTable(table = "CheckIn")
-public class CheckIn extends JSONEntity{
+public class CheckIn extends JSONEntity {
+
     @SQLColumn(column = "ID", isAutoIncrement = true)
     private Integer id;
-    
+
     @SQLColumn(column = "ResourceID")
     private Integer resourceid;
 
     @SQLColumn(column = "Amount")
     private Integer amount;
-    
+
     @SQLColumn(column = "CheckinCount")
     private Integer checkincount;
 
@@ -72,6 +73,5 @@ public class CheckIn extends JSONEntity{
         updateProp("checkincount", checkincount);
         this.checkincount = checkincount;
     }
-    
-    
+
 }

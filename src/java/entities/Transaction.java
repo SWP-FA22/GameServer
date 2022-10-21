@@ -15,16 +15,16 @@ import java.sql.Timestamp;
  */
 @SQLTable(table = "Transaction")
 public class Transaction extends JSONEntity {
-    
+
     @SQLColumn(column = "ID", isAutoIncrement = true)
     private Integer id;
-    
+
     @SQLColumn(column = "Time")
     private Timestamp time;
-    
+
     @SQLColumn(column = "PlayerID")
     private Integer playerID;
-    
+
     @SQLColumn(column = "Amount")
     private Integer amount;
 
