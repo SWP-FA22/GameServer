@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css"
+      integrity="sha512-8Vtie9oRR62i7vkmVUISvuwOeipGv8Jd+Sur/ORKDD5JiLgTGeBSkI3ISOhc730VGvA5VVQPwKIKlmi+zMZ71w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <title>Create Post</title>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .animated:hover {
+        animation: hover_item 0.3s ease-out forwards;
+        cursor: pointer;
+      }
+
+      @keyframes hover_item {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(-20px);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-grey-200">
+    <!--navbar-->
+    <nav
+      class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
+    >
+      <div
+        class="container flex flex-wrap items-center justify-between mx-auto"
+      >
+        <a href="https://flowbite.com/" class="flex items-center">
+          <img
+            src="../assets/img/logo.png"
+            class="ml-20 mr-4 h-9 sm:h-9"
+            alt="logo"
+          />
+        </a>
+        <button
+          id="btn-menu"
+          data-collapse-toggle="navbar-default"
+          type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-default"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul
+            class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+          >
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Download Game</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about-us"
+                v-smooth-scroll
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Purchase</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Redeem/GiftCode</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Game Database</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/login.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Login/Register</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center">
+      <h2 class="font-medium text-gray-600 text-xl">Post Approve List</h2>
+      <div
+        class="w-full max-w-screen-sm m-auto p-3 min-h-100 overflow-hidden shadow-lg border my-10"
+      >
+        <div class="flex item-center justify-end">
+          <div
+            class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
+          >
+            <i class="fa-regular fa-circle-check w-6 h-6"></i>
+          </div>
+          <div
+            class="icon-ban cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
+          >
+            <i class="fa-solid fa-ban w-6 h-6"></i>
+          </div>
+        </div>
+        <div class="wrapper bg-white flex flex-row p-3">
+          <div class="w-1/6 flex-grow-0">
+            <div
+              class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+            >
+              <img
+                class="rounded-full w-full"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="w-5/6 info text-left pl-3 text-gray-500">
+            <div
+              class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+            >
+              22/10/2022 09:30 AM
+            </div>
+            <div class="name font-bold py-1">Thái Vũ</div>
+            <div class="bio text-sm">
+              Hack dame Liên Quân mang đến cho game thủ những ưu điểm như sau:
+              Dọn quái rừng, lính mọi đường chỉ với 1 hit. Điều này có thể giúp
+              bạn tăng tốc độ farm vàng & lên đồ nhanh hơn. Tăng chỉ số tướng
+              như máu, tỷ lệ chí mạng, tốc đánh, sát thương vật lý và sát thương
+              phép. Giảm hồi chiêu giúp bạn tung kỹ năng liên tục lên tướng
+              địch. Không cần root file game.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-full max-w-screen-sm m-auto p-3 min-h-100 overflow-hidden shadow-lg border my-10"
+      >
+        <div class="flex item-center justify-end">
+          <div
+            class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
+          >
+            <i class="fa-regular fa-circle-check w-6 h-6"></i>
+          </div>
+          <div
+            class="icon-ban cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
+          >
+            <i class="fa-solid fa-ban w-6 h-6"></i>
+          </div>
+        </div>
+        <div class="wrapper bg-white flex flex-row p-3">
+          <div class="w-1/6 flex-grow-0">
+            <div
+              class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+            >
+              <img
+                class="rounded-full w-full"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="w-5/6 info text-left pl-3 text-gray-500">
+            <div
+              class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+            >
+              22/10/2022 09:30 AM
+            </div>
+            <div class="name font-bold py-1">Thái Vũ</div>
+            <div class="bio text-sm">
+              Hack dame Liên Quân mang đến cho game thủ những ưu điểm như sau:
+              Dọn quái rừng, lính mọi đường chỉ với 1 hit. Điều này có thể giúp
+              bạn tăng tốc độ farm vàng & lên đồ nhanh hơn. Tăng chỉ số tướng
+              như máu, tỷ lệ chí mạng, tốc đánh, sát thương vật lý và sát thương
+              phép. Giảm hồi chiêu giúp bạn tung kỹ năng liên tục lên tướng
+              địch. Không cần root file game.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--pagination-->
+      <div class="my-8 flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul class="flex list-style-none">
+            <li class="page-item disabled">
+              <a
+                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                >Previous</a
+              >
+            </li>
+            <li class="page-item active">
+              <a
+                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                href="#"
+                >1 <span class="visually-hidden">(current)</span></a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                href="#"
+                >2</a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                href="#"
+                >3</a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                href="#"
+                >Next</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      // approve or deny
+
+      const check_icons = document.querySelectorAll(".icon-check");
+      const ban_icons = document.querySelectorAll(".icon-ban");
+
+      check_icons.forEach((item) => {
+        item.addEventListener("click", () => {
+          swal({
+            title: "Approved!",
+            icon: "success",
+            button: "Close",
+          });
+        });
+      });
+
+      ban_icons.forEach((item) => {
+        item.addEventListener("click", () => {
+          swal({
+            title: "Are you sure to delete this post?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              swal("Delete successfully !", {
+                icon: "success",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
