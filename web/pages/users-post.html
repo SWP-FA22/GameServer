@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css"
+      integrity="sha512-8Vtie9oRR62i7vkmVUISvuwOeipGv8Jd+Sur/ORKDD5JiLgTGeBSkI3ISOhc730VGvA5VVQPwKIKlmi+zMZ71w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <title>User Post</title>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .animated:hover {
+        animation: hover_item 0.3s ease-out forwards;
+        cursor: pointer;
+      }
+
+      @keyframes hover_item {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(-20px);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-grey-200">
+    <!--navbar-->
+    <nav
+      class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
+    >
+      <div
+        class="container flex flex-wrap items-center justify-between mx-auto"
+      >
+        <a href="https://flowbite.com/" class="flex items-center">
+          <img
+            src="../assets/img/logo.png"
+            class="ml-20 mr-4 h-9 sm:h-9"
+            alt="logo"
+          />
+        </a>
+        <button
+          id="btn-menu"
+          data-collapse-toggle="navbar-default"
+          type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
+          aria-controls="navbar-default"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul
+            class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white bg-gray-800 md: border-gray-700"
+          >
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Download Game</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about-us"
+                v-smooth-scroll
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Purchase</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Redeem/GiftCode</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/home.html"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Game Database</a
+              >
+            </li>
+            <li>
+              <a
+                href="/pages/login.html"
+                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent"
+              >
+                Login/Register</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center">
+      <div
+        class="w-full max-w-screen-sm m-auto p-3 min-h-100 overflow-hidden shadow-lg border my-10"
+      >
+        <div class="wrapper bg-white flex flex-row p-3">
+          <div class="w-1/6 flex-grow-0">
+            <div
+              class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+            >
+              <img
+                class="rounded-full w-full"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="w-5/6 info text-left pl-3 text-gray-500">
+            <div
+              class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+            >
+              22/10/2022 09:30 AM
+            </div>
+            <div class="name font-bold py-1">Thái Vũ</div>
+            <div class="bio text-sm">
+              Hack dame Liên Quân mang đến cho game thủ những ưu điểm như sau:
+              Dọn quái rừng, lính mọi đường chỉ với 1 hit. Điều này có thể giúp
+              bạn tăng tốc độ farm vàng & lên đồ nhanh hơn. Tăng chỉ số tướng
+              như máu, tỷ lệ chí mạng, tốc đánh, sát thương vật lý và sát thương
+              phép. Giảm hồi chiêu giúp bạn tung kỹ năng liên tục lên tướng
+              địch. Không cần root file game.
+            </div>
+          </div>
+        </div>
+        <div class="wrapper bg-white flex flex-row p-3">
+          <div class="w-5/6 info text-left pl-3 text-gray-500">
+            <form action="" class="w-full p-4">
+              <div class="mb-2">
+                <label for="comment" class="text-lg text-gray-600"
+                  >Add a comment</label
+                >
+                <textarea
+                  class="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+                  name="comment"
+                  placeholder=""
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  class="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
+                >
+                  Comment
+                </button>
+                <button
+                  class="px-3 py-2 text-sm text-blue-600 border border-blue-500 rounded"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+            <section class="bg-white  py-8 lg:py-16">
+              <div class="max-w-2xl mx-auto px-4">
+                <div class="flex justify-between items-center mb-6">
+                  <h2
+                    class="text-lg lg:text-2xl font-bold text-gray-900 "
+                  >
+                    Discussion (20)
+                  </h2>
+                  <div class="flex items-center">
+                    <p
+                      id="show-discussion"
+                      class="text-sm -mt-1 cursor-pointer"
+                    >
+                      show discussion
+                    </p>
+                    <p id="hide-discussion" class="text-sm -mt-1 cursor-pointer hidden">
+                      hide discussion
+                    </p>
+                  </div>
+                </div>
+                <div id="container-discussion" class="container hidden">
+                  <article
+                    class="p-6 mb-6 text-base bg-white rounded-lg "
+                  >
+                    <footer class="flex justify-between items-center mb-2">
+                      <div class="flex items-center">
+                        <p
+                          class="inline-flex items-center mr-3 text-sm text-gray-900 "
+                        >
+                          <img
+                            class="mr-2 w-6 h-6 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                            alt="Michael Gough"
+                          />Michael Gough
+                        </p>
+                        <p class="text-sm text-gray-600 text-gray-400">
+                          <time
+                            pubdate
+                            datetime="2022-02-08"
+                            title="February 8th, 2022"
+                            >Feb. 8, 2022</time
+                          >
+                        </p>
+                      </div>
+                      <button
+                        id="dropdownComment1Button"
+                        data-dropdown-toggle="dropdownComment1"
+                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  hover:bg-gray-700 focus:ring-gray-600"
+                        type="button"
+                      >
+                        <svg
+                          class="w-5 h-5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                          ></path>
+                        </svg>
+                        <span class="sr-only">Comment settings</span>
+                      </button>
+                      <!-- Dropdown menu -->
+                      <div
+                        id="dropdownComment1"
+                        class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow bg-gray-700 divide-gray-600"
+                      >
+                        <ul
+                          class="py-1 text-sm text-gray-700 text-gray-200"
+                          aria-labelledby="dropdownMenuIconHorizontalButton"
+                        >
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Edit</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Remove</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Report</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </footer>
+                    <p class="text-gray-500 text-gray-400">
+                      Very straight-to-point article. Really worth time reading.
+                      Thank you! But tools are just the instruments for the UX
+                      designers. The knowledge of the design tools are as
+                      important as the creation of the design strategy.
+                    </p>
+                  </article>
+                  <article
+                    class="p-6 mb-6 text-base bg-white border-t border-gray-200 border-gray-700 "
+                  >
+                    <footer class="flex justify-between items-center mb-2">
+                      <div class="flex items-center">
+                        <p
+                          class="inline-flex items-center mr-3 text-sm text-gray-900 "
+                        >
+                          <img
+                            class="mr-2 w-6 h-6 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                            alt="Bonnie Green"
+                          />Bonnie Green
+                        </p>
+                        <p class="text-sm text-gray-600 text-gray-400">
+                          <time
+                            pubdate
+                            datetime="2022-03-12"
+                            title="March 12th, 2022"
+                            >Mar. 12, 2022</time
+                          >
+                        </p>
+                      </div>
+                      <button
+                        id="dropdownComment3Button"
+                        data-dropdown-toggle="dropdownComment3"
+                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  hover:bg-gray-700 focus:ring-gray-600"
+                        type="button"
+                      >
+                        <svg
+                          class="w-5 h-5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                          ></path>
+                        </svg>
+                        <span class="sr-only">Comment settings</span>
+                      </button>
+                      <!-- Dropdown menu -->
+                      <div
+                        id="dropdownComment3"
+                        class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow bg-gray-700 divide-gray-600"
+                      >
+                        <ul
+                          class="py-1 text-sm text-gray-700 text-gray-200"
+                          aria-labelledby="dropdownMenuIconHorizontalButton"
+                        >
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Edit</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Remove</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Report</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </footer>
+                    <p class="text-gray-500 text-gray-400">
+                      The article covers the essentials, challenges, myths and
+                      stages the UX designer should consider while creating the
+                      design strategy.
+                    </p>
+                  </article>
+                  <article
+                    class="p-6 text-base bg-white border-t border-gray-200 border-gray-700 "
+                  >
+                    <footer class="flex justify-between items-center mb-2">
+                      <div class="flex items-center">
+                        <p
+                          class="inline-flex items-center mr-3 text-sm text-gray-900 "
+                        >
+                          <img
+                            class="mr-2 w-6 h-6 rounded-full"
+                            src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                            alt="Helene Engels"
+                          />Helene Engels
+                        </p>
+                        <p class="text-sm text-gray-600 text-gray-400">
+                          <time
+                            pubdate
+                            datetime="2022-06-23"
+                            title="June 23rd, 2022"
+                            >Jun. 23, 2022</time
+                          >
+                        </p>
+                      </div>
+                      <button
+                        id="dropdownComment4Button"
+                        data-dropdown-toggle="dropdownComment4"
+                        class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  hover:bg-gray-700 focus:ring-gray-600"
+                        type="button"
+                      >
+                        <svg
+                          class="w-5 h-5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                          ></path>
+                        </svg>
+                      </button>
+                      <!-- Dropdown menu -->
+                      <div
+                        id="dropdownComment4"
+                        class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow bg-gray-700 divide-gray-600"
+                      >
+                        <ul
+                          class="py-1 text-sm text-gray-700 text-gray-200"
+                          aria-labelledby="dropdownMenuIconHorizontalButton"
+                        >
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Edit</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Remove</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="block py-2 px-4 hover:bg-gray-100 hover:bg-gray-600 hover:text-white"
+                              >Report</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </footer>
+                    <p class="text-gray-500 text-gray-400">
+                      Thanks for sharing this. I do came from the Backend
+                      development and explored some of the tools to design my
+                      Side Projects.
+                    </p>
+                  </article>
+
+                  <!--pagination-->
+                  <div class="mt-8 flex justify-center">
+                    <nav aria-label="Page navigation example">
+                      <ul class="flex list-style-none">
+                        <li class="page-item disabled">
+                          <a
+                            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
+                            href="#"
+                            tabindex="-1"
+                            aria-disabled="true"
+                            >Previous</a
+                          >
+                        </li>
+                        <li class="page-item active">
+                          <a
+                            class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                            href="#"
+                            >1 <span class="visually-hidden">(current)</span></a
+                          >
+                        </li>
+                        <li class="page-item">
+                          <a
+                            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                            href="#"
+                            >2</a
+                          >
+                        </li>
+                        <li class="page-item">
+                          <a
+                            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                            href="#"
+                            >3</a
+                          >
+                        </li>
+                        <li class="page-item">
+                          <a
+                            class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                            href="#"
+                            >Next</a
+                          >
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        const show_discussion = document.getElementById('show-discussion');
+        const hide_discussion = document.getElementById('hide-discussion');
+        const container_discussion = document.getElementById('container-discussion');
+
+        show_discussion.addEventListener('click', () => {
+            show_discussion.classList.toggle('hidden');
+            hide_discussion.classList.toggle('hidden');
+            container_discussion.classList.toggle('hidden');
+        })
+
+        hide_discussion.addEventListener('click', () => {
+            show_discussion.classList.toggle('hidden');
+            hide_discussion.classList.toggle('hidden');
+            container_discussion.classList.toggle('hidden');
+        })
+    </script>
+  </body>
+</html>
