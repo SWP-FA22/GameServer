@@ -150,7 +150,7 @@
                                     <h2
                                         class="text-lg lg:text-2xl font-bold text-gray-900 "
                                         >
-                                        Discussion (20)
+                                        Discussion (<span id="comment-count"></span>)
                                     </h2>
                                 </div>
                                 <div id="comments" class="container">
