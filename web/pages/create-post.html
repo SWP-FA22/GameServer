@@ -198,15 +198,34 @@
     <div class="flex flex-col items-center justify-center mt-4">
       <h2 class="text-lg text-gray-600 font-semibold mt-2">Create New Post</h2>
 
+      <div class="form-group w-[50%] mb-6 mt-4">
+        <label
+          for="exampleInputEmail1"
+          class="form-label inline-block mb-2 text-gray-700"
+          >Title</label
+        >
+        <input
+          type="email"
+          class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          id="title"
+          aria-describedby="title"
+          placeholder="Enter Title"
+        />
+      </div>
+
       <div id="div_editor1" class="max-w-lg mt-4">
         <p>This is a default toolbar demo of Rich text editor.</p>
       </div>
 
       <div class="flex items-center justify-center mt-4">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4 rounded">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4 rounded"
+        >
           Post
         </button>
-        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        <button
+          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        >
           Cancel
         </button>
       </div>
