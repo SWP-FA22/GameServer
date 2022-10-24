@@ -33,7 +33,9 @@ public class PlayerModel extends ModelBase<Player> {
         ModelBase.connection().executeUpdate("UPDATE [dbo].[Player]\n"
                 + "   SET [IsCheckIn] = 0");
     }
-
+    public void updateRank(Player u) throws Exception {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Rank] = ? WHERE [ID] = ?", u.getRank(), u.getId());
+    }
     public void updateCheckinCount(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [CheckInCount] = ? WHERE [ID] = ?", u.getCheckincount(), u.getId());
     }

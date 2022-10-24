@@ -58,6 +58,35 @@ public class APIServlet extends HttpServlet {
         routes.put("post:buy-ship", APIServlet::buyShip);
         routes.put("post:equip-ship", APIServlet::equipShip);
         routes.put("post:update-resource", APIServlet::updateresource);
+        routes.put("post:update-score", APIServlet::updatescore);
+    }
+
+    public static JSONObject updatescore(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+            int score = Integer.parseInt(request.getParameter("score"));
+
+            Player player = Authentication.getPlayerInformationByToken(token);
+
+            if (player == null) {
+                throw new Exception("Username is not exist");
+            }
+            if (player.getRank()<score)
+            {
+                player.setRank(score);
+                PlayerModel pm=new PlayerModel();
+                pm.updateRank(player);
+            }
+
+            result.put("success", true);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject updateresource(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -66,7 +95,7 @@ public class APIServlet extends HttpServlet {
         try {
             String token = request.getParameter("token");
             int id = Integer.parseInt(request.getParameter("resourceid"));
-            int amount=Integer.parseInt(request.getParameter("amount"));
+            int amount = Integer.parseInt(request.getParameter("amount"));
 
             Player player = Authentication.getPlayerInformationByToken(token);
 
@@ -74,7 +103,7 @@ public class APIServlet extends HttpServlet {
                 throw new Exception("Username is not exist");
             }
 
-            ResourceModel rm=new ResourceModel();
+            ResourceModel rm = new ResourceModel();
 
             rm.addResourceAmount(player.getId(), id, amount);
 
