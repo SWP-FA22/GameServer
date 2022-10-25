@@ -73,10 +73,9 @@ public class APIServlet extends HttpServlet {
             if (player == null) {
                 throw new Exception("Username is not exist");
             }
-            if (player.getRank()<score)
-            {
+            if (player.getRank() < score) {
                 player.setRank(score);
-                PlayerModel pm=new PlayerModel();
+                PlayerModel pm = new PlayerModel();
                 pm.updateRank(player);
             }
 
@@ -396,27 +395,27 @@ public class APIServlet extends HttpServlet {
                 Player player = Authentication.getPlayerInformationByToken(token);
 
                 if (player == null) {
-                    result.put("success", false);
-                    result.put("error", "Username is not exist");
-                } else {
-                    list = new ItemModel().getall();
-
-                    List<Item> ownerItems = new ItemModel().getItemsByPlayerID(player.getId());
-
-                    int[] ids = {
-                        -1,
-                        player.getWeaponID(),
-                        player.getEngineID(),
-                        player.getSailID()
-                    };
-
-                    for (Item item : list) {
-                        if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
-                            item.put("isOwner", true);
-                        }
-                        item.put("isEquipped", item.getId() == ids[item.getType()]);
-                    }
+                    throw new Exception("Username is not exist");
                 }
+
+                list = new ItemModel().getall();
+
+                List<Item> ownerItems = new ItemModel().getItemsByPlayerID(player.getId());
+
+                Integer[] ids = {
+                    -1,
+                    player.getWeaponID(),
+                    player.getEngineID(),
+                    player.getSailID()
+                };
+
+                for (Item item : list) {
+                    if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
+                        item.put("isOwner", true);
+                    }
+                    item.put("isEquipped", Objects.equals(ids[item.getType()], item.getId()));
+                }
+
             }
             result.put("success", true);
             result.put("items", list);
