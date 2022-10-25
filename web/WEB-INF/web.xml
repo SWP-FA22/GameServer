@@ -84,6 +84,10 @@
         <servlet-name>ReportServlet</servlet-name>
         <servlet-class>routes.ReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewBlogServlet</servlet-name>
+        <servlet-class>routes.ViewBlogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBlogServlet</servlet-name>
+        <url-pattern>/viewblog</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

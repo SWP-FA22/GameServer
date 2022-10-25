@@ -22,13 +22,12 @@ import utilities.Authentication;
  */
 public class ItemUserServlet extends HttpServlet {
 
-   
-     @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-            
+
             String token = Authentication.getTokenFromCookies(request.getCookies());
             Player player = Authentication.getPlayerInformationByToken(token);
 

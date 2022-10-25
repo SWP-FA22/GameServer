@@ -4,23 +4,32 @@
  */
 package routes;
 
+import entities.Posts;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.PostsModel;
 
 /**
  *
- * @author LinhThuy
+ * @author Huu
  */
-public class DownloadServlet extends HttpServlet {
+public class ViewBlogServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("download-page.jsp").forward(request, response);
+        try {
+            Integer id = Integer.parseInt(request.getParameter("id"));
+            PostsModel postmodel = new PostsModel();
+            Posts post = postmodel.get(id);
+            request.setAttribute("post", post);
+            request.getRequestDispatcher("post.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace(response.getWriter());
+        }
     }
-
 }

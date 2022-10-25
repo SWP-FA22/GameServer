@@ -59,7 +59,7 @@
             .container-download{
                 position: relative;
                 width: 100%;
-               
+
             }
 
             .container-download img {
@@ -92,10 +92,10 @@
         <div class="container-download">
             <img src="./assets/img/wallpaperflare.com_wallpaper.jpg" style="height: 80%;width: 90%; margin: auto">
             <a class="link"  href="https://drive.google.com/uc?id=1-UC2f8LMbP4b8LCuycngULRf5VLzIOm0&export=download">
-            <button class="btn">Download</button>
+                <button class="btn">Download</button>
             </a>
         </div>
-    
+
     </div>
     <%@include file="components/footer.jsp" %>
 

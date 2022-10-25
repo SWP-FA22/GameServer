@@ -33,12 +33,15 @@ public class PlayerModel extends ModelBase<Player> {
         ModelBase.connection().executeUpdate("UPDATE [dbo].[Player]\n"
                 + "   SET [IsCheckIn] = 0");
     }
+
     public void updateCheckinCount(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [CheckInCount] = ? WHERE [ID] = ?", u.getCheckincount(), u.getId());
     }
+
     public void updateIscheckin(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [IsCheckIn] = ? WHERE [ID] = ?", u.isIscheckedin(), u.getId());
     }
+
     public void updatePassword(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [Password] = ? WHERE [ID] = ?", u.getPassword(), u.getId());
     }
@@ -94,22 +97,20 @@ public class PlayerModel extends ModelBase<Player> {
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, Exception, Exception {
         PlayerModel pm = new PlayerModel();
-        System.out.println(pm.getUserByUsername("superadmin"));
+                        pm.resetCheckin();
     }
-    
-    
-    public List<Player> getTopRanking () throws Exception{
+
+    public List<Player> getTopRanking() throws Exception {
         List<Player> list = new ArrayList<>();
-        try (ResultSet rs = ModelBase.connection().executeQuery("select top 5 * from [Player] order by Rank DESC")){
-            while(rs.next()){
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select top 5 * from [Player] order by Rank DESC")) {
+            while (rs.next()) {
                 Player player = new Player();
                 player.loadProps(rs);
-                list.add(player);             
+                list.add(player);
             }
             return list;
-    }  
-   }
-    
+        }
+    }
 }
