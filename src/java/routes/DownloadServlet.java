@@ -16,11 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
  * @author LinhThuy
  */
 public class DownloadServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+       
+     @Override
+    protected void doGet(HttpServletRequest request,HttpServletResponse response)
+    throws ServletException, IOException {
         request.getRequestDispatcher("download-page.jsp").forward(request, response);
     }
+    
+    }
 
-}
+   
+

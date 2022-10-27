@@ -85,8 +85,16 @@
         <servlet-class>routes.ReportServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewBlogServlet</servlet-name>
-        <servlet-class>routes.ViewBlogServlet</servlet-class>
+        <servlet-name>PostServlet</servlet-name>
+        <servlet-class>routes.PostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostManage</servlet-name>
+        <servlet-class>routes.PostManage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminPostManage</servlet-name>
+        <servlet-class>routes.AdminPostManage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -165,8 +173,16 @@
         <url-pattern>/download</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewBlogServlet</servlet-name>
-        <url-pattern>/viewblog</url-pattern>
+        <servlet-name>PostServlet</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostManage</servlet-name>
+        <url-pattern>/post-manage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPostManage</servlet-name>
+        <url-pattern>/admin-post</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -106,13 +106,13 @@
                                     <hr>
                                 </div>
                                 <div>
-
+                                    
                                     <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.success}</h3>
                                     <button class="btn btn-theme" type="submit" name="report" onclick="formSubmit()" >Submit</button>
                                     <a href="." class="btn btn-theme" type="button" name="cancel">Cancel</a>
-
-
-
+                                    
+                                    
+                                    
                                 </div>
 
                             </div>

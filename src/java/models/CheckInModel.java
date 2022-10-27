@@ -11,12 +11,10 @@ import java.util.List;
  *
  * @author Huu
  */
-public class CheckInModel extends ModelBase<CheckIn> {
-
+public class CheckInModel extends ModelBase<CheckIn>{
     public CheckInModel() throws Exception {
         super(CheckIn.class);
     }
-
     public CheckIn getCheckInByCount(int count) throws Exception {
         List<CheckIn> checkin = getIf("[CheckinCount] = ?", count);
         if (!checkin.isEmpty()) {

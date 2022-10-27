@@ -60,7 +60,7 @@
                 </div>
 
                 <form class="mt-8 space-y-6"  action="forgot" method="POST">
-
+                    
                     <div class="mt-8 content-center">
                         <label class="text-sm font-bold text-gray-700 tracking-wide">
                             Email

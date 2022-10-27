@@ -41,7 +41,7 @@ public class TransactionManage extends HttpServlet {
 
             int PAGE_SIZE = 50;
             request.setAttribute("transactions", list.subList(page * PAGE_SIZE, Math.min((page + 1) * PAGE_SIZE, list.size())));
-            request.setAttribute("pageCount", (int) Math.ceil(list.size() / PAGE_SIZE));
+            request.setAttribute("pageCount", (int)Math.ceil(list.size() / PAGE_SIZE));
             request.getRequestDispatcher("transactions.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendError(500);

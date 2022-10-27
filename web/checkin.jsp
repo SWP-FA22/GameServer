@@ -162,17 +162,17 @@
         <script src="../script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
-                                    async   function checkin()
-                                    {
-                                        var a = await fetch('checkin', {
-                                            method: 'post',
-                                            headers: {
-                                                'Content-Type': 'application/x-www-form-urlencoded',
-                                            },
-                                            body: 'submit='
-                                        }).then(e => e.text())
-                                        alert(a);
-                                    }
+                async   function checkin()
+                {
+                    var a = await fetch('checkin', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'submit='
+                    }).then(e => e.text())
+                    alert(a);
+                }
 
         </script>
     </body>

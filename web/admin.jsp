@@ -126,17 +126,17 @@
                                                         </div>
                                                         <c:if test="${p.role==0}">
                                                             <div
-                                                                class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                                <i class="lock-icon${p.id} fa-solid fa-lock"></i>
-                                                            </div>
+                                                            class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                            <i class="lock-icon${p.id} fa-solid fa-lock"></i>
+                                                        </div>
                                                         </c:if>
                                                         <c:if test="${p.role==2}">
                                                             <div
-                                                                class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                                <i class="fa-solid fa-lock-open fa-lock-open${p.id}"></i>
-                                                            </div>
+                                                            class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                            <i class="fa-solid fa-lock-open fa-lock-open${p.id}"></i>
+                                                        </div>
                                                         </c:if>
-
+                                                        
                                                     </div>
                                                 </div>
                                             </td>
@@ -177,30 +177,30 @@
         <!-- modal -->
         <c:forEach items="${requestScope.players}" var="p">
             <div id="modal${p.id}" class="hidden flex modal fixed inset-0">
-                <div class="modal-overlay absolute w-full h-full bg-[rgba(0,0,0,0.3)]">
-                    <div class="mt-20 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-md">
-                        <div class="md:flex relative">
-                            <span class="absolute top-4 right-4">
-                                <button id="btn-close${p.id}" type="button"
-                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                        data-modal-toggle="defaultModal">
-                                    <i class="fa-solid fa-xmark"></i>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </span>
-                            <div class="w-full p-2 py-10">
-                                <div class="flex justify-center">
-                                    <div class="relative">
-                                        <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
-                                             class="rounded-full" width="80" alt=""/>
-                                    </div>
+            <div class="modal-overlay absolute w-full h-full bg-[rgba(0,0,0,0.3)]">
+                <div class="mt-20 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-md">
+                    <div class="md:flex relative">
+                        <span class="absolute top-4 right-4">
+                            <button id="btn-close${p.id}" type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-toggle="defaultModal">
+                                <i class="fa-solid fa-xmark"></i>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </span>
+                        <div class="w-full p-2 py-10">
+                            <div class="flex justify-center">
+                                <div class="relative">
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png"
+                                         class="rounded-full" width="80" alt=""/>
                                 </div>
+                            </div>
 
-                                <div class="flex flex-col text-center mt-3 mb-4">
-                                    <span class="text-2xl font-medium">${p.username}</span>
-                                </div>
+                            <div class="flex flex-col text-center mt-3 mb-4">
+                                <span class="text-2xl font-medium">${p.username}</span>
+                            </div>
 
-                                <div class="mt-5 md:mt-0 md:col-span-2 px-4">
+                            <div class="mt-5 md:mt-0 md:col-span-2 px-4">
                                     <div class="shadow overflow-hidden sm:rounded-md">
                                         <div class="px-4 py-5 bg-white sm:p-6">
                                             <div class="grid grid-cols-6 gap-6">
@@ -246,34 +246,34 @@
                                                            placeholder="enter name user">
                                                 </div>
 
-
+                                                
                                             </div>
 
                                         </div>
 
                                     </div>
-                                </div>
                             </div>
                         </div>
-
                     </div>
 
-                </div> </div>
-            </c:forEach>
+                </div>
 
+            </div> </div>
+        </c:forEach>
+        
 
-        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-        <script src="./script/home.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script>
-            <c:forEach items="${requestScope.players}" var="p">
+            <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+            <script src="./script/home.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+<c:forEach items="${requestScope.players}" var="p">
             const eye_icon${p.id} = document.querySelector('.eye-icon${p.id}');
             eye_icon${p.id}.addEventListener('click', () => {
                 const modal${p.id} = document.querySelector('#modal${p.id}');
                 modal${p.id}.classList.toggle('hidden');
             })
 
-
+                
             const trash_icon${p.id} = document.querySelector('.trash-icon${p.id}');
             trash_icon${p.id}.addEventListener('click', () => {
                 swal({
@@ -288,16 +288,16 @@
                             }
                         });
             })
-
+                
             const btn_close${p.id} = document.getElementById('btn-close${p.id}');
             btn_close${p.id}.addEventListener('click', () => {
                 const modal${p.id} = document.querySelector('#modal${p.id}');
                 modal${p.id}.classList.toggle('hidden');
 
             })
-            </c:forEach>
+</c:forEach>
 
-        </script>
+            </script>
 
 
 

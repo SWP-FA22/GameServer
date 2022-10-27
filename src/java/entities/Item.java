@@ -165,4 +165,10 @@ public class Item extends JSONEntity {
         updateProp("bonusRota", bonusRota);
         this.bonusRota = bonusRota;
     }
+
+	public JSONObject toJSON() throws JSONException {
+		// TODO - implement Item.toJSON
+		throw new UnsupportedOperationException();
+	}
+
 }

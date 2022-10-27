@@ -20,20 +20,27 @@ import models.PlayerModel;
  */
 public class RankingServlet extends HttpServlet {
 
+    
+   
+
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-
-            List<Player> listtop = new PlayerModel().getTopRanking();
-            request.setAttribute("listtop", listtop);
-
+         
+            List <Player> listtop = new PlayerModel().getTopRanking();
+            request.setAttribute("listtop",listtop);
+            
             //out.println(listtop);
             request.getRequestDispatcher("top-ranking.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(out);
         }
     }
+
+    
+   
 
 }
