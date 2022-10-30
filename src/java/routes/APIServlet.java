@@ -59,6 +59,7 @@ public class APIServlet extends HttpServlet {
         routes.put("post:equip-ship", APIServlet::equipShip);
         routes.put("post:update-resource", APIServlet::updateresource);
         routes.put("post:update-score", APIServlet::updatescore);
+        routes.put("get:top-player", APIServlet::getTopPlayers);
     }
 
     public static JSONObject updatescore(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -73,11 +74,10 @@ public class APIServlet extends HttpServlet {
             if (player == null) {
                 throw new Exception("Username is not exist");
             }
-            if (player.getRank() < score) {
-                player.setRank(score);
-                PlayerModel pm = new PlayerModel();
-                pm.updateRank(player);
-            }
+
+            player.setRank(score + player.getRank());
+            PlayerModel pm = new PlayerModel();
+            pm.updateRank(player);
 
             result.put("success", true);
 
@@ -248,6 +248,7 @@ public class APIServlet extends HttpServlet {
                 int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
                 int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
                 int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
+                System.out.println(numberOfItem);
                 result.put("success", true);
                 result.put("data", player);
                 result.put("numberOfShip", numberOfShip);
@@ -374,6 +375,26 @@ public class APIServlet extends HttpServlet {
             }
             result.put("success", true);
             result.put("ships", list);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
+    public static JSONObject getTopPlayers(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            
+
+            List<Player> list = new ArrayList<>();     
+            
+
+                list =new PlayerModel().getTopRanking();            
+            result.put("success", true);
+            result.put("players", list);
 
         } catch (Exception e) {
             result.put("success", false);
