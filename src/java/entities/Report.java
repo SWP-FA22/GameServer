@@ -47,8 +47,8 @@ public class Report extends JSONEntity {
         this.videoURL = videoURL;
         this.time = time;
         this.isapproved = isapproved;
-
-        updateProps();
+        
+         updateProps();
     }
 
     public Integer getFromid() {
@@ -98,4 +98,4 @@ public class Report extends JSONEntity {
     public void setIsapproved(Integer isapproved) {
         this.isapproved = isapproved;
     }
-}
+    }

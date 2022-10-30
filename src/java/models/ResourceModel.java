@@ -58,7 +58,7 @@ public class ResourceModel extends ModelBase<Resource> {
     public void addDiamondAmount(Integer uid, Integer amount) throws SQLException {
         addResourceAmount(uid, 1, amount);
     }
-
+    
     public Integer getGoldAmount(Integer uid) throws SQLException {
         return getResourceAmount(uid, 2);
     }
@@ -70,7 +70,7 @@ public class ResourceModel extends ModelBase<Resource> {
     public void addGoldAmount(Integer uid, Integer amount) throws SQLException {
         addResourceAmount(uid, 2, amount);
     }
-
+    
     public Integer getRubyAmount(Integer uid) throws SQLException {
         return getResourceAmount(uid, 3);
     }

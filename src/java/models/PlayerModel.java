@@ -21,6 +21,10 @@ public class PlayerModel extends ModelBase<Player> {
         super(Player.class);
     }
 
+    public void updateRank(Player u) throws Exception {
+        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Rank] = ? WHERE [ID] = ?", u.getRank(), u.getId());
+    }
+
     public Player getUserByEmail(String email) throws Exception {
         List<Player> players = getIf("[EMAIL] = ?", email);
         if (!players.isEmpty()) {
@@ -33,9 +37,7 @@ public class PlayerModel extends ModelBase<Player> {
         ModelBase.connection().executeUpdate("UPDATE [dbo].[Player]\n"
                 + "   SET [IsCheckIn] = 0");
     }
-    public void updateRank(Player u) throws Exception {
-        ModelBase.connection().executeUpdate("UPDATE [Player] SET [Rank] = ? WHERE [ID] = ?", u.getRank(), u.getId());
-    }
+
     public void updateCheckinCount(Player u) throws Exception {
         ModelBase.connection().executeUpdate("UPDATE [Player] SET [CheckInCount] = ? WHERE [ID] = ?", u.getCheckincount(), u.getId());
     }
@@ -99,9 +101,9 @@ public class PlayerModel extends ModelBase<Player> {
         return null;
     }
 
-    public static void main(String[] args) throws Exception, Exception, Exception {
+    public static void main(String[] args) throws Exception {
         PlayerModel pm = new PlayerModel();
-                        pm.resetCheckin();
+        System.out.println(pm.getUserByUsername("superadmin"));
     }
 
     public List<Player> getTopRanking() throws Exception {
@@ -115,4 +117,13 @@ public class PlayerModel extends ModelBase<Player> {
             return list;
         }
     }
+
+    public Player getUserById(Integer id) throws Exception {
+        List<Player> players = getIf("[ID] = ?", id);
+        if (!players.isEmpty()) {
+            return players.get(0);
+        }
+        return null;
+    }
+
 }

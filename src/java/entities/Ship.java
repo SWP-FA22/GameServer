@@ -41,7 +41,7 @@ public class Ship extends JSONEntity {
 
     @SQLColumn(column = "Addressable")
     private String addressable;
-
+    
     public Ship() {
     }
 

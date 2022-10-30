@@ -32,11 +32,8 @@ public class AdminServlet extends HttpServlet {
                     response.sendRedirect("home");
                 } else {
                     List<Player> list = new PlayerModel().getall();
-                    for (Player i : list) {
-                        if (i.getRole() == 1) {
-                            list.remove(i);
-                            break;
-                        }
+                    for (Player i:list) if (i.getRole()==1) {
+                        list.remove(i);break;
                     }
                     request.setAttribute("players", list);
                     request.getRequestDispatcher("admin.jsp").forward(request, response);

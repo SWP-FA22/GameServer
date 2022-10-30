@@ -15,10 +15,9 @@ public class GlobalConstants {
 
     // Deployment
 //    public static final String HOST = "http://103.185.184.47:8080";
-    public static final String HOST = "localhost:9999";
+    public static final String HOST = "http://localhost:9999";
     public static final String CONTEXT_PATH = "/HttpServer";
-    public static final String COMMENT_WSPATH = "/comment";
-
+    
     // Casso & VietQR
     public static final String SECURE_TOKEN = "tH15_15_4_r4nD0m_53cR3t_k3Y";
     public static final String BANK_ID = "970422";

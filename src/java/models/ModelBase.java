@@ -6,7 +6,6 @@ package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
-import utilities.StatusCheckIn;
 
 /**
  *
@@ -26,6 +25,7 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
+            System.out.println("connect successfully");
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -33,9 +33,8 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
 
     static {
         connection();
-        StatusCheckIn.CheckIn();
     }
-
+    
     public ModelBase(Class<T> entityClass) throws Exception {
         super(connection, entityClass);
         connection();

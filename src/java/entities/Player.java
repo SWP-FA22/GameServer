@@ -44,10 +44,10 @@ public class Player extends JSONEntity {
 
     @SQLColumn(column = "Role")
     private Integer role;
-
+    
     @SQLColumn(column = "IsCheckIn")
     private boolean ischeckedin;
-
+    
     @SQLColumn(column = "CheckInCount")
     private Integer checkincount;
 
@@ -84,7 +84,7 @@ public class Player extends JSONEntity {
         this.rank = rank;
         this.role = role;
         this.ischeckedin = ischeckedin;
-        this.checkincount = checkincount;
+        this.checkincount = checkincount;        
         updateProps();
     }
 

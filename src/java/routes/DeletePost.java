@@ -4,43 +4,51 @@
  */
 package routes;
 
-import entities.Item;
 import entities.Player;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.ItemModel;
+import models.PostModel;
 import utilities.Authentication;
 
 /**
  *
  * @author LinhThuy
  */
-public class ItemUserServlet extends HttpServlet {
+public class DeletePost extends HttpServlet {
 
-   
-     @Override
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+
         try {
-            
             String token = Authentication.getTokenFromCookies(request.getCookies());
             Player player = Authentication.getPlayerInformationByToken(token);
 
-//            List<Item> list = new ItemModel().getall();
-//            request.setAttribute("list", list);
-            List<Item> listitem = new ItemModel().getItemsByPlayerID(player.getId());
-            request.setAttribute("listitem", listitem);
-            request.getRequestDispatcher("item-user.jsp").forward(request, response);
-            out.println(listitem);
+            int postid = Integer.parseInt(request.getParameter("postid"));
+
+            PostModel pm = new PostModel();
+
+            if (player.getRole() != 1) {
+                pm.deletePost(postid, player.getId());
+                response.sendRedirect("post-manage");
+
+            } else {
+                pm.deletePost(postid);
+                response.sendRedirect("admin-post");
+            }
+
         } catch (Exception ex) {
-            ex.printStackTrace(out);
+
         }
     }
-
 }

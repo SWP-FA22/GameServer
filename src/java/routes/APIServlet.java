@@ -62,6 +62,21 @@ public class APIServlet extends HttpServlet {
         routes.put("get:top-player", APIServlet::getTopPlayers);
     }
 
+    public static JSONObject getTopPlayers(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            List<Player>list = new PlayerModel().getTopRanking();
+            result.put("success", true);
+            result.put("players", list);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
     public static JSONObject updatescore(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -248,7 +263,6 @@ public class APIServlet extends HttpServlet {
                 int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
                 int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
                 int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
-                System.out.println(numberOfItem);
                 result.put("success", true);
                 result.put("data", player);
                 result.put("numberOfShip", numberOfShip);
@@ -383,26 +397,6 @@ public class APIServlet extends HttpServlet {
         return result;
     }
 
-    public static JSONObject getTopPlayers(HttpServletRequest request, PrintWriter response) throws Exception {
-        JSONObject result = new JSONObject();
-
-        try {
-            
-
-            List<Player> list = new ArrayList<>();     
-            
-
-                list =new PlayerModel().getTopRanking();            
-            result.put("success", true);
-            result.put("players", list);
-
-        } catch (Exception e) {
-            result.put("success", false);
-            result.put("error", e.getMessage());
-        }
-        return result;
-    }
-
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -416,27 +410,27 @@ public class APIServlet extends HttpServlet {
                 Player player = Authentication.getPlayerInformationByToken(token);
 
                 if (player == null) {
-                    throw new Exception("Username is not exist");
-                }
+                    result.put("success", false);
+                    result.put("error", "Username is not exist");
+                } else {
+                    list = new ItemModel().getall();
 
-                list = new ItemModel().getall();
+                    List<Item> ownerItems = new ItemModel().getItemsByPlayerID(player.getId());
 
-                List<Item> ownerItems = new ItemModel().getItemsByPlayerID(player.getId());
+                    int[] ids = {
+                        -1,
+                        player.getWeaponID(),
+                        player.getEngineID(),
+                        player.getSailID()
+                    };
 
-                Integer[] ids = {
-                    -1,
-                    player.getWeaponID(),
-                    player.getEngineID(),
-                    player.getSailID()
-                };
-
-                for (Item item : list) {
-                    if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
-                        item.put("isOwner", true);
+                    for (Item item : list) {
+                        if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
+                            item.put("isOwner", true);
+                        }
+                        item.put("isEquipped", item.getId() == ids[item.getType()]);
                     }
-                    item.put("isEquipped", Objects.equals(ids[item.getType()], item.getId()));
                 }
-
             }
             result.put("success", true);
             result.put("items", list);
