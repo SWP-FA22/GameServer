@@ -57,6 +57,77 @@ public class APIServlet extends HttpServlet {
         routes.put("post:buy-item", APIServlet::buyItem);
         routes.put("post:buy-ship", APIServlet::buyShip);
         routes.put("post:equip-ship", APIServlet::equipShip);
+        routes.put("post:update-resource", APIServlet::updateresource);
+        routes.put("post:update-score", APIServlet::updatescore);
+        routes.put("get:top-player", APIServlet::getTopPlayers);
+    }
+
+    public static JSONObject getTopPlayers(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            List<Player>list = new PlayerModel().getTopRanking();
+            result.put("success", true);
+            result.put("players", list);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
+    public static JSONObject updatescore(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+            int score = Integer.parseInt(request.getParameter("score"));
+
+            Player player = Authentication.getPlayerInformationByToken(token);
+
+            if (player == null) {
+                throw new Exception("Username is not exist");
+            }
+
+            player.setRank(score + player.getRank());
+            PlayerModel pm = new PlayerModel();
+            pm.updateRank(player);
+
+            result.put("success", true);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
+    public static JSONObject updateresource(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+            int id = Integer.parseInt(request.getParameter("resourceid"));
+            int amount = Integer.parseInt(request.getParameter("amount"));
+
+            Player player = Authentication.getPlayerInformationByToken(token);
+
+            if (player == null) {
+                throw new Exception("Username is not exist");
+            }
+
+            ResourceModel rm = new ResourceModel();
+
+            rm.addResourceAmount(player.getId(), id, amount);
+
+            result.put("success", true);
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
     }
 
     public static JSONObject equipShip(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -157,7 +228,7 @@ public class APIServlet extends HttpServlet {
                         int diamond = rm.getDiamondAmount(player.getId());
                         if (price > diamond) {
                             result.put("success", false);
-                        result.put("error", "Your balance not enough!");
+                            result.put("error", "Your balance not enough!");
                         } else {
                             diamond -= price;
                             rm.setDiamondAmount(player.getId(), diamond);
@@ -277,7 +348,7 @@ public class APIServlet extends HttpServlet {
             player.setPassword(null);
             player.setRole(null);
             player.put("extra", extra);
-            
+
             result.put("player", player);
         } catch (Exception e) {
             result.put("success", false);
@@ -285,7 +356,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-    
+
     public static JSONObject getAllShips(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -325,7 +396,7 @@ public class APIServlet extends HttpServlet {
         }
         return result;
     }
-    
+
     public static JSONObject getAllItems(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -352,7 +423,7 @@ public class APIServlet extends HttpServlet {
                         player.getEngineID(),
                         player.getSailID()
                     };
-                    
+
                     for (Item item : list) {
                         if (ownerItems.stream().anyMatch(t -> Objects.equals(t.getId(), item.getId()))) {
                             item.put("isOwner", true);
