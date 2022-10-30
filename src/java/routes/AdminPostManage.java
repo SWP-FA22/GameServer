@@ -4,7 +4,6 @@
  */
 package routes;
 
-import entities.Item;
 import entities.Player;
 import entities.Post;
 import java.io.IOException;
@@ -14,8 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import models.ItemModel;
-import models.PlayerModel;
+import java.util.Map;
 import models.PostModel;
 import utilities.Authentication;
 
@@ -28,26 +26,43 @@ public class AdminPostManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
         PrintWriter out = response.getWriter();
         try {
 
             String token = Authentication.getTokenFromCookies(request.getCookies());
             Player player = Authentication.getPlayerInformationByToken(token);
 
-            List<Post> listpost = new PostModel().getall();
-            request.setAttribute("listpost", listpost);
-            request.setAttribute("player", player);
-            //out.println(listpost);
-           
-//           int postid = new Post().getId();
-//            if (postid != 0) {
-//                new PostModel().clearPostByID(postid);
-//                response.sendRedirect("admin-post.jsp");
-//            }
+            if (player.getRole() != 1) {
+                throw new Exception("You are not admin");
+            }
             
+            List<Map.Entry<Player, Post>> listpost = new PostModel().getAllPostWithPlayer();
+            
+            request.setAttribute("listpost", 
+                    listpost.stream().filter(e -> 
+                            e.getValue().getIsApproved() == null || e.getValue().getIsApproved() == false
+                    ).toArray()
+            );
             request.getRequestDispatcher("admin-post.jsp").forward(request, response);
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+        }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        try {
+            String token = Authentication.getTokenFromCookies(request.getCookies());
+            Player player = Authentication.getPlayerInformationByToken(token);
+
+            if (player.getRole() != 1) {
+                throw new Exception("You are not admin");
+            }
+            
+            new PostModel().updateStatusPost(Integer.parseInt(request.getParameter("postid")), true);
+            
+            response.sendRedirect("admin-post");
         } catch (Exception ex) {
             ex.printStackTrace(out);
         }

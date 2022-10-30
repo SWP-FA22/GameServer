@@ -95,12 +95,15 @@
                     <div
                         class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
                         >
-                        <i class="fa-regular fa-circle-check w-6 h-6"></i>
+                        <form method="post">
+                            <input type="hidden" name="postid" value="${listpost.getKey().getId()}"/>
+                            <button type="submit"><i class="fa-regular fa-circle-check w-6 h-6"></i></button>
+                        </form>
                     </div>
                     <div
                         class="icon-ban cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
                         >
-                        <i class="fa-solid fa-ban w-6 h-6"></i>
+                        <a class="fa-solid fa-ban w-6 h-6" href="delete-post?postid=${listpost.getKey().getId()}"></a>
                     </div>
                 </div>
                 <div class="wrapper bg-white flex flex-row p-3">
@@ -119,11 +122,11 @@
                         <div
                             class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
                             >
-                            ${listpost.timeCreate}
+                            ${listpost.getValue().timeCreate}
                         </div>
-                        <div class="name font-bold py-1">${player.username}</div>
+                        <div class="name font-bold py-1">${listpost.getKey().username}</div>
                         <div class="bio text-sm">
-                            ${listpost.description}
+                            ${listpost.getValue().description}
                         </div>
                     </div>
                 </div>
@@ -183,37 +186,37 @@
         <script src="../script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
-            // approve or deny
-
-            const check_icons = document.querySelectorAll(".icon-check");
-            const ban_icons = document.querySelectorAll(".icon-ban");
-
-            check_icons.forEach((item) => {
-                item.addEventListener("click", () => {
-                    swal({
-                        title: "Approved!",
-                        icon: "success",
-                        button: "Close",
-                    });
-                });
-            });
-
-            ban_icons.forEach((item) => {
-                item.addEventListener("click", () => {
-                    swal({
-                        title: "Are you sure to delete this post?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    }).then((willDelete) => {
-                        if (willDelete) {
-                            swal("Delete successfully !", {
-                                icon: "success",
-                            });
-                        }
-                    });
-                });
-            });
+//            // approve or deny
+//
+//            const check_icons = document.querySelectorAll(".icon-check");
+//            const ban_icons = document.querySelectorAll(".icon-ban");
+//
+//            check_icons.forEach((item) => {
+//                item.addEventListener("click", () => {
+//                    swal({
+//                        title: "Approved!",
+//                        icon: "success",
+//                        button: "Close",
+//                    });
+//                });
+//            });
+//
+//            ban_icons.forEach((item) => {
+//                item.addEventListener("click", () => {
+//                    swal({
+//                        title: "Are you sure to delete this post?",
+//                        icon: "warning",
+//                        buttons: true,
+//                        dangerMode: true,
+//                    }).then((willDelete) => {
+//                        if (willDelete) {
+//                            swal("Delete successfully !", {
+//                                icon: "success",
+//                            });
+//                        }
+//                    });
+//                });
+//            });
         </script>
     </body>
 </html>

@@ -6,9 +6,6 @@ package routes;
 
 import entities.Player;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,20 +29,26 @@ public class DeletePost extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         try {
+
+        try {
             String token = Authentication.getTokenFromCookies(request.getCookies());
             Player player = Authentication.getPlayerInformationByToken(token);
 
             int postid = Integer.parseInt(request.getParameter("postid"));
 
             PostModel pm = new PostModel();
-            
-            pm.deletePost(postid, player.getId());
 
-            response.sendRedirect("post-manage");
+            if (player.getRole() != 1) {
+                pm.deletePost(postid, player.getId());
+                response.sendRedirect("post-manage");
+
+            } else {
+                pm.deletePost(postid);
+                response.sendRedirect("admin-post");
+            }
+
         } catch (Exception ex) {
-            
+
         }
     }
 }
