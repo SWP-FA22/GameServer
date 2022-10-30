@@ -107,7 +107,7 @@
 
                 <div class="form-group w-[50%] mb-6 mt-4">
                     <label
-                        for="exampleInputEmail1"
+                        for="title"
                         class="form-label inline-block mb-2 text-gray-700"
                         >Title</label
                     >
@@ -119,35 +119,19 @@
                            name="title"></input>
 
                     <label
-                        for="exampleInputEmail1"
-                        class="form-label inline-block mb-2 text-gray-700"
-                        >Name</label
+                        for="description"
+                        class="form-label inline-block mb-2 text-gray-700 mt-6"
+                        >Description</label
                     >
-                    <input type="text"
-                           class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                           id="title"
-                           aria-describedby="createdby"
-                           placeholder="Enter Username"
-                           name="createdby"></input>
+                    
+                    <div style="height: 400px"> 
+                        <input type="text" name="description" id="div_editor1">
+                    </div>
                 </div>
-
-                <!--                <div class="form-group w-[50%] mb-6 mt-4">
-                
-                                </div>-->
-                <!--                <div name="description" type="text" id="div_editor1" class="form-group w-[50%] mb-6 mt-4">
-                                    
-                                </div>-->
-
-                <div style="height: 300px; width: 800px"> 
-                    <input type="text" name="description" id="div_editor1">
-                </div>
-
 
                 <div class="flex items-center justify-center mt-4">
-                    
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4 rounded" type="submit" name="post" onclick="formSubmit()">
                         Post
-                        
                     </button>
                     <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                         <a href="." type="button" name="cancel"> Cancel</a>

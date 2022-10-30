@@ -40,21 +40,12 @@ public class DeletePost extends HttpServlet {
             int postid = Integer.parseInt(request.getParameter("postid"));
 
             PostModel pm = new PostModel();
-            pm.clearPostByID(postid);
+            
+            pm.deletePost(postid, player.getId());
 
-            request.getRequestDispatcher("post-manage.jsp").forward(request, response);
+            response.sendRedirect("post-manage");
         } catch (Exception ex) {
-            Logger.getLogger(DeletePost.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
-
-
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-       
-    }
-
 }

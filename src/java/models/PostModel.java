@@ -66,16 +66,13 @@ public class PostModel extends ModelBase<Post> {
         
     }
     
-   public boolean clearPostByID(int id) throws Exception {
-        return getConnection().executeUpdate("DELETE FROM [POST] WHERE [ID] = ?", id) > 0;
+   public boolean deletePost(int id, int createdBy) throws Exception {
+        return getConnection().executeUpdate("DELETE FROM [POST] WHERE [ID] = ? AND [CreatedBy] = ?", id, createdBy) > 0;
     }
 
    
-   public void updatePost(  String description, Integer id) throws Exception{
-       ModelBase.connection().executeUpdate("update [Post] set  [Description] = ? where [ID] = ?",  description, id);
+   public void updatePost(String title, String description, Integer id, int createdBy) throws Exception{
+       ModelBase.connection().executeUpdate("update [Post] set [Title] = ?, [Description] = ? where [ID] = ? AND [CreatedBy] = ?", title, description, id, createdBy);
    }
-   
-
-   
    
 }

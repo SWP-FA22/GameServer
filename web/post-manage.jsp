@@ -99,75 +99,69 @@
                     <a href="post"> Create new post</a>
                 </button>
             </div>
-            
-                <div style="margin-top: 30px"
-                     <hr><hr>
-                    <c:forEach items="${requestScope.listbypid}" var="list">
-                        <div class="flex item-center justify-end">
 
-                            <form id ="${list.id}" action="edit-post" method="get">
+            <div style="margin-top: 30px"
+                 <hr><hr>
+                <c:forEach items="${requestScope.listbypid}" var="list">
+                    <div class="flex item-center justify-end">
+                        <form id ="edit-${list.id}" action="edit-post" method="get">
                             <div class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                <p><a class="fa-solid fa-pen-to-square w-6 h-6" type="button" href="edit-post" aria-hidden="true" onclick="document.getElementById('${list.id}').submit()"></a></p>
-
-
+                                <p><i class="fa-solid fa-pen-to-square w-6 h-6" aria-hidden="true" onclick="document.getElementById('edit-${list.id}').submit()"></i></p>
                             </div>
-                             <input type="hidden" value="${list.id}" name="postid">
-                            </form>
-                            <form id="${list.id}" action="delete-post" method="get">
-                                <div class="icon-trash cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110" >
-                                    <!--                                <a class="fa-solid fa-trash w-6 h-6" type="submit" ></a>-->
-
-                                    <p><i class="fa-solid fa-trash w-6 h-6" aria-hidden="true" onclick="document.getElementById('${list.id}').submit()"></i></p>
-
-                                </div>
-
-                                <input type="hidden" value="${list.id}" name="postid">
-                            </form>
-
-                        </div>
-
-                        <div class="wrapper bg-white flex flex-row p-3">
-                            <div class="w-1/6 flex-grow-0">
-                                <div
-                                    class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
-                                    >
-                                    <img
-                                        class="rounded-full w-full"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
-                                        alt=""
-                                        />
-                                </div>
+                            <input type="hidden" value="${list.id}" name="postid">
+                        </form>
+                        <form id="delete-${list.id}" action="delete-post" method="get">
+                            <div class="icon-trash cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110" >
+                                <p><i class="fa-solid fa-trash w-6 h-6" aria-hidden="true" onclick="document.getElementById('delete-${list.id}').submit()"></i></p>
                             </div>
-                            <div class="w-5/6 info text-left pl-3 text-gray-500">
-                                <div
-                                    class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
-                                    >
-                                    ${list.timeCreate}
-                                </div>
-                                <div
-                                    class="written-by text-red-500 text-gray-600 tracking-wide text-sm mb-2"
-                                    >
-                                    <c:choose >
-                                        <c:when test ="${list.isApproved == null}">Pending                                           
-                                        </c:when> 
 
-                                        <c:otherwise>Accepted
-                                        </c:otherwise>
-                                    </c:choose>
+                            <input type="hidden" value="${list.id}" name="postid">
+                        </form>
+                    </div>
 
-                                </div>
-                                <div class="name font-bold py-1">${player.username}</div>
-                                <div class="bio text-sm">
-                                    ${list.description}
-                                </div>
+                    <div class="wrapper bg-white flex flex-row p-3">
+                        <div class="w-1/6 flex-grow-0">
+                            <div
+                                class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+                                >
+                                <img
+                                    class="rounded-full w-full"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
+                                    alt=""
+                                    />
                             </div>
                         </div>
-                        <hr>     
+                        <div class="w-5/6 info text-left pl-3">
+                            <div>
+                                <p class="written-by font-bold tracking-wide">${list.title}</p>
 
-                    </c:forEach> 
-                </div>
+                                <c:choose >
+                                    <c:when test ="${list.isApproved == null}">
+                                        <div class="written-by text-red-500 tracking-wide text-sm">Pending</div>
+                                    </c:when> 
+                                    <c:otherwise>
+                                        <div class="written-by text-green-500 tracking-wide text-sm">Accepted</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
 
-            
+                            <div
+                                class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+                                >
+                                ${list.timeCreate}
+                            </div>
+
+                            <div class="bio text-sm">
+                                ${list.description}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>     
+
+                </c:forEach> 
+            </div>
+
+
         </div>
 
 

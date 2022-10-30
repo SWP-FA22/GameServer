@@ -38,29 +38,14 @@ public class PostServlet extends HttpServlet {
             String token = Authentication.getTokenFromCookies(request.getCookies());
             Player player = Authentication.getPlayerInformationByToken(token);
 
-            String createdby = request.getParameter("createdby").trim();
             String title = request.getParameter("title").trim();
             String description = request.getParameter("description").trim();
 
-            int uid = new PlayerModel().getIdByUsername(createdby);
-           
-
-            if (new PlayerModel().getIdByUsername(createdby) != -1) {
-                new PostModel().createPost(uid, title, description);
-                //request.setAttribute("success", "Create post successfully!");
-                response.sendRedirect("post-manage");
-//                request.getRequestDispatcher("post-manage.jsp").forward(request, response);
-                return;
-            } else {
-                request.setAttribute("error", "Re-enter!");
-                request.getRequestDispatcher("create-post.jsp").forward(request, response);
-                return;
-            }
-            // request.getRequestDispatcher("create-post.jsp").forward(request, response);
+            new PostModel().createPost(player.getId(), title, description);
+            response.sendRedirect("post-manage");
         } catch (Exception e) {
-           e.printStackTrace(out);
+            e.printStackTrace(out);
         }
-
     }
 
 }

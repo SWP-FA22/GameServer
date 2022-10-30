@@ -33,14 +33,10 @@ public class PostManage extends HttpServlet {
             List<Post> listbypid = new PostModel().getPostByPlayerID(player.getId());
             request.setAttribute("listbypid", listbypid);
             request.setAttribute("player", player);
-//           out.println(listbypid);
-//           out.println(player);
             request.getRequestDispatcher("post-manage.jsp").forward(request, response);
-
         } catch (Exception e) {
             e.printStackTrace(out);
         }
-
     }
 
     @Override
