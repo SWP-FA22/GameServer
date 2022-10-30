@@ -190,18 +190,18 @@
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script type="text/javascript">
-                                        async   function buyitem(id)
+                                     async   function buyitem(id)
                                         {
                                             var a = await fetch('buy', {
                                                 method: 'post',
                                                 headers: {
                                                     'Content-Type': 'application/x-www-form-urlencoded',
                                                 },
-                                                body: 'itemid=' + id + '&submit='
+                                               body: 'itemid='+id+'&submit='
                                             }).then(e => e.text())
                                             alert(a);
                                         }
-
+                                        
         </script>
         <script>
             <c:forEach items="${requestScope.list}" var="p">

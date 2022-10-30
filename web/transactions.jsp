@@ -66,11 +66,11 @@
                                     function onClickSubmit(target) {
                                         const i = document.querySelector('input[name="page"]');
                                         var newVal = parseInt(i.value) + (target.innerText === 'Prev' ? -1 : 1);
-
+                                        
                                         if (newVal < 0 || newVal >= ${pageCount}) {
                                             return;
                                         }
-
+                                        
                                         document.querySelector('input[name="page"]').value = newVal;
                                         document.querySelector('form').submit();
                                     }

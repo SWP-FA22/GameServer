@@ -60,8 +60,8 @@
                 </div>
 
                 <form class="mt-8 space-y-6" action="reset" method="POST"
-                      oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')" >
-
+                  oninput="repassword.setCustomValidity(repassword.value !== password.value ? 'Confirm password does not match': '')" >
+                    
                     <div class="mt-8 content-center">
                         <label class="text-sm font-bold text-gray-700 tracking-wide">
                             Password
@@ -74,7 +74,7 @@
                             required
                             />
                     </div>
-
+                    
                     <div class="mt-8 content-center">
                         <label class="text-sm font-bold text-gray-700 tracking-wide">
                             Confirm your password
@@ -87,9 +87,9 @@
                             required
                             />
                     </div>
-
+                    
                     <input type="hidden" name="token" value="<%= request.getParameter("token")%>"/>
-
+                    
                     <div>
                         <button
                             type="submit" name="submit"

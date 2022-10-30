@@ -26,10 +26,10 @@ public class UserProfileServlet extends HttpServlet {
             int numberOfShip = new ShipModel().getShipsByPlayerID(player.getId()).size();
             int numberOfItem = new ItemModel().getItemsByPlayerID(player.getId()).size();
             int diamondAmount = new ResourceModel().getDiamondAmount(player.getId());
-
+            
             request.setAttribute("numberOfItem", numberOfItem);
             request.setAttribute("numberOfShip", numberOfShip);
-            request.setAttribute("diamondAmount", diamondAmount);
+            request.setAttribute("diamondAmount",diamondAmount );
             request.setAttribute("player", player);
 
             request.getRequestDispatcher("user-profile.jsp").forward(request, response);
