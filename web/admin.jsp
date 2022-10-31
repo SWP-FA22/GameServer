@@ -265,38 +265,54 @@
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script>
+            <script>
+            const btn_close = document.getElementById('btn-close');
             <c:forEach items="${requestScope.players}" var="p">
-            const eye_icon${p.id} = document.querySelector('.eye-icon${p.id}');
-            eye_icon${p.id}.addEventListener('click', () => {
-                const modal${p.id} = document.querySelector('#modal${p.id}');
-                modal${p.id}.classList.toggle('hidden');
-            })
-
-
-            const trash_icon${p.id} = document.querySelector('.trash-icon${p.id}');
-            trash_icon${p.id}.addEventListener('click', () => {
-                swal({
-                    title: "Are you sure to ban this user?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
+            const lock_icons${p.id} = document.querySelectorAll('.lock-icon${p.id}');
+            lock_icons${p.id}.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    swal({
+                        title: "Are you sure to ban this user?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    window.location = "check?action=ban&id=" +${p.id}
+                                }
+                            });
                 })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                window.location = "check?action=ban&id=" +${p.id}
-                            }
-                        });
             })
-
-            const btn_close${p.id} = document.getElementById('btn-close${p.id}');
-            btn_close${p.id}.addEventListener('click', () => {
-                const modal${p.id} = document.querySelector('#modal${p.id}');
-                modal${p.id}.classList.toggle('hidden');
-
+            const unlock_icons${p.id} = document.querySelectorAll('.fa-lock-open${p.id}');
+            unlock_icons${p.id}.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    swal({
+                        title: "Are you sure to unban this user?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    window.location = "check?action=unban&id=" +${p.id}
+                                }
+                            });
+                })
             })
-            </c:forEach>
-
+            
+</c:forEach>
+            btn_close.addEventListener('click', () => {
+                const modal = document.querySelector('#modal');
+                modal.classList.toggle('hidden');
+            })
+            const eye_icons = document.querySelectorAll('.fa-eye');
+            eye_icons.forEach((icon) => {
+                icon.addEventListener('click', () => {
+                    const modal = document.querySelector('#modal');
+                    modal.classList.toggle('hidden');
+                })
+            })
         </script>
 
 
