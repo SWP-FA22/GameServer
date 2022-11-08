@@ -18,155 +18,138 @@
     } catch (Exception e) {
     }
 %>
+<style>
 
+
+
+
+</style>
 <!--navbar-->
-<nav
-    class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer"
-    >
-    <div
-        class="container flex flex-wrap items-center justify-between mx-auto"
-        >
-        <a href="." class="flex items-center">
-            <img
-                src="<%= request.getContextPath()%>/assets/img/logo.png"
-                class="ml-20 mr-4 h-9 sm:h-9"
-                alt="logo"
-                />
+
+<nav class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer">
+    <div class="container flex flex-wrap items-center justify-between mx-auto">
+        <a href="https://flowbite.com/" class="flex items-center">
+            <img src="<%= request.getContextPath()%>/assets/img/logo.png" class="ml-20 mr-4 h-9 sm:h-9" alt="logo" />
         </a>
-        <button
-            id="btn-menu"
-            data-collapse-toggle="navbar-default"
-            type="button"
-            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            >
+        <button id="btn-menu" data-collapse-toggle="navbar-default" type="button"
+                class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                aria-controls="navbar-default" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
-            <svg
-                class="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                >
-                <path
-                    fill-rule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"
-                    ></path>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clip-rule="evenodd"></path>
             </svg>
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul
-                class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
-                >
-                <li>
-                    <a
-                        href="."
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
+                class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md:font-medium md:border-0">
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 60%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="." class="block py-2 px-10 hover:text-blue-400 text-white rounded-full text-center shadow-md">
                         Home</a>
                 </li>
-                <li>
-                    <a
-                        href="download"
-                      
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 90%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="download"
+                       class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md tracking-tight">
                         Download Game</a>
-                    
-                    
-                    
-<!--                            <a
-                                href="user-profile"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                ><c:out value="${player.name}"/></a>-->
                 </li>
-                <li>
-                    <a
-                        href="#about-us"
-                        v-smooth-scroll
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        About Us</a
-                    >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 60%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="#about-us" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        About Us</a>
                 </li>
-                <li>
-                    <a
-                        href="purchase"
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Purchase</a
-                    >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 70%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="purchase" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        Purchase</a>
                 </li>
-                <li>
-                    <a
-                        href="top-ranking"
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Top Ranking</a
-                    >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 80%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="top-ranking" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        Top Ranking</a>
                 </li>
-                <li>
-                    <a
-                        href="checkin"
-                        active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Daily check-in</a
-                    >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 85%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="checkin" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        Daily check-in</a>
                 </li>
-                <li>
-                    <a
-                        href="list-item"
-                        class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                        >
-                        Game Database</a
-                    >
+                <li style="
+                    background-image: url('./assets/img/button.png');
+                    width: 90%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="list-item" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        Game Database</a>
                 </li>
                 <c:if test="${player == null}">
-                    <li>
-                        <a
-                            href="login"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >
+                    <li style="
+                        background-image: url('./assets/img/button.png');
+                        width: 90%;
+                        height: 100%;
+                        background-position: center;
+                        border-radius: 50px
+                        ">
+                        <a href="login" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
                             Login/Register</a>
                     </li>
                 </c:if>
 
                 <c:if test="${player != null}">
-                    <li>
-                        <div style="display: flex">
-                            <a
-                                href="logout"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >Logout</a>
-
-                            <span>&nbsp;or&nbsp;</span>
-
-                            <a
-                                href="user-profile"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                ><c:out value="${player.name}"/></a>
-                                <span>&nbsp;&nbsp;</span>
+                    <li style="
+                        background-image: url('./assets/img/button.png');
+                        width: 90%;
+                        height: 100%;
+                        background-position: center;
+                        border-radius: 50px;
+                        position: relative;
+                        display: inline-block;      
+                        " class="dropdown">
+                        <a href="logout" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                            Logout</a>
+                            <a href="user-profile" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md" >
+                                <c:out value="${player.name}"/></a>
                                 <c:if test="${player.role ==1}">
-                              <a
-                                href="admin"
-                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                >Manage account</a>  
-                              
-                            </c:if>
-                        </div>
+                                <a href="admin" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md" >
+                                    Manage account</a>
+                                </c:if>
+                    
+
+
                     </li>
                 </c:if>
             </ul>

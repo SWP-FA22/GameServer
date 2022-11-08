@@ -64,7 +64,7 @@
     <body class="bg-grey-200">
         <!-- data table -->
         <section style="
-        background-image: url('../../src/img/2203_w023_n001_2016b_p1_2016.jpg');
+        background-image: url('./assets/img/2203_w023_n001_2016b_p1_2016.jpg');
         width: 100%;
         height : 95vh;
         background-position: contain;
@@ -90,14 +90,14 @@
                 </div>
                 </div>
                 <!-- Table -->
-                <div style=" background-image: url('../../src/img/button.png');
+                <div style=" background-image: url('./assets/img/button.png');
                   width: 100%;
                   max-height: 40%;
                   height : 38%;
                   background-position: center;
                   border-radius: 50px" class="w-full max-w-6xl mx-auto shadow-lg rounded-lg border border-gray-200">
                 <header class="px-5 py-4 border-b border-gray-100">
-                    <h2 class="text-xl font-semibold text-gray-800">Users Data</h2>
+                    <h2 class="text-xl font-semibold text-white">Users Data</h2>
                 </header>
                     <div class="p-3">
                         <div class="overflow-x-auto">
@@ -127,14 +127,14 @@
                                             <td class="p-2 whitespace-nowrap">${p.id}</td>
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium text-gray-800">${p.username}</div>
+                                                    <div class="font-medium text-white">${p.username}</div>
                                                 </div>
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="text-left">${p.name}</div>
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
-                                                <div class="text-left font-medium text-green-500">
+                                                <div class="text-left font-medium text-white">
                                                     ${p.email}
                                                 </div>
                                             </td>

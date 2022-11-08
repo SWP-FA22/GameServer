@@ -33,6 +33,9 @@
         <title>Home Page</title>
 
         <style>
+            .dropdown:hover .dropdown-content {
+  display: block;
+}
             html {
                 scroll-behavior: smooth;
             }
@@ -134,7 +137,7 @@
         </div>
 
         <!--about-us-->
-        <section id="about-us" class="relative w-full bg-[#F8F9FA]">
+        <section id="about-us" class="relative w-full bg-gray-50">
             <div class="container mx-auto p-4 pb-24 h-auto">
                 <div class="flex content-center items-center justify-center h-48">
                     <h2 class="text-4xl font-extrabold font-['Open_Sans'] my-10">

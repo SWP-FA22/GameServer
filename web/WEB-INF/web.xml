@@ -108,6 +108,10 @@
         <servlet-name>DeletePost</servlet-name>
         <servlet-class>routes.DeletePost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewBlogServlet</servlet-name>
+        <servlet-class>routes.ViewBlogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>DeletePost</servlet-name>
         <url-pattern>/delete-post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBlogServlet</servlet-name>
+        <url-pattern>/view-post</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
