@@ -112,6 +112,14 @@
         <servlet-name>ViewBlogServlet</servlet-name>
         <servlet-class>routes.ViewBlogServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListPostServlet</servlet-name>
+        <servlet-class>routes.ListPostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchAdminServlet</servlet-name>
+        <servlet-class>routes.SearchAdminServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -215,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>ViewBlogServlet</servlet-name>
         <url-pattern>/view-post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPostServlet</servlet-name>
+        <url-pattern>/listpost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAdminServlet</servlet-name>
+        <url-pattern>/searchadmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

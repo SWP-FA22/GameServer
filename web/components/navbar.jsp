@@ -78,6 +78,16 @@
                 </li>
                 <li style="
                     background-image: url('./assets/img/button.png');
+                    width: 60%;
+                    height: 100%;
+                    background-position: center;
+                    border-radius: 50px
+                    ">
+                    <a href="listpost" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
+                        Posts</a>
+                </li>
+                <li style="
+                    background-image: url('./assets/img/button.png');
                     width: 70%;
                     height: 100%;
                     background-position: center;
@@ -130,27 +140,40 @@
                 </c:if>
 
                 <c:if test="${player != null}">
+
                     <li style="
                         background-image: url('./assets/img/button.png');
                         width: 90%;
                         height: 100%;
                         background-position: center;
-                        border-radius: 50px;
-                        position: relative;
-                        display: inline-block;      
-                        " class="dropdown">
-                        <a href="logout" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md">
-                            Logout</a>
-                            <a href="user-profile" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md" >
-                                <c:out value="${player.name}"/></a>
+                        border-radius: 50px
+                        ">
+                        <div style="display: flex">
+                            <a
+                                href="logout"
+                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                >Logout</a>
+
+                            <span>&nbsp;or&nbsp;</span>
+
+                            <a
+                                href="user-profile"
+                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                ><c:out value="${player.name}"/></a>
+                                <span>&nbsp;&nbsp;</span>
                                 <c:if test="${player.role ==1}">
-                                <a href="admin" class="block py-2 pr-4 pl-3 text-white rounded-full text-center shadow-md" >
-                                    Manage account</a>
-                                </c:if>
-                    
-
-
+                              <a
+                                href="admin"
+                                active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                >Manage account</a>  
+                              
+                            </c:if>
+                        </div>
                     </li>
+
                 </c:if>
             </ul>
         </div>
