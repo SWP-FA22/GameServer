@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,7 +27,6 @@
             />
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
-
             tailwind.config = {
                 theme: {
                     extend: {
@@ -66,8 +65,8 @@
 
         <div class="relative">
             <img
-                src="https://images5.alphacoders.com/106/1066686.jpg"
-                class="object-fit w-full h-[25rem]"
+                src="./assets/img/2203_w023_n001_2016b_p1_2016.jpg"
+                class="object-fit w-full h-[36rem]"
                 />
         </div>
 
@@ -83,11 +82,7 @@
                         </button>
                     </div>
                 </div>
-
-
-
             </div>
-
             <div class="flex items-center mx-auto justify-center">
                 <div class="flex justify-center mx-8">
                     <div class="mb-3 xl:w-96">
@@ -141,17 +136,22 @@
 
 
 
-        <div class="container px-8 mx-auto">
-            <div class="p-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-20 mx-center">
+        <div  
+            style="  background-image: url('./assets/img/button.png');
+            width: 100%;
+            height: 650px;
+            background-position: center;
+            border-radius: 50px" class="container px-8 mx-auto">
+            <div class="p-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-20 mx-center">
                 <!--Card 1-->
 
                 <c:forEach items="${requestScope.list}" var="p">
 
                     <div class="animated${p.id} flex flex-col items-center justify">
-                        <div class="rounded-lg shadow-lg bg-white w-40 h-40">
-                            <img class="rounded-t-lg w-40 h-40 object-contain" src="${p.imageURL}"  alt=""/>
+                        <div class="rounded-lg shadow-lg bg-white w-32 h-32">
+                            <img class="rounded-t-lg w-32 h-32 object-contain" src="${p.imageURL}"  alt=""/>
                             <div class="p-6">
-                                <h5 class="text-gray-900 text-xl font-medium mb-2">${p.name}</h5> 
+                                <h5 class="text-white text-xl font-medium mb-2">${p.name}</h5> 
                             </div>
                         </div>
                     </div>
@@ -190,18 +190,18 @@
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script type="text/javascript">
-                                     async   function buyitem(id)
+                                        async   function buyitem(id)
                                         {
                                             var a = await fetch('buy', {
                                                 method: 'post',
                                                 headers: {
                                                     'Content-Type': 'application/x-www-form-urlencoded',
                                                 },
-                                               body: 'itemid='+id+'&submit='
+                                                body: 'itemid=' + id + '&submit='
                                             }).then(e => e.text())
                                             alert(a);
                                         }
-                                        
+
         </script>
         <script>
             <c:forEach items="${requestScope.list}" var="p">
