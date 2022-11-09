@@ -8,7 +8,7 @@
 <%@page import="entities.Player"%>
 <%@page import="utilities.Authentication"%>
 <%@page import="utilities.GlobalConstants"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
@@ -47,7 +47,7 @@
     <body>
         <div class="d-md-block d-none">
             <div class="sticky-top d-flex justify-content-between align-items-center pe-4 ps-4 p-2">
-                <a href="list-item" class="text-black-50">Quay lại</a>
+                <a href="." class="text-black-50">Quay lại</a>
 
                 <a href=".">
                     <img src="https://dl.dir.freefiremobile.com/common/web_event/official2/dist/client/img/garena_logo.b28b2b6.png"
@@ -114,7 +114,7 @@
                     <b>5 phút</b> để cập nhật kết quả thanh toán.</p>
 
                 <div class="d-flex justify-content-center">
-                    <img src="https://img.vietqr.io/image/<%= GlobalConstants.BANK_ID%>-<%= GlobalConstants.BANK_NO%>-<%= GlobalConstants.QR_TEMPLATE%>.jpg?addInfo=${player.id}" class="img-fluid border rounded">
+                    <img src="https://img.vietqr.io/image/<%= GlobalConstants.BANK_ID%>-<%= GlobalConstants.BANK_NO%>-<%= GlobalConstants.QR_TEMPLATE%>.jpg?addInfo=PID${player.id}" class="img-fluid border rounded">
                 </div>
             </div>
         </div>

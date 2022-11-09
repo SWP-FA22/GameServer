@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import models.ResourceModel;
 import models.TransactionModel;
 import org.json.JSONArray;
@@ -59,7 +61,15 @@ public class PurchaseServlet extends HttpServlet {
                 JSONObject trans = transactions.getJSONObject(i);
 
                 // get UID from description
-                int playerID = Integer.parseInt(trans.getString("description"));
+                String des = trans.getString("description");
+
+                Pattern ptn = Pattern.compile("PID(\\d+)");
+                Matcher mct = ptn.matcher(des);
+                if (!mct.find()) {
+                    throw new Exception("Cannot find PID");
+                }
+                
+                int playerID = Integer.parseInt(mct.group(1));
                 int amount = trans.getInt("amount");
 
                 new TransactionModel().createNewTransaction(playerID, amount);
@@ -69,5 +79,4 @@ public class PurchaseServlet extends HttpServlet {
             response.getWriter().print(e.getMessage());
         }
     }
-
 }
