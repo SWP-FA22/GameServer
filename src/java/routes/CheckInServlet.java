@@ -34,11 +34,15 @@ public class CheckInServlet extends HttpServlet {
     throws ServletException, IOException {
         try {
             String token = Authentication.getTokenFromCookies(request.getCookies());
-            if (Authentication.getPlayerInformationByToken(token) == null) {
-                response.sendRedirect("login");
+            if (token==null)response.sendRedirect("login");
+            else
+            if (Authentication.getPlayerInformationByToken(token) != null) {
+                //request.getRequestDispatcher("login").forward(request, response);
+                request.getRequestDispatcher("checkin.jsp").forward(request, response);
                 return;
             }
-            request.getRequestDispatcher("checkin.jsp").forward(request, response);
+           
+            
         } catch (Exception ex) {
             Logger.getLogger(CheckInServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

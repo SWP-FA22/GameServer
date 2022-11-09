@@ -62,6 +62,36 @@ public class PlayerModel extends ModelBase<Player> {
             return -1;
         }
     }
+public List<Player> getPlayer(int page,int size) throws Exception {
+        List<Player> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Player where  Role!=1 order by ID DESC offset ? rows fetch next ? rows only",page*size,size)) {
+            while (rs.next()) {
+                Player post = new Player();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
+    public List<Player> getallplayer(String name) throws Exception {
+        List<Player> listbypid = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Player] WHERE [Role] = 0 ";
+            if (name != null && !name.equals("")) {
+                sql += " and Name like '%" + name + "%' or Username like '%" + name + "%'";
+                ResultSet rs = ModelBase.connection().executeQuery(sql);
+                while (rs.next()) {
+                    Player player = new Player();
+                    player.loadProps(rs);
+                    listbypid.add(player);
+                }
+                return listbypid;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
     public String getHashedPasswordById(Integer id) throws Exception {
         Player player = get(id);
@@ -103,7 +133,8 @@ public class PlayerModel extends ModelBase<Player> {
 
     public static void main(String[] args) throws Exception {
         PlayerModel pm = new PlayerModel();
-        System.out.println(pm.getUserByUsername("superadmin"));
+        List<Player> list = new PlayerModel().getallplayer("a");
+        for (Player p:list) System.out.println(p.getRole());
     }
 
     public List<Player> getTopRanking() throws Exception {

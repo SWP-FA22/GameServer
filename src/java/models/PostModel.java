@@ -6,6 +6,7 @@ package models;
 
 import entities.Player;
 import entities.Post;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -40,6 +41,48 @@ public class PostModel extends ModelBase<Post> {
             }
             return listbypid;
         }
+    }
+
+    public List<Post> getPost() throws Exception {
+        List<Post> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery(" SELECT * FROM [Post] WHERE [isApproved] = 1")) {
+            while (rs.next()) {
+                Post post = new Post();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
+public List<Post> getPost(int page,int size) throws Exception {
+        List<Post> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Post where  isApproved=1 order by TimeCreate DESC offset ? rows fetch next ? rows only",page*size,size)) {
+            while (rs.next()) {
+                Post post = new Post();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
+    public List<Post> getPost(String name) throws Exception {
+        List<Post> listbypid = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Post] WHERE [isApproved] = 1 ";
+            if (name != null && !name.equals("")) {
+                sql += " and Title like '%" + name + "%' or Description like '%" + name + "%'";
+                ResultSet rs = ModelBase.connection().executeQuery(sql);
+                while (rs.next()) {
+                    Post post = new Post();
+                    post.loadProps(rs);
+                    listbypid.add(post);
+                }
+                return listbypid;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
     public List<Map.Entry<Player, Post>> getAllPostWithPlayer() throws Exception {

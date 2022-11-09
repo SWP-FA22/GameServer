@@ -33,6 +33,9 @@
         <title>Home Page</title>
 
         <style>
+            .dropdown:hover .dropdown-content {
+  display: block;
+}
             html {
                 scroll-behavior: smooth;
             }
