@@ -27,7 +27,6 @@
             href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
             />
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             tailwind.config = {
                 theme: {
@@ -48,21 +47,30 @@
         </style>
     </head>
     <body>
-        <%@include file="components/navbar.jsp" %>
 
         <!-- component -->
         <div
             class="relative min-h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover items-center"
             style="
-            background-image: url(https://wallpapercave.com/dwp1x/wp2429392.jpg);
+            background-image: url('./assets/img/2203_w023_n001_2016b_p1_2016.jpg')
             "
             >
             <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
-            <div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
+            <div
+                style="
+                background-image: url('https://img.freepik.com/premium-vector/beach-landscape-summer-day-background-illustration-with-ship-ocean-island_513217-161.jpg?w=2000');
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                border-radius: 50px;
+                "
+                class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10"
+                >
                 <div class="text-center">
-                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Sign Up</h2>
+                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Welcom To BattleShip!</h2>
+                    
                     <p class="mt-2 text-sm text-gray-600">
-                        Enter your information to register
+                        Sign up new account
                     </p>
                     <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.error}</h3>
                 </div>

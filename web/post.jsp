@@ -70,17 +70,14 @@
             html {
                 scroll-behavior: smooth;
             }
-
             .animated:hover {
                 animation: hover_item 0.3s ease-out forwards;
                 cursor: pointer;
             }
-
             @keyframes hover_item {
                 from {
                     transform: translateY(0);
                 }
-
                 to {
                     transform: translateY(-20px);
                 }
@@ -174,7 +171,6 @@
         <script>
             var commentPage = 0;
             var ws = null;
-
             function loadMoreComments() {
                 ws.get(commentPage);
                 commentPage++;
@@ -207,7 +203,6 @@
                         const [cUser, comment] = data.comment;
                         commentList.innerHTML = createComment(cUser.name, comment.timeCreate, comment.description) + commentList.innerHTML;
                     }
-
                     // Update comment count
                     document.getElementById('comment-count').innerHTML = data.size;
                     // Hide load-more-comments when all comments loaded

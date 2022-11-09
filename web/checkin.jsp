@@ -62,23 +62,28 @@
         <!-- data table -->
         <section
             style="
-            background-image: url(https://store-images.s-microsoft.com/image/apps.48230.14636562343019557.feb6ee7f-98cf-4969-bcee-847a8699802d.1cbf4a08-f598-410a-8767-3d2732f24fb2?mode=scale&q=90&h=1080&w=1920);
-            "
+            background-image: url('./assets/img/2203_w023_n001_2016b_p1_2016.jpg');"
             class="antialiased bg-gray-100 text-gray-600 h-screen px-4 py-4"
             >
             <div class="flex flex-col justify-center h-full">
-                <div   class="w-full max-w-6xl h-[550px] mx-auto bg-white shadow-lg rounded-lg border border-gray-200" >
-                    <header class="px-5 py-4 border-b border-gray-100">
+                <div style="background-image: url('./assets/img/button.png');
+                     width: 100%;
+                     height: 80%;
+                     background-position: center;
+                     border-radius: 50px"
+                     class="w-full max-w-6xl  mx-auto bg-white shadow-lg rounded-lg border border-gray-200">
+                    <header class="px-8 py-8 border-b border-gray-100">
                         <div class="flex items-center relative">
                             <div>
-                                <h2 class="font-semibold text-gray-800 text-lg">
+                                <h2 class="font-semibold text-white text-lg">
                                     Daily Attendance
                                 </h2>
-                                <p class="text-sm">This month has registered ${player.checkincount} days</p>
+                                <p class="text-base text-white">This month has registered ${player.checkincount} days</p>
                             </div>
-                            <button
-                                class="absolute -top-8 right-0 my-8 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="checkin()">
-                                Check-in
+                            <button style=" background-image: url('./assets/img/button.png');
+                                    background-position: center;" ;
+                                    class="absolute -top-8 right-0 my-8 px-8 bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="checkin()">
+                                Attendance
                             </button>
                         </div>
                     </header>
@@ -126,9 +131,6 @@
                                             <div
                                                 class="absolute w-6 h-6 rounded-full bg-red-500 -top-2 -right-1"
                                                 >
-                                                <i
-                                                    class="fa-solid fa-check w-6 h-6 text-green-600 font-bold text-center"
-                                                    ></i>
                                             </div>
                                             <div class="w-20 h-18 rounded-full mt-8">
                                                 <img
@@ -147,7 +149,6 @@
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
-
                             </c:forEach>
 
                         </div>
@@ -162,17 +163,17 @@
         <script src="../script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
-                async   function checkin()
-                {
-                    var a = await fetch('checkin', {
-                        method: 'post',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: 'submit='
-                    }).then(e => e.text())
-                    alert(a);
-                }
+            async   function checkin()
+            {
+                var a = await fetch('checkin', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'submit='
+                }).then(e => e.text())
+                alert(a);
+            }
 
         </script>
     </body>
