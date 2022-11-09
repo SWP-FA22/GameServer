@@ -10,98 +10,98 @@
 <html lang="en">
 
     <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ["Roboto", "sans-serif"],
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+              integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+              integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Roboto", "sans-serif"],
+                        },
                     },
                 },
-            },
-        };
-    </script>
-    <title>Home Page</title>
+            };
+        </script>
+        <title>Home Page</title>
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .animated:hover {
-            animation: hover_item 0.3s ease-out forwards;
-            cursor: pointer;
-        }
-
-        @keyframes hover_item {
-            from {
-                transform: translateY(0);
+        <style>
+            html {
+                scroll-behavior: smooth;
             }
 
-            to {
-                transform: translateY(-20px);
+            .animated:hover {
+                animation: hover_item 0.3s ease-out forwards;
+                cursor: pointer;
             }
-        }
-    </style>
-</head>
+
+            @keyframes hover_item {
+                from {
+                    transform: translateY(0);
+                }
+
+                to {
+                    transform: translateY(-20px);
+                }
+            }
+        </style>
+    </head>
     <%@include file="components/navbar.jsp" %>
 
     <body class="bg-grey-200">
         <!-- data table -->
         <section style="
-        background-image: url('./assets/img/2203_w023_n001_2016b_p1_2016.jpg');
-        width: 100%;
-        height : 95vh;
-        background-position: contain;
-        " class=" antialiased bg-gray-100 text-gray-600 h-screen px-4">
+                 background-image: url('./assets/img/2203_w023_n001_2016b_p1_2016.jpg');
+                 width: 100%;
+                 height : 95vh;
+                 background-position: contain;
+                 " class=" antialiased bg-gray-100 text-gray-600 h-screen px-4">
             <div class="flex flex-col justify-center h-full">
                 <div class="flex justify-center">
-                <div class="mb-3 xl:w-96">
-                    <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
-                        <form action="searchadmin" method="get">
-                            <input type="search"
-                            class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            placeholder="Search User" name="name" aria-label="Search" aria-describedby="button-addon2">
-                        <button
-                            class="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
-                            type="submit" id="button-addon2">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4"
-                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path fill="currentColor"
-                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
-                                </path>
-                            </svg>
-                        </button>
-                        </form>
-                        
+                    <div class="mb-3 xl:w-96">
+                        <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+                            <form action="searchadmin" method="get">
+                                <input type="search"
+                                       class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                       placeholder="Search User" name="name" aria-label="Search" aria-describedby="button-addon2">
+                                <button
+                                    class="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                                    type="submit" id="button-addon2">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4"
+                                         role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                    </path>
+                                    </svg>
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!-- Table -->
                 <div style=" background-image: url('./assets/img/button.png');
-                  width: 100%;
-                  max-height: 40%;
-                  height : 38%;
-                  background-position: center;
-                  border-radius: 50px" class="w-full max-w-6xl mx-auto shadow-lg rounded-lg border border-gray-200">
-                <header class="px-5 py-4 border-b border-gray-100">
-                    <h2 class="text-xl font-semibold text-white">Users Data</h2>
-                </header>
+                     width: 100%;
+                     max-height: 40%;
+                     height : 38%;
+                     background-position: center;
+                     border-radius: 50px" class="w-full max-w-6xl mx-auto shadow-lg rounded-lg border border-gray-200">
+                    <header class="px-5 py-4 border-b border-gray-100">
+                        <h2 class="text-xl font-semibold text-white">Users Data</h2>
+                    </header>
                     <div class="p-3">
                         <div class="overflow-x-auto">
                             <table class="table-auto w-full">
@@ -181,21 +181,15 @@
                             <div class="mt-8 flex justify-center">
                                 <nav aria-label="Page navigation example">
                                     <ul class="flex list-style-none">
-                                        <li class="page-item disabled"><a
-                                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
-                                                href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-                                        <li class="page-item active"><a
-                                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                                                href="#">1 <span class="visually-hidden">(current)</span></a></li>
-                                        <li class="page-item"><a
-                                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                                href="#">2</a></li>
-                                        <li class="page-item"><a
-                                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                                href="#">3</a></li>
-                                        <li class="page-item"><a
-                                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                                                href="#">Next</a></li>
+                                        <c:forEach var = "i" begin = "1" end = "${requestScope.pages}">
+                                            <li class="page-item active">
+                                                <a
+                                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                                                    href="admin?page=${i}"
+                                                    >${i} <span class="visually-hidden">(current)</span></a
+                                                >
+                                            </li>
+                                        </c:forEach>
                                     </ul>
                                 </nav>
                             </div>
@@ -297,54 +291,54 @@
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script src="./script/home.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-            <script>
-            const btn_close = document.getElementById('btn-close');
+        <script>
+    const btn_close = document.getElementById('btn-close');
             <c:forEach items="${requestScope.players}" var="p">
-            const lock_icons${p.id} = document.querySelectorAll('.lock-icon${p.id}');
-            lock_icons${p.id}.forEach((icon) => {
-                icon.addEventListener('click', () => {
-                    swal({
-                        title: "Are you sure to ban this user?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    window.location = "check?action=ban&id=" +${p.id}
-                                }
-                            });
-                })
+    const lock_icons${p.id} = document.querySelectorAll('.lock-icon${p.id}');
+    lock_icons${p.id}.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            swal({
+                title: "Are you sure to ban this user?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
             })
-            const unlock_icons${p.id} = document.querySelectorAll('.fa-lock-open${p.id}');
-            unlock_icons${p.id}.forEach((icon) => {
-                icon.addEventListener('click', () => {
-                    swal({
-                        title: "Are you sure to unban this user?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    window.location = "check?action=unban&id=" +${p.id}
-                                }
-                            });
-                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "check?action=ban&id=" +${p.id}
+                        }
+                    });
+        })
+    })
+    const unlock_icons${p.id} = document.querySelectorAll('.fa-lock-open${p.id}');
+    unlock_icons${p.id}.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            swal({
+                title: "Are you sure to unban this user?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
             })
-            
-</c:forEach>
-            btn_close.addEventListener('click', () => {
-                const modal = document.querySelector('#modal');
-                modal.classList.toggle('hidden');
-            })
-            const eye_icons = document.querySelectorAll('.fa-eye');
-            eye_icons.forEach((icon) => {
-                icon.addEventListener('click', () => {
-                    const modal = document.querySelector('#modal');
-                    modal.classList.toggle('hidden');
-                })
-            })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "check?action=unban&id=" +${p.id}
+                        }
+                    });
+        })
+    })
+
+            </c:forEach>
+    btn_close.addEventListener('click', () => {
+        const modal = document.querySelector('#modal');
+        modal.classList.toggle('hidden');
+    })
+    const eye_icons = document.querySelectorAll('.fa-eye');
+    eye_icons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            const modal = document.querySelector('#modal');
+            modal.classList.toggle('hidden');
+        })
+    })
         </script>
 
 

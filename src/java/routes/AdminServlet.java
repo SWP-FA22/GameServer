@@ -31,10 +31,21 @@ public class AdminServlet extends HttpServlet {
                 if (player.getRole() != 1) {
                     response.sendRedirect("home");
                 } else {
-                    List<Player> list = new PlayerModel().getall();
-                    for (Player i:list) if (i.getRole()==1) {
-                        list.remove(i);break;
+                    PlayerModel pm=new PlayerModel();
+                    List<Player> list = pm.getall();
+                    int sl = list.size();
+                    int pages = sl / 10;
+                    if (sl % 10 != 0) {
+                        pages++;
                     }
+                    request.setAttribute("pages", pages);
+                    int page;
+                    if (request.getParameter("page") != null) {
+                        page = Integer.parseInt(request.getParameter("page"));
+                    } else {
+                        page = 1;
+                    }
+                    list =pm.getPlayer(page - 1, 10);
                     request.setAttribute("players", list);
                     request.getRequestDispatcher("admin.jsp").forward(request, response);
                 }
