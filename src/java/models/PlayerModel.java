@@ -62,7 +62,17 @@ public class PlayerModel extends ModelBase<Player> {
             return -1;
         }
     }
-
+public List<Player> getPlayer(int page,int size) throws Exception {
+        List<Player> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Player where  Role!=1 order by ID DESC offset ? rows fetch next ? rows only",page*size,size)) {
+            while (rs.next()) {
+                Player post = new Player();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
     public List<Player> getallplayer(String name) throws Exception {
         List<Player> listbypid = new ArrayList<>();
         try {

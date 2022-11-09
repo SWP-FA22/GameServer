@@ -54,7 +54,17 @@ public class PostModel extends ModelBase<Post> {
             return listbypid;
         }
     }
-
+public List<Post> getPost(int page,int size) throws Exception {
+        List<Post> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Post where  isApproved=1 order by TimeCreate DESC offset ? rows fetch next ? rows only",page*size,size)) {
+            while (rs.next()) {
+                Post post = new Post();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
     public List<Post> getPost(String name) throws Exception {
         List<Post> listbypid = new ArrayList<>();
         try {
