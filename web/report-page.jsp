@@ -45,7 +45,7 @@
         <form action="report" method="POST">
             <div class="container mt-6">
                 <div class="row">
-                    <div class="col-8" style="margin: auto">
+                    <div class="col-10" style="margin: auto">
                         <div class="card" style="position: relative;
                              display: flex;
                              flex-direction: column;
@@ -69,10 +69,7 @@
                                      min-height: 2.5px;
                                      padding: 1rem;">
                                     <div class="row" >
-                                        <div class="col-sm-3" style="font-weight: bold">
-                                            <div>Reporting Account</div>
-                                        </div>
-                                        <input class="col-sm-9 text-secondary" placeholder="Your username" name="namefrom" required>
+                                        <input class="col-sm-9 text-secondary" placeholder="Your username" name="namefrom" hidden value="${player.username}">
 
                                         </input>
                                     </div>
@@ -89,13 +86,20 @@
 
                                     <div class="row">
                                         <div class="col-sm-3" style="font-weight: bold">
-                                            <div>Description</div>
+                                            <p>Reason</p>
                                         </div>
-                                        <input class="col-sm-9 text-secondary" placeholder="Description" name="description" required>
-                                        </input>
-                                    </div>
-                                    <hr>
 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3" style="font-weight: bold">
+                                            <input type="checkbox" name="reason" id="A1" value="Negative attitude">Negative attitude</div>
+                                        <div class="col-sm-3" style="font-weight: bold">
+                                            <input type="checkbox" name="reason" id="A1" value="Hate speech">Hate speech</div>
+                                        <div class="col-sm-2" style="font-weight: bold">
+                                            <input type="checkbox" name="reason" id="A1" value="Cheating">Cheating</div>
+                                        <div class="col-sm-4" style="font-weight: bold">
+                                            <input type="checkbox" name="reason" id="A1" value="Offensive or Inappropriate Name">Offensive or Inappropriate Name</div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-3" style="font-weight: bold">
                                             <div>Link URL video report</div>
@@ -103,35 +107,39 @@
                                         <input class="col-sm-9 text-secondary" placeholder="Link video report" name="videoURL" required>
                                         </input>
                                     </div>
-                                    <hr>
                                 </div>
-                                <div>
-                                    
-                                    <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.success}</h3>
-                                    <button class="btn btn-theme" type="submit" name="report" onclick="formSubmit()" >Submit</button>
-                                    <a href="." class="btn btn-theme" type="button" name="cancel">Cancel</a>
-                                    
-                                    
-                                    
-                                </div>
+                                <hr>
+
+
+                                <hr>
+                            </div>
+                            <div>
+
+                                <h3 class="text-red-400 mt-6" style="text-align: center">${requestScope.success}</h3>
+                                <button class="btn btn-theme" type="submit" name="report" onclick="formSubmit()" >Submit</button>
+                                <a href="." class="btn btn-theme" type="button" name="cancel">Cancel</a>
+
+
 
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </form>
-
-
-
+    </form>
 
 
-    </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-    <script src="./script/home.js"></script>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+<script src="./script/home.js"></script>
 </body>
 
 </html>

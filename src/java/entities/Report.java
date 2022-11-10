@@ -18,11 +18,14 @@ import org.json.JSONArray;
 @SQLTable(table = "Report")
 public class Report extends JSONEntity {
 
-    @SQLColumn(column = "FromID")
-    private Integer fromid;
+    @SQLColumn(column = "ID", isAutoIncrement = true)
+    private Integer id;
+    
+    @SQLColumn(column = "From")
+    private String from;
 
-    @SQLColumn(column = "ToID")
-    private Integer toid;
+    @SQLColumn(column = "To")
+    private String to;
 
     @SQLColumn(column = "Reason")
     private String reason;
@@ -33,40 +36,48 @@ public class Report extends JSONEntity {
     @SQLColumn(column = "Time")
     private Timestamp time;
 
-    @SQLColumn(column = "IsApproved")
-    private Integer isapproved;
+    @SQLColumn(column = "IsApprove")
+    private boolean isapproved;
 
     public Report() {
 
     }
 
-    public Report(Integer fromid, Integer toid, String reason, String videoURL, Timestamp time, Integer isapproved) {
-        this.fromid = fromid;
-        this.toid = toid;
+    public Report(Integer id, String from, String to, String reason, String videoURL, Timestamp time, boolean isapproved) {
+        this.id = id;
+        this.from = from;
+        this.to = to;
         this.reason = reason;
         this.videoURL = videoURL;
         this.time = time;
         this.isapproved = isapproved;
-        
-         updateProps();
     }
 
-    public Integer getFromid() {
-        return fromid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFromid(Integer fromid) {
-        this.fromid = fromid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getToid() {
-        return toid;
+    public String getFrom() {
+        return from;
     }
 
-    public void setToid(Integer toid) {
-        this.toid = toid;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    
     public String getReason() {
         return reason;
     }
@@ -91,11 +102,11 @@ public class Report extends JSONEntity {
         this.time = time;
     }
 
-    public Integer getIsapproved() {
+    public boolean getIsapproved() {
         return isapproved;
     }
 
-    public void setIsapproved(Integer isapproved) {
+    public void setIsapproved(boolean isapproved) {
         this.isapproved = isapproved;
     }
-    }
+}

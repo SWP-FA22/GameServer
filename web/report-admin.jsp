@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,60 +62,7 @@
 </head>
 
 <body class="bg-grey-200">
-    <!--navbar-->
-    <nav class="bg-white border-gray-200 px-10 sm:px-4 py-2.5 rounded font-['Open-Sans'] cursor-pointer">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
-            <a href="https://flowbite.com/" class="flex items-center">
-                <img src="../assets/img/logo.png" class="ml-20 mr-4 h-9 sm:h-9" alt="logo" />
-            </a>
-            <button id="btn-menu" data-collapse-toggle="navbar-default" type="button"
-                class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="navbar-default" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </button>
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul
-                    class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-md md: md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <li>
-                        <a href="/pages/home.html"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Home</a>
-                    </li>
-                    <li>
-                        <a href="/pages/home.html"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Report</a>
-                    </li>
-                    <li>
-                        <a href="#about-us" v-smooth-scroll
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Account</a>
-                    </li>
-                    <li>
-                        <a href="/pages/home.html"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Transaction</a>
-                    </li>
-                    <li>
-                        <a href="/pages/home.html"
-                            active-class="text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Item</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+ <%@include file="components/navbar.jsp" %>
     <!-- data table -->
     <section style="
         background-image: url(https://store-images.s-microsoft.com/image/apps.48230.14636562343019557.feb6ee7f-98cf-4969-bcee-847a8699802d.1cbf4a08-f598-410a-8767-3d2732f24fb2?mode=scale&q=90&h=1080&w=1920);
@@ -151,36 +99,27 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm divide-y divide-gray-100">
+                               <c:forEach items="${requestScope.reports}" var="report">
                                 <tr>
-                                    <td class="p-2 whitespace-nowrap">1</td>
+                                    <td class="p-2 whitespace-nowrap">${report.id}</td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-05.jpg"
-                                                    width="40" height="40" alt="Alex Shatov" />
-                                            </div>
-                                            <div class=" text-gray-800">alexshatov123</div>
+                                            <div class=" text-gray-800">${report.from}</div>
                                         </div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-05.jpg"
-                                                    width="40" height="40" alt="Alex Shatov" />
-                                            </div>
-                                            <div class=" text-gray-800">alexshatov123</div>
+                                            <div class=" text-gray-800">${report.to}</div>
                                         </div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="text-left  text-red-500">
-                                            Hack Coin
+                                            ${report.reason}
                                         </div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="text-left  text-blue-600">
-                                            <a href="https://www.youtube.com/watch?v=zWIJx0DbWV4">Link Video</a>
+                                            <a href="${report.videoURL}">Link</a>
                                         </div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
@@ -188,210 +127,18 @@
                                             <div class="flex item-center justify-center">
                                                 <div
                                                     class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-regular fa-circle-check w-6 h-6"></i>
+                                                    <a href="searchadmin?name=${report.to}"><i class="fa-regular fa-circle-check w-6 h-6"></i></a>
                                                 </div>
                                                 <div
                                                     class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-solid fa-trash  w-6 h-6"></i>
+                                                    <i class="fa-solid fa-trash fa-trash${report.id}  w-6 h-6"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">2</td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-06.jpg"
-                                                    width="40" height="40" alt="Philip Harbach" />
-                                            </div>
-                                            <div class=" text-gray-800">
-                                                philipbach123
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-06.jpg"
-                                                    width="40" height="40" alt="Philip Harbach" />
-                                            </div>
-                                            <div class=" text-gray-800">
-                                                philipbach123
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-red-500">
-                                            Hack Item
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-blue-600">
-                                            <a href="https://www.youtube.com/watch?v=zWIJx0DbWV4">Link Video</a>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center">
-                                            <div class="text-lg text-center">
-                                                <div class="flex item-center justify-center">
-                                                    <div
-                                                        class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <i class="fa-regular fa-circle-check w-6 h-6"></i>
-                                                    </div>
-                                                    <div
-                                                        class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <i class="fa-solid fa-trash  w-6 h-6"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">3</td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-07.jpg"
-                                                    width="40" height="40" alt="Mirko Fisuk" />
-                                            </div>
-                                            <div class=" text-gray-800">mirkofisuk123</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-07.jpg"
-                                                    width="40" height="40" alt="Mirko Fisuk" />
-                                            </div>
-                                            <div class=" text-gray-800">mirkofisuk123</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-red-500">
-                                            Hack Dame
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-blue-600">
-                                            <a href="https://www.youtube.com/watch?v=zWIJx0DbWV4">Link Video</a>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center">
-                                            <div class="flex item-center justify-center">
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-regular fa-circle-check w-6 h-6"></i>
-                                                </div>
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-solid fa-trash  w-6 h-6"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">4</td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-08.jpg"
-                                                    width="40" height="40" alt="Olga Semklo" />
-                                            </div>
-                                            <div class=" text-gray-800">olgasem</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-08.jpg"
-                                                    width="40" height="40" alt="Olga Semklo" />
-                                            </div>
-                                            <div class=" text-gray-800">olgasem</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left text-red-500">
-                                            Hack Full Dame
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-blue-600">
-                                            <a href="https://www.youtube.com/watch?v=zWIJx0DbWV4">Link Video</a>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center">
-                                            <div class="flex item-center justify-center">
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-regular fa-circle-check w-6 h-6"></i>
-                                                </div>
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-solid fa-trash  w-6 h-6"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">5</td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-09.jpg"
-                                                    width="40" height="40" alt="Burak Long" />
-                                            </div>
-                                            <div class=" text-gray-800">burak</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full"
-                                                    src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-09.jpg"
-                                                    width="40" height="40" alt="Burak Long" />
-                                            </div>
-                                            <div class=" text-gray-800">burak</div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left text-red-500">
-                                            Hack Full Dame
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left  text-blue-600">
-                                            <a href="https://www.youtube.com/watch?v=zWIJx0DbWV4">Link Video</a>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center">
-                                            <div class="flex item-center justify-center">
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-regular fa-circle-check w-6 h-6"></i>
-                                                </div>
-                                                <div
-                                                    class="cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                </c:forEach>
+                                
                             </tbody>
                         </table>
                         <!--pagination-->
@@ -531,19 +278,13 @@
     <script>
         const btn_close = document.getElementById('btn-close');
         const approves_icon = document.querySelectorAll('.fa-circle-check');
-        const trash_icons = document.querySelectorAll('.fa-trash');
+        
+        <c:forEach items="${requestScope.reports}" var="report">
+        const trash_icons${report.id} = document.querySelectorAll('.fa-trash${report.id}');
 
-        approves_icon.forEach((item) => {
-            item.addEventListener('click', () => {
-                swal({
-                    title: "Approved!",
-                    icon: "success",
-                    button: "Close",
-                });
-            })
-        })
+        
 
-        trash_icons.forEach((item) => {
+        trash_icons${report.id}.forEach((item) => {
             item.addEventListener('click', () => {
                 swal({
                     title: "Are you sure to delete this report?",
@@ -553,14 +294,12 @@
                 })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal("Delete successfully !", {
-                                icon: "success",
-                            });
+                            window.location = "check?action=deletereport&id=" +${report.id}
                         }
                     });
             })
         })
-
+ </c:forEach>
 
 
 

@@ -4,12 +4,17 @@
  */
 package routes;
 
+import entities.Report;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.ReportModel;
 
 /**
  *
@@ -23,7 +28,13 @@ public class AdminReport extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("report-admin.jsp").forward(request, response);
+        try {
+            List<Report> list=new ReportModel().getall();
+            request.setAttribute("reports", list);
+            request.getRequestDispatcher("report-admin.jsp").forward(request, response);
+        } catch (Exception ex) {
+            ex.printStackTrace(response.getWriter());
+        }
     }
 
    

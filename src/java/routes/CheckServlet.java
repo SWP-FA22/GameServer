@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.PlayerModel;
+import models.ReportModel;
 import utilities.Authentication;
 
 /**
@@ -47,13 +48,19 @@ public class CheckServlet extends HttpServlet {
                         pm.updateRole(player1);
                         response.sendRedirect("admin");
                     }
-                    else
+                    else if (action.equals("unban"))
                     {
                         //unban account
                         player1.setRole(0);
                         pm.updateRole(player1);
                         response.sendRedirect("admin");
                     }
+                    else if (action.equals("deletereport"))
+                            {
+                                ReportModel rm=new ReportModel();
+                                rm.deleteReport(id.intValue());
+                                response.sendRedirect("admin-report");
+                            }
                 }
 
             }
