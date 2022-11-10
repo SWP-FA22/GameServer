@@ -8,6 +8,7 @@ import entities.Player;
 import entities.Report;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,17 @@ public class ReportModel extends ModelBase<Report>{
     public ReportModel() throws Exception{
         super(Report.class);
     }
-    
+    public List<Report> getPost(int page,int size) throws Exception {
+        List<Report> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Report order by Time DESC offset ? rows fetch next ? rows only",page*size,size)) {
+            while (rs.next()) {
+                Report post = new Report();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
 public boolean createReport(String fromid, String toid, String reason, String videoURL) throws Exception{
     return ModelBase.connection().executeUpdate("INSERT INTO  [Report]  ([From], [To], [Reason], [VideoURL],[IsApprove]) VALUES (?, ?, ?, ?,0)", fromid, toid, reason, videoURL) > 0;
 }

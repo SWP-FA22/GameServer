@@ -31,6 +31,19 @@ public class PostManage extends HttpServlet {
             Player player = Authentication.getPlayerInformationByToken(token);
 
             List<Post> listbypid = new PostModel().getPostByPlayerID(player.getId());
+            int sl = listbypid.size();
+            int pages = sl / 10;
+            if (sl % 10 != 0) {
+                pages++;
+            }
+            request.setAttribute("pages", pages);
+            int page;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+            } else {
+                page = 1;
+            }
+            listbypid =new PostModel().getPostByPlayerID(player.getId(),page-1,10); 
             request.setAttribute("listbypid", listbypid);
             request.setAttribute("player", player);
             request.getRequestDispatcher("post-manage.jsp").forward(request, response);

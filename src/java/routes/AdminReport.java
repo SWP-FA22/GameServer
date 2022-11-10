@@ -29,7 +29,21 @@ public class AdminReport extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<Report> list=new ReportModel().getall();
+            ReportModel rm=new ReportModel();
+            List<Report> list=rm.getall();
+            int sl = list.size();
+            int pages = sl / 10;
+            if (sl % 10 != 0) {
+                pages++;
+            }
+            request.setAttribute("pages", pages);
+            int page;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+            } else {
+                page = 1;
+            }
+            list = rm.getPost(page - 1, 10);
             request.setAttribute("reports", list);
             request.getRequestDispatcher("report-admin.jsp").forward(request, response);
         } catch (Exception ex) {
