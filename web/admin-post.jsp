@@ -91,47 +91,46 @@
                 class="w-full max-w-screen-sm m-auto p-3 min-h-100 overflow-hidden shadow-lg border my-10"
                 >
                 <c:forEach items="${requestScope.listpost}" var="listpost">
-                <div class="flex item-center justify-end">
-                    <div
-                        class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
-                        >
-                        <form method="post">
-                            <input type="hidden" name="postid" value="${listpost.getKey().getId()}"/>
-                            <button type="submit"><i class="fa-regular fa-circle-check w-6 h-6"></i></button>
-                        </form>
-                    </div>
-                    <div
-                        class="icon-ban cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
-                        >
-                        <a class="fa-solid fa-ban w-6 h-6" href="delete-post?postid=${listpost.getKey().getId()}"></a>
-                    </div>
-                </div>
-                <div class="wrapper bg-white flex flex-row p-3">
-                    <div class="w-1/6 flex-grow-0">
+                    <div class="flex item-center justify-end">
                         <div
-                            class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+                            class="icon-check cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
                             >
-                            <img
-                                class="rounded-full w-full"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
-                                alt=""
-                                />
+                            <form method="post">
+                                <input type="hidden" name="postid" value="${listpost.getKey().getId()}"/>
+                                <button type="submit"><i class="fa-regular fa-circle-check w-6 h-6"></i></button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="w-5/6 info text-left pl-3 text-gray-500">
                         <div
-                            class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+                            class="icon-ban cursor-pointer w-5 mr-2 transform hover:text-purple-500 hover:scale-110"
                             >
-                            ${listpost.getValue().timeCreate}
-                        </div>
-                        <div class="name font-bold py-1">${listpost.getKey().username}</div>
-                        <div class="name font-bold py-1">${listpost.getValue().title}</div>
-                        <div class="bio text-sm">
-                            ${listpost.getValue().description}
+                            <a class="fa-solid fa-ban w-6 h-6" href="delete-post?postid=${listpost.getKey().getId()}"></a>
                         </div>
                     </div>
-                </div>
-                <hr><hr>
+                    <div class="wrapper bg-white flex flex-row p-3">
+                        <div class="w-1/6 flex-grow-0">
+                            <div
+                                class="rounded-full w-full h-auto border-green-700 border-4 p-1 overflow-hidden"
+                                >
+                                <img
+                                    class="rounded-full w-full"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXZd2-aQF4R4Vxg3jpmkz5IAIHc9Hg-Fc1Aun7XeasnVggFOvogZQ5ZrsnL2E4RpaJjY&usqp=CAU"
+                                    alt=""
+                                    />
+                            </div>
+                        </div>
+                        <div class="w-5/6 info text-left pl-3 text-gray-500">
+                            <a href="admin-view?id=${listpost.getValue().id}">
+                                <div
+                                    class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+                                    >
+                                    ${listpost.getValue().timeCreate}
+                                </div>
+                                <div class="name font-bold py-1">${listpost.getKey().username}</div>
+                                <div class="name font-bold py-1">${listpost.getValue().title}</div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr><hr>
                 </c:forEach>
             </div>
 

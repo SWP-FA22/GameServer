@@ -26,6 +26,12 @@ public class ViewBlogServlet extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("id"));
             PostsModel postmodel = new PostsModel();
             Posts post = postmodel.get(id);
+            
+            if (!post.isIsApproved()) {
+                response.sendError(404);
+                return;
+            }
+            
             request.setAttribute("post", post);
             request.getRequestDispatcher("post.jsp").forward(request, response);
         } catch (Exception e) {
