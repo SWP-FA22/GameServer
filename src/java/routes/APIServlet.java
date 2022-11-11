@@ -48,6 +48,7 @@ public class APIServlet extends HttpServlet {
         routes = new HashMap<>();
 
         routes.put("post:login", APIServlet::login);
+        routes.put("post:logout", APIServlet::logout);
         routes.put("post:verify", APIServlet::verify);
         routes.put("post:get-all-items", APIServlet::getAllItems);
         routes.put("post:get-all-ships", APIServlet::getAllShips);
@@ -66,7 +67,7 @@ public class APIServlet extends HttpServlet {
         JSONObject result = new JSONObject();
 
         try {
-            List<Player>list = new PlayerModel().getTopRanking();
+            List<Player> list = new PlayerModel().getTopRanking();
             result.put("success", true);
             result.put("players", list);
 
@@ -442,6 +443,33 @@ public class APIServlet extends HttpServlet {
         return result;
     }
 
+    public static JSONObject logout(HttpServletRequest request, PrintWriter response) throws Exception {
+        JSONObject result = new JSONObject();
+
+        try {
+            String token = request.getParameter("token");
+
+            if (token == null || token.isEmpty()) {
+                throw new Exception("The token is invalid");
+            } else {
+                Player player = Authentication.getPlayerInformationByToken(token);
+
+                if (player == null) {
+                    throw new Exception("Username is not exist");
+                } else {
+                    player.setActive(false);
+                    new PlayerModel().update(player);
+                    result.put("success", true);
+                }
+            }
+
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
+
     public static JSONObject login(HttpServletRequest request, PrintWriter response) throws Exception {
         JSONObject result = new JSONObject();
 
@@ -456,14 +484,23 @@ public class APIServlet extends HttpServlet {
             if (password == null || password.length() > 64) {
                 throw new Exception("Arg \"password\" is not valid");
             }
+            Player p = new PlayerModel().getPlayerByUsernameAndPassword(username, password);
+            if (p != null) {
+                if (p.getRole()==2)
+                {
+                    throw new Exception("The account has been ban.Check your email for more detail.");
+                }
+                else
+                if (!p.isActive()) {
+                    String token = Authentication.createTokenCookie(p.getId(), 60 * 60 * 24).getValue();
+                    p.setActive(true);
+                    new PlayerModel().update(p);
+                    result.put("success", true);
+                    result.put("token", token);
+                } else {
+                    throw new Exception("The account has been logged in another device");
+                }
 
-            Integer uid = new PlayerModel().getUserIDByUsernameAndPassword(username, password);
-
-            if (uid != null) {
-                String token = Authentication.createTokenCookie(uid, 60 * 60 * 24).getValue();
-
-                result.put("success", true);
-                result.put("token", token);
             } else {
                 throw new Exception("Wrong username or password");
             }
