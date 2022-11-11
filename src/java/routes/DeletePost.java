@@ -38,17 +38,17 @@ public class DeletePost extends HttpServlet {
 
             PostModel pm = new PostModel();
 
-            if (player.getRole() != 1) {
+           // if (player.getRole() != 1) {
                 pm.deletePost(postid, player.getId());
                 response.sendRedirect("post-manage");
 
-            } else {
-                pm.deletePost(postid);
-                response.sendRedirect("admin-post");
-            }
+//            } else {
+//                pm.deletePost(postid);
+//                response.sendRedirect("admin-post");
+//            }
 
         } catch (Exception ex) {
-
+ex.printStackTrace(response.getWriter());
         }
     }
 }

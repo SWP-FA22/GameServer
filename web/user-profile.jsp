@@ -136,12 +136,6 @@
                                     <div class="text-xs mt-0 mb-2 text-slate-400 text-base"></div>
                                     <i class="fa fa-user mr-2 text-slate-400 opacity-75"></i
                                     ><span>Username: ${player.username}</span><span id="username" ></span>           
-
-
-                                    <!-- <div class="mt-3 mb-4">
-                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                                      class="rounded-circle img-fluid" style="width: 100px;" />
-                                       </div>-->
                                     <h4 class="mb-2"></h4>
                                     <p class="text-muted mb-4">Name: ${player.name} <span class="mx-2"></span> <a
                                             href="#!"></a></p>
@@ -149,6 +143,7 @@
                                     <button type="button" class="btn btn-primary btn-rounded btn-lg">
                                         Email: ${player.email}
                                     </button>
+                                    <p class="text-muted mb-4"><a href="post">Add post  </a><a href="post-manage"> Manage post</a></p>
                                     <!--                                <div class="d-flex justify-content-between text-center mt-5 mb-2">
                                                                         <div>
                                                                             <p class="mb-2 h5"></p>

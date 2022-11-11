@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f82251d3-b15f-497a-83f6-09469dc8c5ab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/java/routes/APIServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/routes/APIServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/utilities/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/utilities/GlobalConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/components/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/components/navbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/user-profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/user-profile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,13 +22,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GameServer" />
@@ -53,6 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667542681698</updated>
       <workItem from="1667542684669" duration="614000" />
+      <workItem from="1668000483292" duration="7000" />
     </task>
     <servers />
   </component>

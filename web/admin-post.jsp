@@ -125,6 +125,7 @@
                             ${listpost.getValue().timeCreate}
                         </div>
                         <div class="name font-bold py-1">${listpost.getKey().username}</div>
+                        <div class="name font-bold py-1">${listpost.getValue().title}</div>
                         <div class="bio text-sm">
                             ${listpost.getValue().description}
                         </div>

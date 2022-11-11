@@ -69,6 +69,12 @@
                  height : 95vh;
                  background-position: contain;
                  " class=" antialiased bg-gray-100 text-gray-600 h-screen px-4">
+            <button class="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
+                <a href="admin-post" class="button">Manage Post</a>
+                        </button>
+            <button class="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
+                <a href="admin-report" class="button">Manage Report</a>
+                        </button>
             <div class="flex flex-col justify-center h-full">
                 <div class="flex justify-center">
                     <div class="mb-3 xl:w-96">

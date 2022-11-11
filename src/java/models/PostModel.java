@@ -42,7 +42,17 @@ public class PostModel extends ModelBase<Post> {
             return listbypid;
         }
     }
-
+public List<Post> getPostByPlayerID(Integer id,int page,int size) throws Exception {
+        List<Post> listbypid = new ArrayList<>();
+        try ( ResultSet rs = ModelBase.connection().executeQuery(" SELECT * FROM [Post] WHERE [CreatedBy] = ? order by TimeCreate DESC offset ? rows fetch next ? rows only", id,page*size,size)) {
+            while (rs.next()) {
+                Post post = new Post();
+                post.loadProps(rs);
+                listbypid.add(post);
+            }
+            return listbypid;
+        }
+    }
     public List<Post> getPost() throws Exception {
         List<Post> listbypid = new ArrayList<>();
         try ( ResultSet rs = ModelBase.connection().executeQuery(" SELECT * FROM [Post] WHERE [isApproved] = 1")) {
@@ -87,7 +97,7 @@ public List<Post> getPost(int page,int size) throws Exception {
 
     public List<Map.Entry<Player, Post>> getAllPostWithPlayer() throws Exception {
         List<Map.Entry<Player, Post>> result = new ArrayList<>();
-        try ( ResultSet rs = ModelBase.connection().executeQuery(" SELECT * FROM [Post], [Player] WHERE [Post].[CreatedBy] = [Player].[ID]")) {
+        try ( ResultSet rs = ModelBase.connection().executeQuery(" SELECT * FROM [Post], [Player] WHERE [Post].[CreatedBy] = [Player].[ID] order by [TimeCreate] DESC")) {
             while (rs.next()) {
                 Post post = new Post();
                 Player player = new Player();
