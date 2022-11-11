@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package routes;
 
 import entities.Player;
@@ -15,21 +14,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.PlayerModel;
 import models.ReportModel;
 import utilities.Authentication;
+import utilities.GlobalConstants;
+import utilities.SMTP;
+import utilities.TokenGenerator;
 
 /**
  *
  * @author Huu
  */
 public class CheckServlet extends HttpServlet {
-   
 
-
-  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         String action = request.getParameter("action");
-        Long id= Long.parseLong(request.getParameter("id"));
+        Long id = Long.parseLong(request.getParameter("id"));
         try {
             String token = Authentication.getTokenFromCookies(request.getCookies());
             if (Authentication.getPlayerInformationByToken(token) == null) {
@@ -39,28 +38,31 @@ public class CheckServlet extends HttpServlet {
                 if (player.getRole() != 1) {
                     response.sendRedirect("home");
                 } else {
-                    PlayerModel pm=new PlayerModel();
-                    Player player1=pm.getUserById(id);
-                    if (action.equals("ban"))
-                    {
+                    PlayerModel pm = new PlayerModel();
+                    Player player1 = pm.getUserById(id);
+                    if (action.equals("ban")) {
                         //update ban account                        
                         player1.setRole(2);
                         pm.updateRole(player1);
+                        String text = "Hi " + player1.getName() + ",\n\n"
+                                + "We receive some report on your account.\n"
+                                + "After review, we have decided to ban your account until we have a reasonable explanation.\n"
+                                + "Admin";
+
+                        SMTP smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+                        smtp.connect();
+                        smtp.sendMimeMessage("BattleShip Online (No-Reply)", player1.getEmail(), "RESET YOUR PASSWORD", text);
                         response.sendRedirect("admin");
-                    }
-                    else if (action.equals("unban"))
-                    {
+                    } else if (action.equals("unban")) {
                         //unban account
                         player1.setRole(0);
                         pm.updateRole(player1);
                         response.sendRedirect("admin");
+                    } else if (action.equals("deletereport")) {
+                        ReportModel rm = new ReportModel();
+                        rm.deleteReport(id.intValue());
+                        response.sendRedirect("admin-report");
                     }
-                    else if (action.equals("deletereport"))
-                            {
-                                ReportModel rm=new ReportModel();
-                                rm.deleteReport(id.intValue());
-                                response.sendRedirect("admin-report");
-                            }
                 }
 
             }
@@ -68,10 +70,11 @@ public class CheckServlet extends HttpServlet {
         } catch (Exception ex) {
             response.sendError(500, ex.getMessage());
         }
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -79,8 +82,7 @@ public class CheckServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
     }
-
 
 }
