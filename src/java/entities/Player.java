@@ -48,9 +48,12 @@ public class Player extends JSONEntity {
     @SQLColumn(column = "IsCheckIn")
     private boolean ischeckedin;
     
+    
     @SQLColumn(column = "CheckInCount")
     private Integer checkincount;
 
+    @SQLColumn(column = "Active")
+    private boolean active;
     public Player() {
     }
 
@@ -72,7 +75,7 @@ public class Player extends JSONEntity {
         this.checkincount = checkincount;
     }
 
-    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank, Integer role, boolean ischeckedin, Integer checkincount) {
+    public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank, Integer role, boolean ischeckedin, Integer checkincount, boolean active) {
         this.id = id;
         this.password = password;
         this.username = username;
@@ -84,8 +87,18 @@ public class Player extends JSONEntity {
         this.rank = rank;
         this.role = role;
         this.ischeckedin = ischeckedin;
-        this.checkincount = checkincount;        
+        this.checkincount = checkincount;
+        this.active = active;
         updateProps();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        updateProp("active", active);
+        this.active = active;
     }
 
     public Player(Integer id, String password, String username, String name, String email, Integer weaponID, Integer engineID, Integer sailID, Integer rank, Integer role) {

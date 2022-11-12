@@ -62,9 +62,10 @@ public class PlayerModel extends ModelBase<Player> {
             return -1;
         }
     }
-public List<Player> getPlayer(int page,int size) throws Exception {
+
+    public List<Player> getPlayer(int page, int size) throws Exception {
         List<Player> listbypid = new ArrayList<>();
-        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Player where  Role!=1 order by ID DESC offset ? rows fetch next ? rows only",page*size,size)) {
+        try ( ResultSet rs = ModelBase.connection().executeQuery("select * from Player where  Role!=1 order by ID DESC offset ? rows fetch next ? rows only", page * size, size)) {
             while (rs.next()) {
                 Player post = new Player();
                 post.loadProps(rs);
@@ -73,6 +74,7 @@ public List<Player> getPlayer(int page,int size) throws Exception {
             return listbypid;
         }
     }
+
     public List<Player> getallplayer(String name) throws Exception {
         List<Player> listbypid = new ArrayList<>();
         try {
@@ -115,6 +117,14 @@ public List<Player> getPlayer(int page,int size) throws Exception {
         return null;
     }
 
+    public Player getPlayerByUsernameAndPassword(String username, String password) throws Exception {
+        List<Player> players = getIf("[Username] = ? AND [Password] = ? COLLATE Latin1_General_CS_AS", username, Crypto.SHA256(password));
+        if (!players.isEmpty()) {
+            return players.get(0);
+        }
+        return null;
+    }
+
     public Player getUserById(Long id) throws Exception {
         List<Player> players = getIf("[ID] = ?", id);
         if (!players.isEmpty()) {
@@ -134,7 +144,9 @@ public List<Player> getPlayer(int page,int size) throws Exception {
     public static void main(String[] args) throws Exception {
         PlayerModel pm = new PlayerModel();
         List<Player> list = new PlayerModel().getallplayer("a");
-        for (Player p:list) System.out.println(p.getRole());
+        for (Player p : list) {
+            System.out.println(p.getRole());
+        }
     }
 
     public List<Player> getTopRanking() throws Exception {
