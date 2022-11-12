@@ -120,6 +120,10 @@
         <servlet-name>SearchAdminServlet</servlet-name>
         <servlet-class>routes.SearchAdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminViewPostServlet</servlet-name>
+        <servlet-class>routes.AdminViewPostServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>SearchAdminServlet</servlet-name>
         <url-pattern>/searchadmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminViewPostServlet</servlet-name>
+        <url-pattern>/admin-view</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

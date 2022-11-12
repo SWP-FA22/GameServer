@@ -132,28 +132,26 @@
                             </div>
                         </div>
                         <div class="w-5/6 info text-left pl-3">
-                            <div>
-                                <p class="written-by font-bold tracking-wide">${list.title}</p>
+                            <a href="admin-view?id=${list.id}">
+                                <div>
+                                    <p class="written-by font-bold tracking-wide">${list.title}</p>
 
-                                <c:choose >
-                                    <c:when test ="${list.isApproved == null}">
-                                        <div class="written-by text-red-500 tracking-wide text-sm">Pending</div>
-                                    </c:when> 
-                                    <c:otherwise>
-                                        <div class="written-by text-green-500 tracking-wide text-sm">Accepted</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
+                                    <c:choose >
+                                        <c:when test ="${list.isApproved == null}">
+                                            <div class="written-by text-red-500 tracking-wide text-sm">Pending</div>
+                                        </c:when> 
+                                        <c:otherwise>
+                                            <div class="written-by text-green-500 tracking-wide text-sm">Accepted</div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
-                            <div
-                                class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
-                                >
-                                ${list.timeCreate}
-                            </div>
-
-                            <div class="bio text-sm">
-                                ${list.description}
-                            </div>
+                                <div
+                                    class="written-by uppercase text-gray-600 tracking-wide text-sm mb-2"
+                                    >
+                                    ${list.timeCreate}
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <hr>     
@@ -172,15 +170,15 @@
             <nav aria-label="Page navigation example">
                 <ul class="flex list-style-none">
                     <c:forEach var = "i" begin = "1" end = "${requestScope.pages}">
-                                            <li class="page-item active">
-                                                <a
-                                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                                                    href="post-manage?page=${i}"
-                                                    >${i} <span class="visually-hidden">(current)</span></a
-                                                >
-                                            </li>
-                                        </c:forEach>
-                    
+                        <li class="page-item active">
+                            <a
+                                class="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
+                                href="post-manage?page=${i}"
+                                >${i} <span class="visually-hidden">(current)</span></a
+                            >
+                        </li>
+                    </c:forEach>
+
                 </ul>
             </nav>
         </div>
