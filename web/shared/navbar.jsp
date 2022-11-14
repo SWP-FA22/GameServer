@@ -61,7 +61,6 @@
                             </li>
                             <li><a class="dropdown-item" href="profile">Profile</a></li>
                             <li><a class="dropdown-item" href="check-in">Check-in</a></li>
-                            <li><a class="dropdown-item" href="setting">Setting</a></li>
                                 <c:if test="${player.role == 1}">
                                 <li><a class="dropdown-item" href="admin">Admin</a></li>
                                 </c:if>

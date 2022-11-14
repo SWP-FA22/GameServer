@@ -46,7 +46,7 @@
                     <div class="row overflow-auto" style="height: 400px;">
 
                         <c:forEach var="ship" items="${ships}">
-                            <div class="col-4 col-lg-3 p-2">
+                            <div class="col-4 col-lg-3 p-2" style="height: 200px;">
                                 <div class="card" data-mdb-toggle="modal" data-mdb-target="#bs-database--ships-${ship.id}">
                                     <div class="card-body">
                                         <p class="card-text">

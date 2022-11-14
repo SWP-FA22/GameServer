@@ -77,6 +77,7 @@ public class APIServlet extends HttpServlet {
         try {
             String token = request.getParameter("token");
             int id = Integer.parseInt(request.getParameter("id"));
+            int useamount = Integer.parseInt(request.getParameter("amount"));
 
             Player player = Authentication.getPlayerInformationByToken(token);
 
@@ -88,11 +89,11 @@ public class APIServlet extends HttpServlet {
 
             Integer amount = rm.getResourceAmount(player.getId(), id);
 
-            if (amount <= 0) {
-                throw new Exception("Amount <= 0");
+            if (amount < useamount) {
+                throw new Exception("Amount <= " + useamount);
             }
             
-            rm.setResourceAmount(player.getId(), id, amount - 1);
+            rm.setResourceAmount(player.getId(), id, amount - useamount);
 
             result.put("success", true);
         } catch (Exception e) {

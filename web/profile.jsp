@@ -95,7 +95,14 @@
                     <div class="card-body p-4 text-black">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <p class="lead fw-normal mb-0">Posts</p>
+
+                            <c:if test="${isMe}">
+                                <a href="create-post" class="btn btn-outline-danger">
+                                    Create new post
+                                </a>
+                            </c:if>
                         </div>
+
                         <div class="row g-2">
 
                             <c:forEach var="post" items="${posts}">
@@ -114,9 +121,6 @@
                                                 </c:choose>
                                             </h5>
                                             <p>[${post.getDateFormated()}]</p>
-                                        </div>
-                                        <div class="card-body d-flex">
-                                            <p class="text-black-50"><c:out value="${post.description}" escapeXml="false"/></p>
                                         </div>
                                     </a>
                                 </div>

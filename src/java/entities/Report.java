@@ -16,11 +16,11 @@ import java.sql.Timestamp;
 @SQLTable(table = "Report")
 public class Report extends JSONEntity {
 
-    @SQLColumn(column = "FromID")
-    private Integer fromid;
+    @SQLColumn(column = "From")
+    private String fromid;
 
-    @SQLColumn(column = "ToID")
-    private Integer toid;
+    @SQLColumn(column = "To")
+    private String toid;
 
     @SQLColumn(column = "Reason")
     private String reason;
@@ -31,37 +31,37 @@ public class Report extends JSONEntity {
     @SQLColumn(column = "Time")
     private Timestamp time;
 
-    @SQLColumn(column = "IsApproved")
-    private Integer isapproved;
+    @SQLColumn(column = "IsApprove")
+    private Boolean isapproved;
 
     public Report() {
 
     }
 
-    public Report(Integer fromid, Integer toid, String reason, String videoURL, Timestamp time, Integer isapproved) {
+    public Report(String fromid, String toid, String reason, String videoURL, Timestamp time, Boolean isapproved) {
         this.fromid = fromid;
         this.toid = toid;
         this.reason = reason;
         this.videoURL = videoURL;
         this.time = time;
         this.isapproved = isapproved;
-        
-         updateProps();
+
+        updateProps();
     }
 
-    public Integer getFromid() {
+    public String getFromid() {
         return fromid;
     }
 
-    public void setFromid(Integer fromid) {
+    public void setFromid(String fromid) {
         this.fromid = fromid;
     }
 
-    public Integer getToid() {
+    public String getToid() {
         return toid;
     }
 
-    public void setToid(Integer toid) {
+    public void setToid(String toid) {
         this.toid = toid;
     }
 
@@ -89,11 +89,11 @@ public class Report extends JSONEntity {
         this.time = time;
     }
 
-    public Integer getIsapproved() {
+    public Boolean getIsapproved() {
         return isapproved;
     }
 
-    public void setIsapproved(Integer isapproved) {
+    public void setIsapproved(Boolean isapproved) {
         this.isapproved = isapproved;
     }
-    }
+}

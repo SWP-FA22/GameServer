@@ -30,7 +30,7 @@ public class ProfileServlet extends BaseSerlvet {
             }
 
             Integer id = player.getId();
-
+            request.setAttribute("isMe", true);
             if (_id != null) {
                 id = Integer.parseInt(_id);
 
@@ -41,6 +41,8 @@ public class ProfileServlet extends BaseSerlvet {
                 }
 
                 request.setAttribute("player", p);
+                request.setAttribute("isMe", p.getId() == player.getId());
+
             }
 
             List<Ship> ships = new ShipModel().getShipsByPlayerID(id);

@@ -13,6 +13,7 @@
             <a class="nav-link active" data-mdb-toggle="tab" href="#v-tabs-post" role="tab">Post</a>
             <a class="nav-link" data-mdb-toggle="tab" href="#v-tabs-account" role="tab">Account</a>
             <a class="nav-link" data-mdb-toggle="tab" href="#v-tabs-transaction" role="tab">Transaction</a>
+            <a class="nav-link" data-mdb-toggle="tab" href="#v-tabs-report" role="tab">Report</a>
         </div>
         <!-- Tab navs -->
     </div>
@@ -84,13 +85,49 @@
                             </tr>
                         </thead>
                         <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-tabs-report" role="tabpanel">
+                <div class="container">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <a href="profile?id=" class="nav-link text-warning">Username</a>
-                                </td>
-                                <td>Otto</td>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Reason</th>
+                                <th scope="col">Evidence</th>
+                                <th scope="col">Action</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="report" items="${reports}">
+                                <tr>
+                                    <td>
+                                        ${report.fromid}
+                                    </td>
+                                    <td>
+                                        ${report.toid}
+                                    </td>
+                                    <td>
+                                        ${report.reason}
+                                    </td>
+                                    <td>
+                                        <a href="${report.videoURL}">Link Video</a>
+                                    </td>
+                                    <td>
+                                        <form class="btn-group" method="post">
+                                            <input type="hidden" name="action" value="report-process"/>
+                                            <input type="hidden" name="fromid" value="${report.fromid}"/>
+                                            <input type="hidden" name="toid" value="${report.toid}"/>
+                                            
+                                            <button class="btn btn-danger" name="value" value="0">Ban</button>
+                                            <button class="btn btn-success" name="value" value="1">Ignore</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

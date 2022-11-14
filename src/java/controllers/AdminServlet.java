@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import models.PlayerModel;
 import models.PostModel;
+import models.ReportModel;
 import models.TransactionModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,12 +29,19 @@ public class AdminServlet extends BaseSerlvet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (player == null || player.getRole() != 1) {
-            response.sendError(403);
-            return;
-        }
+        try {
+            if (player == null || player.getRole() != 1) {
+                response.sendError(403);
+                return;
+            }
 
-        request.getRequestDispatcher("admin.jsp").forward(request, response);
+            request.setAttribute("reports", new ReportModel().getall());
+
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            response.sendError(404);
+        }
     }
 
     @Override
@@ -44,6 +52,9 @@ public class AdminServlet extends BaseSerlvet {
         }
 
         String action = request.getParameter("action");
+        String value = request.getParameter("value");
+        String fromid = request.getParameter("fromid");
+        String toid = request.getParameter("toid");
 
         try ( PrintWriter out = response.getWriter()) {
             switch (action) {
@@ -58,6 +69,21 @@ public class AdminServlet extends BaseSerlvet {
                     break;
                 case "ban-player":
                     out.print(banPlayer(request).toString());
+                    break;
+                case "report-process":
+                    if (value.equals("0")) {
+                        Player p = new PlayerModel().getUserByUsername(toid);
+
+                        if (p != null) {
+                            p.setRole(-1);
+
+                            new PlayerModel().updateRole(p);
+                        }
+                    }
+
+                    new ReportModel().removeReport(fromid, toid);
+
+                    response.sendRedirect("admin");
                     break;
                 default:
                     throw new AssertionError();

@@ -19,4 +19,8 @@ public class ReportModel extends ModelBase<Report> {
     public boolean createReport(String fromid, String toid, String reason, String videoURL) throws Exception {
         return ModelBase.connection().executeUpdate("INSERT INTO [Report]([From], [To], [Reason], [VideoURL]) VALUES (?, ?, ?, ?)", fromid, toid, reason, videoURL) > 0;
     }
+
+    public void removeReport(String fromid, String toid) throws Exception {
+        ModelBase.connection().executeUpdate("DELETE FROM [Report] WHERE [From] = ? AND [To] = ?", fromid, toid);
+    }
 }
